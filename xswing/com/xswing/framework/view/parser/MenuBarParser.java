@@ -5,7 +5,7 @@ import java.util.List;
 import javax.swing.JComponent;
 import javax.swing.JMenuBar;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
 

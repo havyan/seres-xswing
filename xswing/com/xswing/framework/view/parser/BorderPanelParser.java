@@ -5,7 +5,7 @@ import java.awt.Component;
 
 import javax.swing.JPanel;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
 

@@ -9,7 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.editor.Editor;
 import com.xswing.framework.view.Context;

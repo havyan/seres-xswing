@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+            targetNamespace="http://www.seres.com" 
+            xmlns="http://www.seres.com"
+            elementFormDefault="qualified">
 
 	<xsd:element name="xpanel" type="xpanel"></xsd:element>
 
@@ -71,7 +74,7 @@
 		<xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
 	</xsd:complexType>
 
-	<xsd:complexType name="property">
+	<xsd:complexType name="property" mixed="true">
 		<xsd:sequence>
 			<xsd:element name="value" type="bean" maxOccurs="1"
 				minOccurs="0"></xsd:element>
@@ -270,7 +273,7 @@
     	</xsd:sequence>
     </xsd:complexType>
 
-    <xsd:complexType name="argument">
+    <xsd:complexType name="argument" mixed="true">
       <xsd:sequence>
         <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
       </xsd:sequence>

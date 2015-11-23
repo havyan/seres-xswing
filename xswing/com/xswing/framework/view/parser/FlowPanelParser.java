@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.view.Context;

@@ -8,7 +8,7 @@ import java.util.List;
 
 import javax.swing.JTabbedPane;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
 import com.xswing.framework.view.component.JCloseableTabbedPane;

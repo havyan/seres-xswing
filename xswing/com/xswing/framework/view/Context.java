@@ -8,7 +8,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-import org.jdom.Document;
+import org.jdom2.Document;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.editor.Editor;

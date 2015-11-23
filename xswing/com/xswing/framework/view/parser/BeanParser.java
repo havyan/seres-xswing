@@ -14,7 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;

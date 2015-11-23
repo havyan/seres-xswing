@@ -10,7 +10,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.framework.exception.ExceptionUtils;
 import com.xswing.framework.view.Context;

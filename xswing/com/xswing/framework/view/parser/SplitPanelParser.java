@@ -6,7 +6,7 @@ package com.xswing.framework.view.parser;
 import javax.swing.JComponent;
 import javax.swing.JSplitPane;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.view.Context;

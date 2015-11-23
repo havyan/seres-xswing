@@ -3,7 +3,7 @@
  */
 package com.xswing.framework.view.parser;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
 import com.xswing.framework.view.XPanel;

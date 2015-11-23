@@ -6,7 +6,7 @@ package com.xswing.framework.view.parser;
 import javax.swing.JComponent;
 import javax.swing.JScrollPane;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
 
