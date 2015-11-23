@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="xswing/com/xswing/framework/xsd/xswing.xsd">
+	<center border="LINE">
+		<gridBagPanel>
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="height"></property>
+					</label>
+				</cell>
+
+				<cell>
+					<textField id="height">
+						<property name="columns" value="20"></property>
+					</textField>
+				</cell>
+			</row>
+
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="weight"></property>
+					</label>
+				</cell>
+
+				<cell>
+					<textField id="weight">
+						<property name="columns" value="20"></property>
+					</textField>
+				</cell>
+			</row>
+
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="color"></property>
+					</label>
+				</cell>
+
+				<cell>
+					<textField id="company">
+						<property name="columns" value="20"></property>
+					</textField>
+				</cell>
+			</row>
+
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="language"></property>
+					</label>
+				</cell>
+
+				<cell>
+					<textField id="language">
+						<property name="columns" value="20"></property>
+					</textField>
+				</cell>
+			</row>
+		</gridBagPanel>
+	</center>
+</xpanel>

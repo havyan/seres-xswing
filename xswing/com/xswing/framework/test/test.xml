@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../xsd/xswing.xsd">
+	<center title="borderPanel">
+		<borderPanel>
+			<center>
+				<borderPanel>
+					<center>
+						<button id="bt1">
+							<property name="text" value="hello, world"></property>
+						</button>
+					</center>
+					<north>
+						<comboBox></comboBox>
+					</north>
+					
+					<south>
+						<bean class="javax.swing.JCheckBox">
+							<property name="text" value="check"></property>
+						</bean>
+					</south>
+					
+					<east>
+						<import path="./import.xml"/>
+					</east>
+				</borderPanel>
+			</center>
+
+			<north>
+				<label>
+					<property name="text" value="north"></property>
+				</label>
+			</north>
+
+			<south>
+				<label>
+					<property name="text" value="south"></property>
+				</label>
+			</south>
+
+			<east>
+				<gridBagPanel>
+					<row>
+						<cell>
+							<button>
+								<property name="text" value="新增的按钮"></property>
+							</button>
+						</cell>
+					</row>
+				</gridBagPanel>
+			</east>
+
+			<west>
+				<label>
+					<property name="text" value="west"></property>
+				</label>
+			</west>
+		</borderPanel>
+	</center>
+
+	<processor></processor>
+</xpanel>

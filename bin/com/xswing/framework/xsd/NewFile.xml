@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xswing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="xswing.xsd">
+  <borderPanel>
+    <center>
+    	<bean></bean>
+    </center>
+    <north/>
+    <south/>
+    <east/>
+    <west/>
+  </borderPanel>
+  <gridbagPanel>gridbagPanel</gridbagPanel>
+  <flowPanel>flowPanel</flowPanel>
+  <button>button</button>
+  <bean>bean</bean>
+</xswing>

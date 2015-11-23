@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="../xsd/xswing.xsd"
+  processor="com.xswing.framework.test.TestProcessor">
+  <center>
+    <borderPanel>
+      <center border="ETCHED">
+        <splitPanel>
+          <leftOrTop>
+            <splitPanel orientation="VERTICAL_SPLIT">
+              <leftOrTop>
+                <borderPanel>
+                  <center>
+                    <scrollPanel>
+                      <view>
+                        <bean class="javax.swing.JTree"></bean>
+                      </view>
+                    </scrollPanel>
+                  </center>
+                  <north>
+                    <menuBar>
+                      <item>
+                        <button>
+                          <property name="text" value="新增"></property>
+                        </button>
+                      </item>
+                      <item>
+                        <button>
+                          <property name="text" value="修改"></property>
+                        </button>
+                      </item>
+                      <item>
+                        <button>
+                          <property name="text" value="删除"></property>
+                        </button>
+                      </item>
+                    </menuBar>
+                  </north>
+                </borderPanel>
+              </leftOrTop>
+              <rightOrBottom>
+                <borderPanel>
+                  <center>
+                    <scrollPanel>
+                      <view>
+                        <bean class="javax.swing.JTree"></bean>
+                      </view>
+                    </scrollPanel>
+                  </center>
+                  <north>
+                    <menuBar>
+                      <item>
+                        <button>
+                          <property name="text" value="新增"></property>
+                        </button>
+                      </item>
+                      <item>
+                        <button>
+                          <property name="text" value="修改"></property>
+                        </button>
+                      </item>
+                      <item>
+                        <button>
+                          <property name="text" value="删除"></property>
+                        </button>
+                      </item>
+                    </menuBar>
+                  </north>
+                </borderPanel>
+              </rightOrBottom>
+            </splitPanel>
+
+          </leftOrTop>
+          <rightOrBottom>
+            <tabbedPanel closeable="true">
+              <tab name="数据源设置">
+                <borderPanel>
+                  <center>
+                    <boxPanel axis="Y_AXIS">
+                      <component>
+                        <import path="./datasource.xml" />
+                      </component>
+                      <component title="数据参数设置">
+                        <gridBagPanel>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="甘特图名字："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="XX甘特图数据"></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <label></label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <label></label>
+                            </cell>
+                          </row>
+
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="日期格式："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST" gridwidth="3">
+                              <comboBox></comboBox>
+                            </cell>
+                          </row>
+                        </gridBagPanel>
+                      </component>
+
+                      <component title="显示参数设置">
+                        <gridBagPanel>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="甘特图风格："></property>
+                              </label>
+                            </cell>
+                            <cell gridwidth="3" anchor="WEST">
+                              <comboBox></comboBox>
+                            </cell>
+                          </row>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="当前时刻："></property>
+                              </label>
+                            </cell>
+                            <cell gridwidth="2" anchor="WEST">
+                              <bean class="com.toedter.calendar.JDateChooser">
+                              </bean>
+                            </cell>
+                            <cell anchor="NORTHWEST">
+                              <button>
+                                <property name="text" value="N"></property>
+                              </button>
+                            </cell>
+                          </row>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="单元高度："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <bean id="unitHeight" class="javax.swing.JSpinner">
+                              </bean>
+                            </cell>
+
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="甘特图条高度："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <bean id="barHeight" class="javax.swing.JSpinner">
+                              </bean>
+                            </cell>
+                          </row>
+
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="甘特集宽度："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <bean id="collectionWidth" class="javax.swing.JSpinner">
+                              </bean>
+                            </cell>
+
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="甘特组宽度："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <bean id="groupWidth" class="javax.swing.JSpinner">
+                              </bean>
+                            </cell>
+                          </row>
+                        </gridBagPanel>
+                      </component>
+
+                      <component title="时间标尺设置">
+                        <gridBagPanel>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="标尺的类型："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <comboBox></comboBox>
+                            </cell>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="缩放比例："></property>
+                              </label>
+                            </cell>
+                            <cell anchor="WEST">
+                              <comboBox></comboBox>
+                            </cell>
+                          </row>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="开始时间："></property>
+                              </label>
+                            </cell>
+                            <cell gridwidth="3" anchor="WEST">
+                              <bean class="com.toedter.calendar.JDateChooser">
+                              </bean>
+                            </cell>
+                          </row>
+                          <row>
+                            <cell anchor="WEST">
+                              <label>
+                                <property name="text" value="结束时间："></property>
+                              </label>
+                            </cell>
+                            <cell gridwidth="3" anchor="WEST">
+                              <bean class="com.toedter.calendar.JDateChooser">
+                              </bean>
+                            </cell>
+                          </row>
+                        </gridBagPanel>
+                      </component>
+                    </boxPanel>
+                  </center>
+
+                  <east>
+                    <borderPanel>
+                      <center title="一棵树">
+                        <scrollPanel>
+                          <view>
+                            <bean class="javax.swing.JTree">
+                            </bean>
+                          </view>
+                        </scrollPanel>
+                      </center>
+                      <east title="两棵树">
+                        <scrollPanel>
+                          <view>
+                            <bean class="javax.swing.JTree">
+                            </bean>
+                          </view>
+                        </scrollPanel>
+                      </east>
+                      <west title="三棵树">
+                        <scrollPanel>
+                          <view>
+                            <bean class="javax.swing.JTree">
+                            </bean>
+                          </view>
+                        </scrollPanel>
+                      </west>
+                    </borderPanel>
+                  </east>
+
+                </borderPanel>
+              </tab>
+
+              <tab name="欢迎界面">
+                <label>
+                  <property name="text" value="welcome to xswing"></property>
+                </label>
+              </tab>
+
+              <tab name="魔幻界面">
+                <button>
+                  <property name="text" value="welcome to xswing"></property>
+                </button>
+              </tab>
+
+              <tab name="神奇界面">
+                <bean class="javax.swing.JTree"></bean>
+              </tab>
+
+            </tabbedPanel>
+          </rightOrBottom>
+        </splitPanel>
+      </center>
+      <north>
+        <flowPanel align="LEFT">
+          <component>
+            <label>
+              <property name="text" value="选择项目："></property>
+            </label>
+          </component>
+
+          <component>
+            <comboBox id="project"></comboBox>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="新增"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="修改"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="删除"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="复制"></property>
+            </button>
+          </component>
+        </flowPanel>
+      </north>
+
+      <south border="LOWEREDBEVEL">
+        <label>
+          <property name="text" value="init has be done"></property>
+        </label>
+      </south>
+    </borderPanel>
+  </center>
+
+  <north>
+    <borderPanel>
+      <north>
+        <menuBar>
+          <item>
+            <menu text="file">
+              <item>
+                <menu text="open"></menu>
+              </item>
+              <item>
+                <menu text="save"></menu>
+              </item>
+              <item>
+                <menu text="save as"></menu>
+              </item>
+              <item>
+                <menu text="close"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="edit">
+              <item>
+                <menu text="copy"></menu>
+              </item>
+              <item>
+                <menu text="cut"></menu>
+              </item>
+              <item>
+                <menu text="undo"></menu>
+              </item>
+              <item>
+                <menu text="redo"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="tools">
+              <item>
+                <menu text="a">
+                  <item>
+                    <comboBox></comboBox>
+                  </item>
+                </menu>
+              </item>
+              <item>
+                <menu text="cut"></menu>
+              </item>
+              <item>
+                <menu text="undo"></menu>
+              </item>
+              <item>
+                <menu text="redo"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="run">
+              <item>
+                <checkBox>
+                  <property name="text" value="selected"></property>
+                </checkBox>
+              </item>
+            </menu>
+          </item>
+        </menuBar>
+      </north>
+      <south>
+        <toolBar>
+          <component>
+            <button>
+              <property name="text" value="new"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="save"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="run"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="run as"></property>
+            </button>
+          </component>
+        </toolBar>
+      </south>
+    </borderPanel>
+  </north>
+  
+  <bean id="size" class="java.awt.Dimension">
+    <constructor-arg type="int" value="1000"></constructor-arg>
+    <constructor-arg type="int" value="1000"></constructor-arg>
+  </bean>
+
+</xpanel>

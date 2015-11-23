@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../xsd/xswing.xsd">
+	<center title="配置数据源">
+		<gridBagPanel>
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="连接名："></property>
+					</label>
+				</cell>
+				<cell gridwidth="2" anchor="WEST">
+					<textField>
+						<property name="columns" value="10"></property>
+					</textField>
+				</cell>
+			</row>
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="数据库类型："></property>
+					</label>
+				</cell>
+				<cell gridwidth="2" anchor="WEST">
+					<comboBox></comboBox>
+				</cell>
+			</row>
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="驱动类："></property>
+					</label>
+				</cell>
+				<cell anchor="WEST">
+					<textField>
+						<property name="columns" value="20"></property>
+					</textField>
+				</cell>
+			</row>
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="url："></property>
+					</label>
+				</cell>
+				<cell anchor="WEST">
+					<textField>
+						<property name="columns" value="25"></property>
+					</textField>
+				</cell>
+			</row>
+
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="用户名："></property>
+					</label>
+				</cell>
+				<cell anchor="WEST">
+					<textField>
+						<property name="columns" value="15"></property>
+					</textField>
+				</cell>
+				<cell>
+					<button>
+						<property name="text" value="测试"></property>
+					</button>
+				</cell>
+			</row>
+
+			<row>
+				<cell anchor="WEST">
+					<label>
+						<property name="text" value="密码"></property>
+					</label>
+				</cell>
+				<cell anchor="WEST">
+					<textField>
+						<property name="columns" value="15"></property>
+					</textField>
+				</cell>
+				<cell>
+					<bean class="javax.swing.JCheckBox">
+						<property name="text" value="编辑"></property>
+					</bean>
+				</cell>
+			</row>
+		</gridBagPanel>
+	</center>
+
+</xpanel>

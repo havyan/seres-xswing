@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../xsd/xswing.xsd">
+	<center>
+		<borderPanel>
+			<center>
+				<borderPanel>
+					<center>
+						<button id="bt1">
+							<property name="text" value="hello, world"></property>
+						</button>
+					</center>
+					<north>
+						<comboBox></comboBox>
+					</north>
+					
+					<south>
+						<bean class="javax.swing.JCheckBox">
+							<property name="text" value="check"></property>
+						</bean>
+					</south>
+				</borderPanel>
+			</center>
+
+			<north>
+				<label>
+					<property name="text" value="north"></property>
+				</label>
+			</north>
+
+			<south>
+				<label>
+					<property name="text" value="south"></property>
+				</label>
+			</south>
+
+			<east>
+				<label>
+					<property name="text" value="east"></property>
+				</label>
+			</east>
+
+			<west>
+				<label>
+					<property name="text" value="west"></property>
+				</label>
+			</west>
+		</borderPanel>
+	</center>
+
+	<xprocessor class="" />
+</xpanel>
