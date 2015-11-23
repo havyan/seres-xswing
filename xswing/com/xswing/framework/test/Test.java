@@ -24,6 +24,15 @@ public class Test {
 		UIManager.put("swing.boldMetal", Boolean.FALSE);
 		try {
 			// com.pagosoft.plaf.PgsLookAndFeel
+			// com.jtattoo.plaf.acryl.AcrylLookAndFeel
+			// com.jtattoo.plaf.bernstein.BernsteinLookAndFeel
+			// com.jtattoo.plaf.smart.SmartLookAndFeel
+			// net.sourceforge.napkinlaf.NapkinLookAndFeel
+			// net.sf.tinylaf.TinyLookAndFeel
+			// com.digitprop.tonic.TonicLookAndFeel
+			// com.jtattoo.plaf.texture.TextureLookAndFeel
+			// com.jtattoo.plaf.luna.LunaLookAndFeel
+			// com.jtattoo.plaf.graphite.GraphiteLookAndFeel
 			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
 		} catch (Exception e) {
 			ExceptionUtils.logAndShowException(e);
