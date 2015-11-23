@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xpanel xmlns="http://www.seres.com" 
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xsi:schemaLocation="http://www.seres.com http://www.seres.com/xsd/xswing.xsd"
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing"
         processor="com.xswing.framework.test.TestProcessor">
   <center>
     <borderPanel>

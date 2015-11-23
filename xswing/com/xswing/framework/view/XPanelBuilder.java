@@ -6,7 +6,6 @@ package com.xswing.framework.view;
 import java.net.URL;
 
 import org.jdom2.Document;
-import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 
 import com.framework.exception.ExceptionUtils;
