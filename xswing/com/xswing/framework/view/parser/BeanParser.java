@@ -114,7 +114,7 @@ public class BeanParser<T> extends ElementParser<T> {
 					if (valueElement != null) {
 						BaseUtils.setProperty(bean, propertyName, ParserEngine.parse(context, valueElement));
 					} else {
-						value = e.getText();
+						value = property.getText();
 						if (value != null && value.trim().length() > 0) {
 							Class<?> cls = BaseUtils.getWriteMethod(bean.getClass(), propertyName)
 									.getParameterTypes()[0];
