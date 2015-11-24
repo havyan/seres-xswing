@@ -14,8 +14,17 @@ public class XContainer extends JPanel {
 	protected XPanel xpanel;
 
 	public XContainer(String path) {
+		initXPanel(path);
+		initReferences();
+	}
+
+	public Object $(String id) {
+		return xpanel.getBean(id);
+	}
+
+	private void initXPanel(String path) {
 		setLayout(new BorderLayout());
-		String caller = new Throwable().getStackTrace()[1].getClassName();
+		String caller = new Throwable().getStackTrace()[2].getClassName();
 		String contextPath = null;
 		try {
 			contextPath = Class.forName(caller).getResource("").toString();
@@ -24,17 +33,12 @@ public class XContainer extends JPanel {
 		}
 		xpanel = XPanelBuilder.build(contextPath, path);
 		add(xpanel, BorderLayout.CENTER);
-		initReferences();
-	}
-
-	public Object $(String id) {
-		return xpanel.getBean(id);
 	}
 
 	private void initReferences() {
 		Map<String, Object> beans = xpanel.getBeans();
 		for (Map.Entry<String, Object> entry : beans.entrySet()) {
-			if(BaseUtils.hasField(this, entry.getKey())) {
+			if (BaseUtils.hasField(this, entry.getKey())) {
 				BaseUtils.setField(this, entry.getKey(), entry.getValue());
 			}
 		}
