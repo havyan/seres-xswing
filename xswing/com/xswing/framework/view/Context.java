@@ -71,6 +71,10 @@ public class Context {
 			return false;
 		}
 	}
+	
+	public Editor<? extends JComponent, ?> getEditor(String id) {
+		return editors.get(id);
+	}
 
 	public void unsetEditor(String id) {
 		this.editors.remove(id);

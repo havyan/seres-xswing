@@ -6,8 +6,8 @@ import javax.swing.JLabel;
 public class LabelEditor extends AbstractEditor<JLabel, String> {
 
 	@Override
-	public void setValue(String value) {
-		component.setText(value);
+	public void setValue(Object value) {
+		component.setText((String) value);
 	}
 
 	@Override

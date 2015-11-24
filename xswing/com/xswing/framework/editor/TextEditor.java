@@ -1,14 +1,13 @@
 package com.xswing.framework.editor;
 
-import javax.swing.JComponent;
 import javax.swing.text.JTextComponent;
 
 @Component(types = { JTextComponent.class })
 public class TextEditor extends AbstractEditor<JTextComponent, String> {
 
 	@Override
-	public void setValue(String value) {
-		component.setText(value);
+	public void setValue(Object value) {
+		component.setText((String) value);
 	}
 
 	@Override

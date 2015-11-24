@@ -6,8 +6,8 @@ import javax.swing.AbstractButton;
 public class ButtonEditor extends AbstractEditor<AbstractButton, String> {
 
 	@Override
-	public void setValue(String value) {
-		component.setText(value);
+	public void setValue(Object value) {
+		component.setText((String) value);
 	}
 
 	@Override

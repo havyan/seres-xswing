@@ -3,10 +3,12 @@ package com.xswing.framework.view;
 import java.awt.BorderLayout;
 import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
+import com.xswing.framework.editor.Editor;
 
 public class XContainer extends JPanel {
 	private static final long serialVersionUID = 1L;
@@ -44,13 +46,29 @@ public class XContainer extends JPanel {
 		}
 	}
 
-	public Object $(String id) {
+	public Editor<? extends JComponent, ?> getEditor(String id) {
+		return xpanel.getEditor(id);
+	}
+
+	public Object getValue(String id) {
+		return xpanel.getValue(id);
+	}
+
+	public Object getBean(String id) {
 		return xpanel.getBean(id);
 	}
 
 	@SuppressWarnings("unchecked")
-	public <T> T $(String id, Class<T> cls) {
+	public <T> T getBean(String id, Class<T> cls) {
 		return (T) $(id);
+	}
+
+	public Object $(String id) {
+		return getBean(id);
+	}
+
+	public <T> T $(String id, Class<T> cls) {
+		return getBean(id, cls);
 	}
 
 }

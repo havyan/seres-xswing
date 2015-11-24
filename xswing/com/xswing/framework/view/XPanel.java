@@ -9,6 +9,8 @@ import java.util.Map;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 
+import com.xswing.framework.editor.Editor;
+
 /**
  * @author yhw
  * 
@@ -36,11 +38,23 @@ public class XPanel extends JPanel {
 		return (T) getBean(id);
 	}
 
+	public Editor<? extends JComponent, ?> getEditor(String id) {
+		return context.getEditor(id);
+	}
+
+	public Object getValue(String id) {
+		return getEditor(id).getValue();
+	}
+	
+	public void setValue(String id, Object value) {
+		getEditor(id).setValue(value);
+	}
+
 	@SuppressWarnings("unchecked")
 	public <T extends JComponent> T getComponent(String id, Class<T> cls) {
 		return (T) getComponent(id);
 	}
-	
+
 	public Map<String, Object> getBeans() {
 		return context.getBeans();
 	}

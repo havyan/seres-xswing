@@ -4,7 +4,7 @@ import javax.swing.JComponent;
 
 public interface Editor<T extends JComponent, V> {
 
-	public void setValue(V value);
+	public void setValue(Object value);
 
 	public V getValue();
 
