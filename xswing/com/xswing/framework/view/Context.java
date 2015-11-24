@@ -23,7 +23,7 @@ public class Context {
 
 	private Map<Object, Map<String, String>> beanRefs = new HashMap<Object, Map<String, String>>();
 
-	private Map<String, Editor<? extends JComponent>> editorMap = new HashMap<String, Editor<? extends JComponent>>();
+	private Map<String, Editor<? extends JComponent, ?>> editors = new HashMap<String, Editor<? extends JComponent, ?>>();
 
 	private Document doc;
 
@@ -63,9 +63,9 @@ public class Context {
 		return beans.get(id);
 	}
 
-	public boolean setEditor(String id, Editor<? extends JComponent> editor) {
-		if (!editorMap.containsKey(id)) {
-			this.editorMap.put(id, editor);
+	public boolean setEditor(String id, Editor<? extends JComponent, ?> editor) {
+		if (!editors.containsKey(id)) {
+			this.editors.put(id, editor);
 			return true;
 		} else {
 			return false;
@@ -73,7 +73,7 @@ public class Context {
 	}
 
 	public void unsetEditor(String id) {
-		this.editorMap.remove(id);
+		this.editors.remove(id);
 	}
 
 	public void addBeanRef(Object bean, String property, String ref) {

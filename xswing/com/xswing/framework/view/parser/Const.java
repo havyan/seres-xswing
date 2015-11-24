@@ -10,7 +10,7 @@ package com.xswing.framework.view.parser;
 public class Const {
 
 	public static final String ID = "id";
-
+	
 	public static final String CENTER = "center";
 
 	public static final String NORTH = "north";

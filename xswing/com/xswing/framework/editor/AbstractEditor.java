@@ -9,16 +9,17 @@ import javax.swing.JComponent;
  * @author think
  *
  */
-public abstract class AbstractEditor<T extends JComponent> implements Editor<T>{
-	
+public abstract class AbstractEditor<T extends JComponent, V> implements Editor<T, V> {
+
 	protected T component;
 
-	public AbstractEditor(T component) {
-		this.component = component;
-	}
-	
 	public T getComponent() {
 		return component;
 	}
-	
+
+	@SuppressWarnings("unchecked")
+	public void setComponent(JComponent component) {
+		this.component = (T) component;
+	}
+
 }

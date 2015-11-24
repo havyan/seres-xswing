@@ -43,7 +43,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		}
 	}
 
-	protected Editor<T> createEditor(T component, Context context, Element source) {
+	protected Editor<T, ?> createEditor(T component, Context context, Element source) {
 		String editor = source.getAttributeValue(Const.EDITOR);
 		// TODO
 		return null;
