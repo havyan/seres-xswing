@@ -1,6 +1,5 @@
 package com.xswing.framework.processor;
 
-import com.xswing.framework.view.Context;
 import com.xswing.framework.view.XPanel;
 
 /**
@@ -11,12 +10,6 @@ import com.xswing.framework.view.XPanel;
  */
 public interface XProcessor {
 
-	public void setContext(Context context);
-
-	public Context getContext();
-
-	public XPanel getXPanel();
-
-	public void process();
+	public void process(XPanel xpanel);
 
 }

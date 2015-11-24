@@ -20,21 +20,20 @@ import com.xswing.framework.view.XPanel;
  */
 public class XPanelParser extends BorderPanelParser {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JPanel parseElement(Context context, Element source) {
 		XPanel xPanel = (XPanel) super.parseElement(context, source);
 		xPanel.setContext(context);
 		String processorClassName = source.getAttributeValue(Const.PROCESSOR);
 		if (processorClassName != null) {
-			XProcessor processor = (XProcessor) BaseUtils.newInstance(processorClassName, new Class<?>[] { XPanel.class }, new Object[] { xPanel });
-			processor.process();
+			XProcessor processor = (XProcessor) BaseUtils.newInstance(processorClassName);
+			processor.process(xPanel);
 		}
 		List<Element> processors = source.getChildren(Const.PROPERTY);
 		if (processors != null && processors.size() > 0) {
 			for (Element e : processors) {
-				XProcessor processor = (XProcessor) BaseUtils.newInstance(e.getText(), new Class<?>[] { XPanel.class }, new Object[] { xPanel });
-				processor.process();
+				XProcessor processor = (XProcessor) BaseUtils.newInstance(e.getText());
+				processor.process(xPanel);
 			}
 		}
 		List<Element> beans = source.getChildren(Const.BEAN);
