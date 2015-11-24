@@ -18,20 +18,20 @@ public class XContainer extends JPanel {
 		initReferences();
 	}
 
-	public Object $(String id) {
-		return xpanel.getBean(id);
-	}
-
 	private void initXPanel(String path) {
 		setLayout(new BorderLayout());
-		String caller = new Throwable().getStackTrace()[2].getClassName();
-		String contextPath = null;
-		try {
-			contextPath = Class.forName(caller).getResource("").toString();
-		} catch (ClassNotFoundException e) {
-			Logger.error(e);
+		if (path.trim().startsWith(".")) {
+			String caller = new Throwable().getStackTrace()[2].getClassName();
+			String contextPath = null;
+			try {
+				contextPath = Class.forName(caller).getResource("").toString();
+			} catch (ClassNotFoundException e) {
+				Logger.error(e);
+			}
+			xpanel = XPanelBuilder.build(contextPath, path);
+		} else {
+			xpanel = XPanelBuilder.build(path);
 		}
-		xpanel = XPanelBuilder.build(contextPath, path);
 		add(xpanel, BorderLayout.CENTER);
 	}
 
@@ -42,6 +42,10 @@ public class XContainer extends JPanel {
 				BaseUtils.setField(this, entry.getKey(), entry.getValue());
 			}
 		}
+	}
+
+	public Object $(String id) {
+		return xpanel.getBean(id);
 	}
 
 	@SuppressWarnings("unchecked")
