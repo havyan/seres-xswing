@@ -14,6 +14,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
@@ -81,8 +82,8 @@ public class BeanParser<T> extends ElementParser<T> {
 						values.add(ParserEngine.parse(context, valueElement));
 					} else {
 						value = e.getText();
-						if (value != null && value.trim().length() > 0) {
-							values.add(BaseUtils.createObject(cls, value));
+						if (StringUtils.isNotEmpty(value)) {
+							values.add(BaseUtils.createObject(cls, value.trim()));
 						} else {
 							values.add(null);
 						}
@@ -115,10 +116,10 @@ public class BeanParser<T> extends ElementParser<T> {
 						BaseUtils.setProperty(bean, propertyName, ParserEngine.parse(context, valueElement));
 					} else {
 						value = property.getText();
-						if (value != null && value.trim().length() > 0) {
+						if (StringUtils.isNotEmpty(value)) {
 							Class<?> cls = BaseUtils.getWriteMethod(bean.getClass(), propertyName)
 									.getParameterTypes()[0];
-							BaseUtils.setProperty(bean, propertyName, BaseUtils.createObject(cls, value));
+							BaseUtils.setProperty(bean, propertyName, BaseUtils.createObject(cls, value.trim()));
 						}
 					}
 				}
