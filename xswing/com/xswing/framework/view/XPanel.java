@@ -4,6 +4,7 @@
 package com.xswing.framework.view;
 
 import java.awt.BorderLayout;
+import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
@@ -38,6 +39,10 @@ public class XPanel extends JPanel {
 	@SuppressWarnings("unchecked")
 	public <T extends JComponent> T getComponent(String id, Class<T> cls) {
 		return (T) getComponent(id);
+	}
+	
+	public Map<String, Object> getBeans() {
+		return context.getBeans();
 	}
 
 	public Context getContext() {

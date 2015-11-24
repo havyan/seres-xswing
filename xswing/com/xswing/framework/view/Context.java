@@ -33,6 +33,10 @@ public class Context {
 		return doc;
 	}
 
+	public Map<String, Object> getBeans() {
+		return beans;
+	}
+
 	public void setDoc(Document doc) {
 		this.doc = doc;
 	}
