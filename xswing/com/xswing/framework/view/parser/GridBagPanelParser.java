@@ -21,7 +21,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.GRIDBAGPANEL })
-public class GridBagPanelParser extends ElementParser<JPanel> {
+public class GridBagPanelParser extends BeanParser<JPanel> {
 
 	@SuppressWarnings("unchecked")
 	@Override

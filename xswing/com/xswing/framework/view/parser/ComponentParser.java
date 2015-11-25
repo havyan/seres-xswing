@@ -63,12 +63,14 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				border = BorderFactory.createLoweredBevelBorder();
 			}
 		}
-		String title = source.getAttributeValue(Const.TITLE);
-		if (title != null && title.length() > 0) {
-			if (border != null) {
-				border = BorderFactory.createTitledBorder(border, title);
-			} else {
-				border = BorderFactory.createTitledBorder(title);
+		if (source.getName() != Const.TAB) {
+			String title = source.getAttributeValue(Const.TITLE);
+			if (title != null && title.length() > 0) {
+				if (border != null) {
+					border = BorderFactory.createTitledBorder(border, title);
+				} else {
+					border = BorderFactory.createTitledBorder(title);
+				}
 			}
 		}
 		return border;

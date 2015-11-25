@@ -1,290 +1,288 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 
-	<xsd:element name="xpanel" type="xpanel"></xsd:element>
+  <xsd:element name="xpanel" type="xpanel"></xsd:element>
 
-	<xsd:complexType name="component">
-		<xsd:choice>
-		  <xsd:element name="borderPanel" type="boderPanel"></xsd:element>
-		  <xsd:element name="gridBagPanel" type="gridBagPanel"></xsd:element>
-		  <xsd:element name="flowPanel" type="flowPanel"></xsd:element>
-		  <xsd:element name="gridPanel" type="xsd:string"></xsd:element>
-		  <xsd:element name="button" type="bean"></xsd:element>
-		  <xsd:element name="comboBox" type="bean"></xsd:element>
-		  <xsd:element name="bean" type="bean"></xsd:element>
-		  <xsd:element name="import" type="import"></xsd:element>
-		  <xsd:element name="label" type="bean"></xsd:element>
-		  <xsd:element name="boxPanel" type="boxPanel"></xsd:element>
-		  <xsd:element name="splitPanel" type="splitPanel"></xsd:element>
-		  <xsd:element name="scrollPanel" type="scrollPanel"></xsd:element>
-		  <xsd:element name="textField" type="bean"></xsd:element>
-		  <xsd:element name="menuBar" type="menuBar"></xsd:element>
-		  <xsd:element name="menu" type="menu"></xsd:element>
-		  <xsd:element name="checkBox" type="bean"></xsd:element>
-		  <xsd:element name="tabbedPanel" type="tabbedPanel"></xsd:element>
-		  <xsd:element name="toolBar" type="toolBar"></xsd:element>
-		  <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
-		</xsd:choice>
-		<xsd:attribute name="title" type="xsd:string"></xsd:attribute>
-		<xsd:attribute name="name" type="xsd:string"></xsd:attribute>
-		<xsd:attribute name="border" type="border"></xsd:attribute>
-		<xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
-		<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
-	</xsd:complexType>
+  <xsd:complexType name="component">
+    <xsd:choice>
+      <xsd:element name="borderPanel" type="boderPanel"></xsd:element>
+      <xsd:element name="gridBagPanel" type="gridBagPanel"></xsd:element>
+      <xsd:element name="flowPanel" type="flowPanel"></xsd:element>
+      <xsd:element name="gridPanel" type="xsd:string"></xsd:element>
+      <xsd:element name="button" type="bean"></xsd:element>
+      <xsd:element name="comboBox" type="bean"></xsd:element>
+      <xsd:element name="bean" type="bean"></xsd:element>
+      <xsd:element name="import" type="import"></xsd:element>
+      <xsd:element name="label" type="bean"></xsd:element>
+      <xsd:element name="boxPanel" type="boxPanel"></xsd:element>
+      <xsd:element name="splitPanel" type="splitPanel"></xsd:element>
+      <xsd:element name="scrollPanel" type="scrollPanel"></xsd:element>
+      <xsd:element name="textField" type="bean"></xsd:element>
+      <xsd:element name="menuBar" type="menuBar"></xsd:element>
+      <xsd:element name="menu" type="menu"></xsd:element>
+      <xsd:element name="checkBox" type="bean"></xsd:element>
+      <xsd:element name="tabbedPanel" type="tabbedPanel"></xsd:element>
+      <xsd:element name="toolBar" type="toolBar"></xsd:element>
+      <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
+    </xsd:choice>
+    <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="border" type="border"></xsd:attribute>
+    <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
 
-	<xsd:group name="properties">
-		<xsd:sequence>
-			<xsd:element name="property" type="property" maxOccurs="unbounded"
-				minOccurs="0"></xsd:element>
-		</xsd:sequence>
-	</xsd:group>
+  <xsd:group name="properties">
+    <xsd:sequence>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:group>
 
-	<xsd:attributeGroup name="attributes">
-		<xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
-		<xsd:attribute name="class" type="xsd:string"></xsd:attribute>
-	</xsd:attributeGroup>
+  <xsd:attributeGroup name="attributes">
+    <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
+  </xsd:attributeGroup>
 
-	<xsd:complexType name="boderPanel">
-		<xsd:sequence>
-			<xsd:element name="center" type="component" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-			<xsd:element name="north" type="component" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-			<xsd:element name="south" type="component" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-			<xsd:element name="east" type="component" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-			<xsd:element name="west" type="component" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-			<xsd:group ref="properties"></xsd:group>
-		</xsd:sequence>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="boderPanel">
+    <xsd:sequence>
+      <xsd:element name="center" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="north" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="south" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="east" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="west" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:group ref="properties"></xsd:group>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:complexType name="bean">
-		<xsd:sequence>
-            <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-            <xsd:element name="property" type="property"
-		    maxOccurs="unbounded" minOccurs="0">
-		  </xsd:element>
-		</xsd:sequence>
-		<xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-	</xsd:complexType>
+  <xsd:complexType name="bean">
+    <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:complexType name="property" mixed="true">
-		<xsd:sequence>
-			<xsd:element name="value" type="bean" maxOccurs="1"
-				minOccurs="0"></xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
-		<xsd:attribute name="value" type="xsd:string"></xsd:attribute>
-		<xsd:attribute name="ref" type="xsd:string"></xsd:attribute>
-	</xsd:complexType>
+  <xsd:complexType name="property" mixed="true">
+    <xsd:sequence>
+      <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string" use="required"></xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="ref" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
 
-	<xsd:complexType name="flowPanel">
-	  <xsd:sequence>
-	    <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-	    <xsd:group ref="properties"></xsd:group>
-	  </xsd:sequence>
-	  <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-	  <xsd:attribute name="align" type="align" default="CENTER"></xsd:attribute>
-	  <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
-	  <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
-	</xsd:complexType>
+  <xsd:complexType name="flowPanel">
+    <xsd:sequence>
+      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="properties"></xsd:group>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attribute name="align" type="align" default="CENTER"></xsd:attribute>
+    <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
+    <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
+  </xsd:complexType>
 
-	<xsd:complexType name="gridBagPanel">
-		<xsd:sequence>
-			<xsd:element name="row" type="row" maxOccurs="unbounded"
-				minOccurs="1"></xsd:element>
-			<xsd:group ref="properties"></xsd:group>
-		</xsd:sequence>
-		<xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-	</xsd:complexType>
+  <xsd:complexType name="gridBagPanel">
+    <xsd:sequence>
+      <xsd:element name="row" type="row" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      <xsd:group ref="properties"></xsd:group>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:complexType name="row">
-		<xsd:sequence>
-			<xsd:element name="cell" type="cell" maxOccurs="unbounded"
-				minOccurs="1"></xsd:element>
-		</xsd:sequence>
-	</xsd:complexType>
+  <xsd:complexType name="row">
+    <xsd:sequence>
+      <xsd:element name="cell" type="cell" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
 
-	<xsd:complexType name="cell">
-		<xsd:complexContent>
-			<xsd:extension base="component">
-				<xsd:attribute name="gridx" type="xsd:int"></xsd:attribute>
-				<xsd:attribute name="gridy" type="xsd:int"></xsd:attribute>
-				<xsd:attribute name="gridwidth" type="xsd:int"
-					default="1"></xsd:attribute>
-				<xsd:attribute name="gridheight" type="xsd:int"
-					default="1"></xsd:attribute>
-				<xsd:attribute name="weightx" type="xsd:int" default="100"></xsd:attribute>
-				<xsd:attribute name="weighty" type="xsd:int" default="100"></xsd:attribute>
-				<xsd:attribute name="fill" type="fill" default="NONE"></xsd:attribute>
-				<xsd:attribute name="anchor" type="anchor" default="CENTER"></xsd:attribute>
-				<xsd:attribute name="ipadx" type="xsd:int" default="0"></xsd:attribute>
-				<xsd:attribute name="ipady" type="xsd:int" default="0"></xsd:attribute>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
+  <xsd:complexType name="cell">
+    <xsd:complexContent>
+      <xsd:extension base="component">
+        <xsd:attribute name="gridx" type="xsd:int"></xsd:attribute>
+        <xsd:attribute name="gridy" type="xsd:int"></xsd:attribute>
+        <xsd:attribute name="gridwidth" type="xsd:int" default="1"></xsd:attribute>
+        <xsd:attribute name="gridheight" type="xsd:int" default="1"></xsd:attribute>
+        <xsd:attribute name="weightx" type="xsd:int" default="100"></xsd:attribute>
+        <xsd:attribute name="weighty" type="xsd:int" default="100"></xsd:attribute>
+        <xsd:attribute name="fill" type="fill" default="NONE"></xsd:attribute>
+        <xsd:attribute name="anchor" type="anchor" default="CENTER"></xsd:attribute>
+        <xsd:attribute name="ipadx" type="xsd:int" default="0"></xsd:attribute>
+        <xsd:attribute name="ipady" type="xsd:int" default="0"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
 
-	<xsd:complexType name="path">
-		<xsd:attribute name="path" type="xsd:string" use="required"></xsd:attribute>
-	</xsd:complexType>
+  <xsd:complexType name="path">
+    <xsd:attribute name="path" type="xsd:string" use="required"></xsd:attribute>
+  </xsd:complexType>
 
-	<xsd:complexType name="xpanel">
-		<xsd:complexContent>
-			<xsd:extension base="boderPanel">
-				<xsd:sequence>
-					<xsd:element name="processor" type="xsd:string"
-						maxOccurs="unbounded" minOccurs="0">
-					</xsd:element>
-					<xsd:element name="bean" type="bean" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-				</xsd:sequence>
-				<xsd:attribute name="processor" type="xsd:string"></xsd:attribute>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
+  <xsd:complexType name="xpanel">
+    <xsd:complexContent>
+      <xsd:extension base="boderPanel">
+        <xsd:sequence>
+          <xsd:element name="processor" type="xsd:string" maxOccurs="unbounded" minOccurs="0">
+          </xsd:element>
+          <xsd:element name="bean" type="bean" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="processor" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
 
 
-	<xsd:complexType name="import">
-		<xsd:complexContent>
-			<xsd:extension base="path">
-				<xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
-			</xsd:extension>
-		</xsd:complexContent>
-	</xsd:complexType>
+  <xsd:complexType name="import">
+    <xsd:complexContent>
+      <xsd:extension base="path">
+        <xsd:sequence>
+          <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
 
-	<xsd:simpleType name="fill">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="NONE"></xsd:enumeration>
-			<xsd:enumeration value="BOTH"></xsd:enumeration>
-			<xsd:enumeration value="HORIZONTAL"></xsd:enumeration>
-			<xsd:enumeration value="VERTICAL"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="fill">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NONE"></xsd:enumeration>
+      <xsd:enumeration value="BOTH"></xsd:enumeration>
+      <xsd:enumeration value="HORIZONTAL"></xsd:enumeration>
+      <xsd:enumeration value="VERTICAL"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-	<xsd:simpleType name="anchor">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="CENTER"></xsd:enumeration>
-			<xsd:enumeration value="NORTH"></xsd:enumeration>
-			<xsd:enumeration value="EAST"></xsd:enumeration>
-			<xsd:enumeration value="SOUTHEAST"></xsd:enumeration>
-			<xsd:enumeration value="SOUTH"></xsd:enumeration>
-			<xsd:enumeration value="SOUTHWEST"></xsd:enumeration>
-			<xsd:enumeration value="WEST"></xsd:enumeration>
-			<xsd:enumeration value="NORTHWEST"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="anchor">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="CENTER"></xsd:enumeration>
+      <xsd:enumeration value="NORTH"></xsd:enumeration>
+      <xsd:enumeration value="EAST"></xsd:enumeration>
+      <xsd:enumeration value="SOUTHEAST"></xsd:enumeration>
+      <xsd:enumeration value="SOUTH"></xsd:enumeration>
+      <xsd:enumeration value="SOUTHWEST"></xsd:enumeration>
+      <xsd:enumeration value="WEST"></xsd:enumeration>
+      <xsd:enumeration value="NORTHWEST"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-	<xsd:complexType name="boxPanel">
-		<xsd:sequence>
-			<xsd:element name="component" type="component" maxOccurs="unbounded"
-				minOccurs="0">
-			</xsd:element>
-			<xsd:group ref="properties"></xsd:group>
-		</xsd:sequence>
-		<xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-		<xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>
-	</xsd:complexType>
+  <xsd:complexType name="boxPanel">
+    <xsd:sequence>
+      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0">
+      </xsd:element>
+      <xsd:group ref="properties"></xsd:group>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>
+  </xsd:complexType>
 
-	<xsd:simpleType name="axis">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="X_AXIS"></xsd:enumeration>
-			<xsd:enumeration value="Y_AXIS"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="axis">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="X_AXIS"></xsd:enumeration>
+      <xsd:enumeration value="Y_AXIS"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-	<xsd:simpleType name="align">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="LEFT"></xsd:enumeration>
-			<xsd:enumeration value="RIGHT"></xsd:enumeration>
-			<xsd:enumeration value="CENTER"></xsd:enumeration>
-			<xsd:enumeration value="LEADING"></xsd:enumeration>
-			<xsd:enumeration value="TRAILING"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="align">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="LEFT"></xsd:enumeration>
+      <xsd:enumeration value="RIGHT"></xsd:enumeration>
+      <xsd:enumeration value="CENTER"></xsd:enumeration>
+      <xsd:enumeration value="LEADING"></xsd:enumeration>
+      <xsd:enumeration value="TRAILING"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-	<xsd:complexType name="splitPanel">
-		<xsd:sequence>
-			<xsd:element name="leftOrTop" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-			<xsd:element name="rightOrBottom" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="orientation" type="orientation"></xsd:attribute>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="splitPanel">
+    <xsd:sequence>
+      <xsd:element name="leftOrTop" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="rightOrBottom" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="orientation" type="orientation"></xsd:attribute>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:simpleType name="orientation">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="VERTICAL_SPLIT"></xsd:enumeration>
-			<xsd:enumeration value="HORIZONTAL_SPLIT"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="orientation">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="VERTICAL_SPLIT"></xsd:enumeration>
+      <xsd:enumeration value="HORIZONTAL_SPLIT"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-	<xsd:complexType name="scrollPanel">
-		<xsd:sequence>
-			<xsd:element name="view" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-		</xsd:sequence>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="scrollPanel">
+    <xsd:sequence>
+      <xsd:element name="view" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:complexType name="menuBar">
-		<xsd:sequence>
-			<xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-		</xsd:sequence>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="menuBar">
+    <xsd:sequence>
+      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
 
-	<xsd:complexType name="menu">
-		<xsd:sequence>
-			<xsd:element name="item" type="component"
-				maxOccurs="unbounded" minOccurs="0">
-			</xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="text" type="xsd:string"></xsd:attribute>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="menu">
+    <xsd:sequence>
+      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0">
+      </xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:complexType name="tabbedPanel">
-		<xsd:sequence>
-			<xsd:element name="tab" type="component"
-				maxOccurs="unbounded" minOccurs="1">
-			</xsd:element>
-		</xsd:sequence>
-		<xsd:attribute name="closeable" type="xsd:boolean"></xsd:attribute>
-        <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-    </xsd:complexType>
+  <xsd:complexType name="tabbedPanel">
+    <xsd:sequence>
+      <xsd:element name="tab" type="tab" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+  </xsd:complexType>
 
-	<xsd:simpleType name="border">
-		<xsd:restriction base="xsd:string">
-			<xsd:enumeration value="LINE"></xsd:enumeration>
-			<xsd:enumeration value="RAISEDBEVEL"></xsd:enumeration>
-			<xsd:enumeration value="LOWEREDBEVEL"></xsd:enumeration>
-			<xsd:enumeration value="ETCHED"></xsd:enumeration>
-		</xsd:restriction>
-	</xsd:simpleType>
+  <xsd:simpleType name="border">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="LINE"></xsd:enumeration>
+      <xsd:enumeration value="RAISEDBEVEL"></xsd:enumeration>
+      <xsd:enumeration value="LOWEREDBEVEL"></xsd:enumeration>
+      <xsd:enumeration value="ETCHED"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
-    <xsd:complexType name="toolBar">
-    	<xsd:sequence>
-    		<xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-    	</xsd:sequence>
-    </xsd:complexType>
+  <xsd:complexType name="toolBar">
+    <xsd:sequence>
+      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+  </xsd:complexType>
 
-    <xsd:complexType name="argument" mixed="true">
-      <xsd:sequence>
-        <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
-      </xsd:sequence>
-      <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
-      <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
-    </xsd:complexType>
+  <xsd:complexType name="argument" mixed="true">
+    <xsd:sequence>
+      <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
 
-    <xsd:complexType name="cardPanel">
-      <xsd:sequence>
-        <xsd:element name="card" type="component" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-        <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      </xsd:sequence>
-      <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
-      <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
-      <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
-    </xsd:complexType>
+  <xsd:complexType name="cardPanel">
+    <xsd:sequence>
+      <xsd:element name="card" type="component" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
+    <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="tab">
+    <xsd:complexContent>
+      <xsd:extension base="component">
+        <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
 </xsd:schema>

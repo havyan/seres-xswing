@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.swing.JTabbedPane;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
@@ -18,22 +19,24 @@ import com.xswing.framework.view.component.JCloseableTabbedPane;
  * 
  */
 @XElement(names = { Const.TABBEDPANEL })
-public class TabbedPanelParser extends ElementParser<JTabbedPane> {
+public class TabbedPanelParser extends BeanParser<JTabbedPane> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JTabbedPane parseElement(Context context, Element source) {
-		JTabbedPane tabbedPanel = null;
-		String closeable = source.getAttributeValue(Const.CLOSEABLE);
-		if (closeable != null && Boolean.valueOf(closeable)) {
-			tabbedPanel = new JCloseableTabbedPane();
-		} else {
-			tabbedPanel = new JTabbedPane();
-		}
-
+		JCloseableTabbedPane tabbedPanel = new JCloseableTabbedPane();
 		List<Element> components = source.getChildren(Const.TAB);
-		for (Element component : components) {
-			tabbedPanel.add((Component) ParserEngine.parse(context, component));
+		for (Element e : components) {
+			Component component = (Component) ParserEngine.parse(context, e);
+			String title = e.getAttributeValue(Const.TITLE);
+			if (StringUtils.isEmpty(title)) {
+				title = component.getName();
+			}
+			boolean closable = true;
+			String closableText = e.getAttributeValue(Const.CLOSABLE);
+			if (StringUtils.isNotEmpty(closableText)) {
+				closable = Boolean.valueOf(closableText);
+			}
+			tabbedPanel.addTab(title, component, closable);
 		}
 		return tabbedPanel;
 	}

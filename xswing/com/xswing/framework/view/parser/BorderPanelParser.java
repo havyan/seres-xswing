@@ -10,7 +10,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.BORDERPANEL })
-public class BorderPanelParser extends ComponentParser<JPanel> {
+public class BorderPanelParser extends BeanParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {

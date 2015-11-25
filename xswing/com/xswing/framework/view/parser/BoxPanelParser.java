@@ -20,7 +20,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.BOXPANEL })
-public class BoxPanelParser extends ElementParser<JPanel> {
+public class BoxPanelParser extends BeanParser<JPanel> {
 
 	@SuppressWarnings("unchecked")
 	@Override

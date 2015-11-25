@@ -10,7 +10,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.MENUBAR })
-public class MenuBarParser extends ElementParser<JMenuBar> {
+public class MenuBarParser extends BeanParser<JMenuBar> {
 
 	@SuppressWarnings("unchecked")
 	@Override

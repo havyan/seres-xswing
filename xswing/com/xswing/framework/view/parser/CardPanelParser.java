@@ -12,7 +12,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.CARDPANEL })
-public class CardPanelParser extends ElementParser<JPanel> {
+public class CardPanelParser extends BeanParser<JPanel> {
 
 	@SuppressWarnings("unchecked")
 	@Override

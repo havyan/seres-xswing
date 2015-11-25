@@ -20,7 +20,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.FLOWPANEL })
-public class FlowPanelParser extends ElementParser<JPanel> {
+public class FlowPanelParser extends BeanParser<JPanel> {
 
 	@SuppressWarnings("unchecked")
 	@Override

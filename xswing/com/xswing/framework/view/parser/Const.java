@@ -94,7 +94,7 @@ public class Const {
 
 	public static final String CHECKBOX = "checkBox";
 
-	public static final String CLOSEABLE = "closeable";
+	public static final String CLOSABLE = "closable";
 
 	public static final String TABBEDPANEL = "tabbedPanel";
 

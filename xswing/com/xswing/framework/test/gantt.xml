@@ -72,8 +72,8 @@
 
           </leftOrTop>
           <rightOrBottom>
-            <tabbedPanel closeable="true">
-              <tab name="数据源设置">
+            <tabbedPanel>
+              <tab name="数据源设置" title="数据源设置" closable="false">
                 <borderPanel>
                   <center>
                     <boxPanel axis="Y_AXIS">

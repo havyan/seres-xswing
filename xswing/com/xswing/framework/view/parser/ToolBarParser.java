@@ -17,7 +17,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.TOOLBAR })
-public class ToolBarParser extends ElementParser<JToolBar> {
+public class ToolBarParser extends BeanParser<JToolBar> {
 
 	@SuppressWarnings("unchecked")
 	@Override

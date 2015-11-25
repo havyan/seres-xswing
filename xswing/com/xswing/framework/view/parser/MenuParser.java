@@ -18,7 +18,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.MENU })
-public class MenuParser extends ElementParser<JMenuItem> {
+public class MenuParser extends BeanParser<JMenuItem> {
 
 	@SuppressWarnings("unchecked")
 	@Override
