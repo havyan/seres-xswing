@@ -97,7 +97,6 @@ public class BeanParser<T> extends ElementParser<T> {
 		return bean;
 	}
 
-	@SuppressWarnings("unchecked")
 	public void setProperties(Context context, Class<?> cl, Object bean, Element e) {
 		List<Element> properties = e.getChildren(Const.PROPERTY);
 		if (properties != null && properties.size() > 0) {
