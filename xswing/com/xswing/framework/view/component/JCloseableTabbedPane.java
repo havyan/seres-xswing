@@ -5,191 +5,160 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.Insets;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.Serializable;
 
 import javax.swing.Icon;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import javax.swing.event.EventListenerList;
 
 /**
  * 
- Title: OpenSwing
- * 
- * 
- * 
- * Description:
- * 
- * 
- * 
- * Copyright: Copyright (c) 2005
- * 
- * 
- * 
- * Company:
- * 
- * @author SunKing
- * @version 1.0
  */
 public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
-	
-	public static final String ON_TAB_CLOSE = "ON_TAB_CLOSE";
-	public static final String ON_TAB_DOUBLECLICK = "ON_TAB_DOUBLECLICK";
 	private JPopupMenu popup = null;
 
-	public JCloseableTabbedPane() {
-		super();
-		init();
-	}
-
-	public JCloseableTabbedPane(int tabPlacement) {
-		super(tabPlacement);
-		init();
-	}
-
-	public JCloseableTabbedPane(int tabPlacement, int tabLayoutPolicy) {
-		super(tabPlacement, tabLayoutPolicy);
-		init();
-	}
-
-	protected void init() {
-		addMouseListener(new DefaultMouseAdapter());
-		addCloseListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (e.getActionCommand().equals(ON_TAB_CLOSE)) {
-					removeTabAt(getSelectedIndex());
-				}
-			}
-		});
+	static {
+		Insets tabInsets = UIManager.getInsets("TabbedPane.tabInsets");
+		if (tabInsets != null) {
+			tabInsets.right = 5;
+		}
 	}
 
 	public void setPopup(JPopupMenu popup) {
 		this.popup = popup;
 	}
 
-	public void setIconDrawCenter(int index, boolean drawCenter) {
-		((CloseIcon) getIconAt(index)).setDrawCenter(drawCenter);
-		repaint();
+	public void addTab(String title, Icon icon, Component component, String tip, boolean closable) {
+		setTabClosable(component, closable);
+		super.addTab(title, icon, component, tip);
 	}
 
-	public JPopupMenu getPopup() {
-		return popup;
+	public void addTab(String title, Icon icon, Component component, boolean closable) {
+		setTabClosable(component, closable);
+		super.addTab(title, icon, component);
 	}
 
-	public boolean isDrawCenter(int index) {
-		return ((CloseIcon) getIconAt(index)).isDrawCenter();
+	public void addTab(String title, Component component, boolean closable) {
+		setTabClosable(component, closable);
+		super.addTab(title, component);
 	}
 
-	protected EventListenerList closeListenerList = new EventListenerList();
-
-	public void addCloseListener(ActionListener l) {
-		closeListenerList.add(ActionListener.class, l);
-	}
-
-	public void removeCloseListener(ActionListener l) {
-		closeListenerList.remove(ActionListener.class, l);
-	}
-
-	protected void fireClosed(ActionEvent e) {
-		Object[] listeners = closeListenerList.getListenerList();
-		for (int i = listeners.length - 2; i >= 0; i -= 2) {
-			if (listeners[i] == ActionListener.class) {
-				((ActionListener) listeners[i + 1]).actionPerformed(e);
-			}
+	private void setTabClosable(Component component, boolean closable) {
+		if (component instanceof JComponent) {
+			((JComponent) component).putClientProperty("tabClosable", closable);
 		}
 	}
 
-	class DefaultMouseAdapter extends MouseAdapter {
-		CloseIcon icon;
+	public void insertTab(String title, Icon icon, Component component, String tip, int index, boolean closable) {
+		setTabClosable(component, closable);
+		this.insertTab(title, icon, component, tip, index);
+	}
 
-		public void mousePressed(MouseEvent e) {
-			int index = indexAtLocation(e.getX(), e.getY());
-			if (index != -1) {
-				icon = (CloseIcon) getIconAt(index);
-				if (icon.getBounds().contains(e.getPoint())) {
-					icon.setPressed(true);
-					fireClosed(new ActionEvent(e.getComponent(), ActionEvent.ACTION_PERFORMED, ON_TAB_CLOSE));
-				} else if (e.getClickCount() == 2) {
-					fireClosed(new ActionEvent(e.getComponent(), ActionEvent.ACTION_PERFORMED, ON_TAB_DOUBLECLICK));
+	public void insertTab(String title, Icon icon, Component component, String tip, int index) {
+		super.insertTab(title, icon, component, tip, index);
+		boolean closable = true;
+		if (component instanceof JComponent) {
+			Object tabClosable = ((JComponent) component).getClientProperty("tabClosable");
+			if (tabClosable != null) {
+				closable = (Boolean) tabClosable;
+			}
+		}
+		if (closable) {
+			this.setTabComponentAt(index, new CloseTab(title, component));
+		}
+	}
+
+	public void setComponentAt(int index, Component component) {
+		super.setComponentAt(index, component);
+		Component tab = this.getTabComponentAt(index);
+		if (tab instanceof CloseTab) {
+			((CloseTab) tab).component = component;
+		}
+	}
+
+	class CloseTab extends JPanel {
+
+		String title;
+
+		Component component;
+
+		JLabel closeLabel;
+
+		JLabel titleLabel;
+
+		public CloseTab(String title, Component component) {
+			this.title = title;
+			this.component = component;
+			initUI();
+			initEvents();
+		}
+
+		private void initUI() {
+			this.setLayout(new BorderLayout());
+			titleLabel = new JLabel(title);
+			this.add(titleLabel, BorderLayout.CENTER);
+			closeLabel = new JLabel(new CloseIcon());
+			this.add(closeLabel, BorderLayout.EAST);
+			this.setOpaque(false);
+		}
+
+		private void initEvents() {
+			this.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					if (SwingUtilities.isRightMouseButton(e) && popup != null) {
+						popup.show(e.getComponent(), e.getX(), e.getY());
+					} else {
+						JCloseableTabbedPane.this.setSelectedComponent(component);
+					}
 				}
-			}
-		}
-
-		@Override
-		public void mouseEntered(MouseEvent e) {
-			int index = indexAtLocation(e.getX(), e.getY());
-			if (index != -1) {
-				icon = (CloseIcon) getIconAt(index);
-				if (icon.getBounds().contains(e.getPoint())) {
-				}
-			}
-		}
-
-		public void mouseReleased(MouseEvent e) {
-			if (icon != null) {
-				icon.setPressed(false);
-				icon = null;
-				repaint();
-			}
-			if (popup != null) {
-				if (!SwingUtilities.isRightMouseButton(e)) {
-					return;
+			});
+			closeLabel.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					JCloseableTabbedPane.this.remove(component);
 				}
 
-				if (indexAtLocation(e.getX(), e.getY()) != -1) {
-					popup.show(e.getComponent(), e.getX(), e.getY());
+				public void mouseEntered(MouseEvent e) {
+					closeLabel.setIcon(new CloseIcon(Color.BLUE));
 				}
-			}
-		}
-	}
 
-	public Icon getIconAt(int index) {
-		Icon icon = super.getIconAt(index);
-		if (icon == null || !(icon instanceof CloseIcon)) {
-			super.setIconAt(index, new CloseIcon());
+				public void mouseExited(MouseEvent e) {
+					closeLabel.setIcon(new CloseIcon());
+				}
+			});
 		}
-		return super.getIconAt(index);
+
 	}
 
 	class CloseIcon implements Icon {
-		Rectangle rec = new Rectangle(0, 0, 15, 16);
-		private boolean pressed = false;
-		private boolean drawCenter = true;
+
+		private Color color = Color.BLACK;
+
+		public CloseIcon() {
+			super();
+		}
+
+		public CloseIcon(Color color) {
+			super();
+			this.color = color;
+		}
 
 		public synchronized void paintIcon(Component c, Graphics g, int x1, int y1) {
 			int x = x1 + 5, y = y1;
-			if (pressed) {
-				x++;
-				y++;
-			}
-			rec.x = x;
-			rec.y = y;
-			Color oldColor = Color.WHITE;
-			// 去掉按钮立体形状
-			/*
-			 * g.setColor(UIManager.getColor(“TabbedPane.highlight”));
-			 * g.drawLine(x, y, x, y + rec.height); g.drawLine(x, y, x +
-			 * rec.width, y);
-			 * g.setColor(UIManager.getColor(“TabbedPane.shadow”));
-			 * g.drawLine(x, y + rec.height, x + rec.width, y + rec.height);
-			 * g.drawLine(x + rec.width, y, x + rec.width, y + rec.height);
-			 * g.setColor(UIManager.getColor(“TabbedPane.foreground”));
-			 */
+			Color oldColor = g.getColor();
+			g.setColor(color);
 			// draw X
 			// left top
 			g.drawRect(x + 4, y + 4, 1, 1);
@@ -197,12 +166,10 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 			g.drawRect(x + 5, y + 9, 1, 1);
 			g.drawRect(x + 4, y + 10, 1, 1);
 			// center
-			if (drawCenter) {
-				g.drawRect(x + 6, y + 6, 1, 1);
-				g.drawRect(x + 8, y + 6, 1, 1);
-				g.drawRect(x + 6, y + 8, 1, 1);
-				g.drawRect(x + 8, y + 8, 1, 1);
-			}
+			g.drawRect(x + 6, y + 6, 1, 1);
+			g.drawRect(x + 8, y + 6, 1, 1);
+			g.drawRect(x + 6, y + 8, 1, 1);
+			g.drawRect(x + 8, y + 8, 1, 1);
 			// right top
 			g.drawRect(x + 10, y + 4, 1, 1);
 			g.drawRect(x + 9, y + 5, 1, 1);
@@ -212,36 +179,14 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 			g.setColor(oldColor);
 		}
 
-		public Rectangle getBounds() {
-			return rec;
-		}
-
-		public void setBounds(Rectangle rec) {
-			this.rec = rec;
-		}
-
+		@Override
 		public int getIconWidth() {
-			return rec.width;
+			return 18;
 		}
 
+		@Override
 		public int getIconHeight() {
-			return rec.height;
-		}
-
-		public void setPressed(boolean pressed) {
-			this.pressed = pressed;
-		}
-
-		public void setDrawCenter(boolean drawCenter) {
-			this.drawCenter = drawCenter;
-		}
-
-		public boolean isPressed() {
-			return pressed;
-		}
-
-		public boolean isDrawCenter() {
-			return drawCenter;
+			return 16;
 		}
 	};
 
@@ -253,7 +198,7 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 	 */
 	public static void main(String[] args) {
 		try {
-			UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+			UIManager.setLookAndFeel("com.pagosoft.plaf.PgsLookAndFeel");
 		} catch (Exception e) {
 		}
 		JFrame frame = new JFrame();
@@ -261,15 +206,15 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 		frame.setTitle("JCloseableTabbedPane Demo");
 		frame.getContentPane().setLayout(new BorderLayout());
 		final JCloseableTabbedPane tab = new JCloseableTabbedPane();
-		tab.add(new JPanel(), "TabbedPane");
-		tab.add(new JPanel(), "Has");
-		tab.add(new JPanel(), "Popup");
-		tab.add(new JPanel(), "PopupMenu");
+		tab.addTab("TabbedPane", new JPanel(), false);
+		tab.addTab("Has", new JPanel());
+		tab.addTab("Popup", new JPanel());
+		tab.addTab("PopupMenu", new JPanel());
 
 		// tab.setIconDrawCenter(1, false);
 
 		// 添加关闭按钮事件
-		
+
 		// 设置弹出菜单
 		JPopupMenu menu = new JPopupMenu();
 		for (int i = 0; i < 10; i++) {
