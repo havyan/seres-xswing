@@ -23,10 +23,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.GRIDBAGPANEL })
 public class GridBagPanelParser extends BeanParser<JPanel> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = createPanel();
+		JPanel panel = createPanel(context, source);
 		List<Element> rows = source.getChildren();
 		for (int i = 0; i < rows.size(); i++) {
 			Element row = (Element) rows.get(i);
@@ -129,8 +128,8 @@ public class GridBagPanelParser extends BeanParser<JPanel> {
 		panel.add(comp, constraints);
 	}
 
-	protected JPanel createPanel() {
-		JPanel panel = new JPanel();
+	protected JPanel createPanel(Context context, Element source) {
+		JPanel panel = createBean(context, source);
 		panel.setLayout(new GridBagLayout());
 		return panel;
 	}

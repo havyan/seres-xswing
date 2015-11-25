@@ -22,10 +22,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.FLOWPANEL })
 public class FlowPanelParser extends BeanParser<JPanel> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = new JPanel();
+		JPanel panel = createBean(context, source);
 		FlowLayout layout = new FlowLayout();
 		int align = FlowLayout.CENTER;
 		String alignText = source.getAttributeValue(Const.ALIGN);

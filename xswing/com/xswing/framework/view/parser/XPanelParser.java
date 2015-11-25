@@ -45,7 +45,7 @@ public class XPanelParser extends BorderPanelParser {
 		return xPanel;
 	}
 
-	public JPanel createPanel() {
+	public JPanel createPanel(Context context, Element source) {
 		return new XPanel();
 	}
 

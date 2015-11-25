@@ -12,10 +12,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.MENUBAR })
 public class MenuBarParser extends BeanParser<JMenuBar> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JMenuBar parseElement(Context context, Element source) {
-		JMenuBar menuBar = new JMenuBar();
+		JMenuBar menuBar = createBean(context, source);
 		List<Element> menus = source.getChildren();
 		for (Element e : menus) {
 			menuBar.add((JComponent) ParserEngine.parse(context, e));

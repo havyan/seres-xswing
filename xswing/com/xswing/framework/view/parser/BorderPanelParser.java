@@ -14,7 +14,7 @@ public class BorderPanelParser extends BeanParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = createPanel();
+		JPanel panel = createPanel(context, source);
 		Element e = source.getChild(Const.CENTER);
 		if (e != null) {
 			panel.add((Component) ParserEngine.parse(context, e), BorderLayout.CENTER);
@@ -42,8 +42,8 @@ public class BorderPanelParser extends BeanParser<JPanel> {
 		return panel;
 	}
 
-	protected JPanel createPanel() {
-		JPanel panel = new JPanel();
+	protected JPanel createPanel(Context context, Element source) {
+		JPanel panel = createBean(context, source);
 		panel.setLayout(new BorderLayout());
 		return panel;
 	}

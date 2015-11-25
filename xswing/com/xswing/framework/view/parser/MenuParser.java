@@ -20,7 +20,6 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.MENU })
 public class MenuParser extends BeanParser<JMenuItem> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JMenuItem parseElement(Context context, Element source) {
 		String text = source.getAttributeValue(Const.TEXT);

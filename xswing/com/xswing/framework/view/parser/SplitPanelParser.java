@@ -20,7 +20,7 @@ public class SplitPanelParser extends BeanParser<JSplitPane> {
 
 	@Override
 	public JSplitPane parseElement(Context context, Element source) {
-		JSplitPane panel = new JSplitPane();
+		JSplitPane panel = createBean(context, source);
 		int orientation = JSplitPane.HORIZONTAL_SPLIT;
 		String orientationString = source.getAttributeValue(Const.ORIENTATION);
 		if (orientationString != null && orientationString.length() > 0) {

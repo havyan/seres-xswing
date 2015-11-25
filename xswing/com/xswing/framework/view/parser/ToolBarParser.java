@@ -19,10 +19,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.TOOLBAR })
 public class ToolBarParser extends BeanParser<JToolBar> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JToolBar parseElement(Context context, Element source) {
-		JToolBar toolBar = new JToolBar();
+		JToolBar toolBar = createBean(context, source);
 
 		List<Element> components = source.getChildren(Const.COMPONENT);
 		for (Element component : components) {

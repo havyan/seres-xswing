@@ -45,6 +45,7 @@
 
   <xsd:complexType name="boderPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="center" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="north" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="south" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
@@ -74,6 +75,7 @@
 
   <xsd:complexType name="flowPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="properties"></xsd:group>
     </xsd:sequence>
@@ -85,6 +87,7 @@
 
   <xsd:complexType name="gridBagPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="row" type="row" maxOccurs="unbounded" minOccurs="1"></xsd:element>
       <xsd:group ref="properties"></xsd:group>
     </xsd:sequence>
@@ -167,8 +170,8 @@
 
   <xsd:complexType name="boxPanel">
     <xsd:sequence>
-      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0">
-      </xsd:element>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="properties"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
@@ -194,6 +197,7 @@
 
   <xsd:complexType name="splitPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="leftOrTop" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:element name="rightOrBottom" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
@@ -219,6 +223,7 @@
 
   <xsd:complexType name="menuBar">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     </xsd:sequence>
@@ -238,6 +243,7 @@
 
   <xsd:complexType name="tabbedPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="tab" type="tab" maxOccurs="unbounded" minOccurs="1"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     </xsd:sequence>
@@ -255,6 +261,7 @@
 
   <xsd:complexType name="toolBar">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     </xsd:sequence>
@@ -270,6 +277,7 @@
 
   <xsd:complexType name="cardPanel">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="card" type="component" maxOccurs="unbounded" minOccurs="1"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     </xsd:sequence>

@@ -22,10 +22,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.BOXPANEL })
 public class BoxPanelParser extends BeanParser<JPanel> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = new JPanel();
+		JPanel panel = createBean(context, source);
 		int axis = BoxLayout.X_AXIS;
 		String axisString = source.getAttributeValue("axis");
 		if (axisString != null && axisString.length() > 0) {

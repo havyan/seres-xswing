@@ -19,11 +19,11 @@ import com.xswing.framework.view.component.JCloseableTabbedPane;
  * 
  */
 @XElement(names = { Const.TABBEDPANEL })
-public class TabbedPanelParser extends BeanParser<JTabbedPane> {
+public class TabbedPanelParser extends BeanParser<JCloseableTabbedPane> {
 
 	@Override
-	public JTabbedPane parseElement(Context context, Element source) {
-		JCloseableTabbedPane tabbedPanel = new JCloseableTabbedPane();
+	public JCloseableTabbedPane parseElement(Context context, Element source) {
+		JCloseableTabbedPane tabbedPanel = createBean(context, source);
 		List<Element> components = source.getChildren(Const.TAB);
 		for (Element e : components) {
 			Component component = (Component) ParserEngine.parse(context, e);

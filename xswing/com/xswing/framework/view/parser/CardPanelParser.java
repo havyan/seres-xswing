@@ -14,10 +14,9 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.CARDPANEL })
 public class CardPanelParser extends BeanParser<JPanel> {
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = new JPanel();
+		JPanel panel = createBean(context, source);
 		CardLayout layout = new CardLayout();
 		String hgapText = source.getAttributeValue(Const.HGAP);
 		if (StringUtils.isNotEmpty(hgapText)) {
