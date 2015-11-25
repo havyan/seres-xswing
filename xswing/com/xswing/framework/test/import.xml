@@ -1,51 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing">
-	<center>
-		<borderPanel>
-			<center>
-				<borderPanel>
-					<center>
-						<button id="bt1">
-							<property name="text" value="hello, world"></property>
-						</button>
-					</center>
-					<north>
-						<comboBox></comboBox>
-					</north>
-					
-					<south>
-						<bean class="javax.swing.JCheckBox">
-							<property name="text" value="check"></property>
-						</bean>
-					</south>
-				</borderPanel>
-			</center>
+  <center>
+    <borderPanel>
+      <north>
+        <label>
+          <property name="text" value="north"></property>
+        </label>
+      </north>
+      <center>
+        <borderPanel>
+          <north>
+            <comboBox></comboBox>
+          </north>
+          <center>
+            <button id="bt1">
+              <property name="text" value="hello, world"></property>
+            </button>
+          </center>
+          <south>
+            <bean class="javax.swing.JCheckBox">
+              <property name="text" value="check"></property>
+            </bean>
+          </south>
+        </borderPanel>
+      </center>
+      <south>
+        <label>
+          <property name="text" value="south"></property>
+        </label>
+      </south>
 
-			<north>
-				<label>
-					<property name="text" value="north"></property>
-				</label>
-			</north>
+      <east>
+        <label>
+          <property name="text" value="east"></property>
+        </label>
+      </east>
 
-			<south>
-				<label>
-					<property name="text" value="south"></property>
-				</label>
-			</south>
+      <west>
+        <label>
+          <property name="text" value="west"></property>
+        </label>
+      </west>
+    </borderPanel>
+  </center>
 
-			<east>
-				<label>
-					<property name="text" value="east"></property>
-				</label>
-			</east>
-
-			<west>
-				<label>
-					<property name="text" value="west"></property>
-				</label>
-			</west>
-		</borderPanel>
-	</center>
-
-	<xprocessor class="" />
+  <processor class="">Test</processor>
 </xpanel>

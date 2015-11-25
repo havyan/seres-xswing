@@ -46,8 +46,8 @@
   <xsd:complexType name="boderPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="center" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="north" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="center" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="south" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="east" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="west" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
@@ -125,7 +125,7 @@
     <xsd:complexContent>
       <xsd:extension base="boderPanel">
         <xsd:sequence>
-          <xsd:element name="processor" type="xsd:string" maxOccurs="unbounded" minOccurs="0">
+          <xsd:element name="processor" type="processor" maxOccurs="unbounded" minOccurs="0">
           </xsd:element>
           <xsd:element name="bean" type="bean" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
@@ -292,5 +292,9 @@
         <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="processor" mixed="true">
+    <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 </xsd:schema>

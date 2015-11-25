@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
@@ -32,7 +33,11 @@ public class XPanelParser extends BorderPanelParser {
 		List<Element> processors = source.getChildren(Const.PROPERTY);
 		if (processors != null && processors.size() > 0) {
 			for (Element e : processors) {
-				XProcessor processor = (XProcessor) BaseUtils.newInstance(e.getText());
+				String className = e.getAttributeValue(Const.CLASS);
+				if (StringUtils.isEmpty(className)) {
+					className = e.getText().trim();
+				}
+				XProcessor processor = (XProcessor) BaseUtils.newInstance(className);
 				processor.process(xPanel);
 			}
 		}

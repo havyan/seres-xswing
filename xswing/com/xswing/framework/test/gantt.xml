@@ -1,22 +1,146 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-        xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing"
-        processor="com.xswing.framework.test.TestProcessor">
+<xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing" processor="com.xswing.framework.test.TestProcessor">
+  <north>
+    <borderPanel>
+      <north>
+        <menuBar>
+          <item>
+            <menu text="file">
+              <item>
+                <menu text="open"></menu>
+              </item>
+              <item>
+                <menu text="save"></menu>
+              </item>
+              <item>
+                <menu text="save as"></menu>
+              </item>
+              <item>
+                <menu text="close"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="edit">
+              <item>
+                <menu text="copy"></menu>
+              </item>
+              <item>
+                <menu text="cut"></menu>
+              </item>
+              <item>
+                <menu text="undo"></menu>
+              </item>
+              <item>
+                <menu text="redo"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="tools">
+              <item>
+                <menu text="a">
+                  <item>
+                    <comboBox></comboBox>
+                  </item>
+                </menu>
+              </item>
+              <item>
+                <menu text="cut"></menu>
+              </item>
+              <item>
+                <menu text="undo"></menu>
+              </item>
+              <item>
+                <menu text="redo"></menu>
+              </item>
+            </menu>
+          </item>
+
+          <item>
+            <menu text="run">
+              <item>
+                <checkBox>
+                  <property name="text" value="selected"></property>
+                </checkBox>
+              </item>
+            </menu>
+          </item>
+        </menuBar>
+      </north>
+      <south>
+        <toolBar>
+          <component>
+            <button>
+              <property name="text" value="new"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="save"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="run"></property>
+            </button>
+          </component>
+          <component>
+            <button>
+              <property name="text" value="run as"></property>
+            </button>
+          </component>
+        </toolBar>
+      </south>
+    </borderPanel>
+  </north>
   <center>
     <borderPanel>
+      <north>
+        <flowPanel align="LEFT">
+          <component>
+            <label>
+              <property name="text" value="选择项目："></property>
+            </label>
+          </component>
+
+          <component>
+            <comboBox id="project"></comboBox>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="新增"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="修改"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="删除"></property>
+            </button>
+          </component>
+
+          <component>
+            <button>
+              <property name="text" value="复制"></property>
+            </button>
+          </component>
+        </flowPanel>
+      </north>
       <center border="ETCHED">
         <splitPanel>
           <leftOrTop>
             <splitPanel orientation="VERTICAL_SPLIT">
               <leftOrTop>
                 <borderPanel>
-                  <center>
-                    <scrollPanel>
-                      <view>
-                        <bean class="javax.swing.JTree"></bean>
-                      </view>
-                    </scrollPanel>
-                  </center>
                   <north>
                     <menuBar>
                       <item>
@@ -36,17 +160,17 @@
                       </item>
                     </menuBar>
                   </north>
+                  <center>
+                    <scrollPanel>
+                      <view>
+                        <bean class="javax.swing.JTree"></bean>
+                      </view>
+                    </scrollPanel>
+                  </center>
                 </borderPanel>
               </leftOrTop>
               <rightOrBottom>
                 <borderPanel>
-                  <center>
-                    <scrollPanel>
-                      <view>
-                        <bean class="javax.swing.JTree"></bean>
-                      </view>
-                    </scrollPanel>
-                  </center>
                   <north>
                     <menuBar>
                       <item>
@@ -66,6 +190,13 @@
                       </item>
                     </menuBar>
                   </north>
+                  <center>
+                    <scrollPanel>
+                      <view>
+                        <bean class="javax.swing.JTree"></bean>
+                      </view>
+                    </scrollPanel>
+                  </center>
                 </borderPanel>
               </rightOrBottom>
             </splitPanel>
@@ -287,44 +418,6 @@
           </rightOrBottom>
         </splitPanel>
       </center>
-      <north>
-        <flowPanel align="LEFT">
-          <component>
-            <label>
-              <property name="text" value="选择项目："></property>
-            </label>
-          </component>
-
-          <component>
-            <comboBox id="project"></comboBox>
-          </component>
-
-          <component>
-            <button>
-              <property name="text" value="新增"></property>
-            </button>
-          </component>
-
-          <component>
-            <button>
-              <property name="text" value="修改"></property>
-            </button>
-          </component>
-
-          <component>
-            <button>
-              <property name="text" value="删除"></property>
-            </button>
-          </component>
-
-          <component>
-            <button>
-              <property name="text" value="复制"></property>
-            </button>
-          </component>
-        </flowPanel>
-      </north>
-
       <south border="LOWEREDBEVEL">
         <label>
           <property name="text" value="init has be done"></property>
@@ -332,104 +425,6 @@
       </south>
     </borderPanel>
   </center>
-
-  <north>
-    <borderPanel>
-      <north>
-        <menuBar>
-          <item>
-            <menu text="file">
-              <item>
-                <menu text="open"></menu>
-              </item>
-              <item>
-                <menu text="save"></menu>
-              </item>
-              <item>
-                <menu text="save as"></menu>
-              </item>
-              <item>
-                <menu text="close"></menu>
-              </item>
-            </menu>
-          </item>
-
-          <item>
-            <menu text="edit">
-              <item>
-                <menu text="copy"></menu>
-              </item>
-              <item>
-                <menu text="cut"></menu>
-              </item>
-              <item>
-                <menu text="undo"></menu>
-              </item>
-              <item>
-                <menu text="redo"></menu>
-              </item>
-            </menu>
-          </item>
-
-          <item>
-            <menu text="tools">
-              <item>
-                <menu text="a">
-                  <item>
-                    <comboBox></comboBox>
-                  </item>
-                </menu>
-              </item>
-              <item>
-                <menu text="cut"></menu>
-              </item>
-              <item>
-                <menu text="undo"></menu>
-              </item>
-              <item>
-                <menu text="redo"></menu>
-              </item>
-            </menu>
-          </item>
-
-          <item>
-            <menu text="run">
-              <item>
-                <checkBox>
-                  <property name="text" value="selected"></property>
-                </checkBox>
-              </item>
-            </menu>
-          </item>
-        </menuBar>
-      </north>
-      <south>
-        <toolBar>
-          <component>
-            <button>
-              <property name="text" value="new"></property>
-            </button>
-          </component>
-          <component>
-            <button>
-              <property name="text" value="save"></property>
-            </button>
-          </component>
-          <component>
-            <button>
-              <property name="text" value="run"></property>
-            </button>
-          </component>
-          <component>
-            <button>
-              <property name="text" value="run as"></property>
-            </button>
-          </component>
-        </toolBar>
-      </south>
-    </borderPanel>
-  </north>
-  
   <bean id="size" class="java.awt.Dimension">
     <argument type="int" value="1000"></argument>
     <argument type="int" value="1000"></argument>
