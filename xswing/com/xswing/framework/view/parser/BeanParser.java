@@ -58,7 +58,7 @@ public class BeanParser<T> extends ElementParser<T> {
 	@Override
 	public T parseElement(Context context, Element source) {
 		T bean = null;
-		List<Element> constructorArgs = source.getChildren(Const.CONSTRUCTOR_ARG);
+		List<Element> constructorArgs = source.getChildren(Const.ARGUMENT);
 		if (constructorArgs != null && constructorArgs.size() > 0) {
 			List<Class<?>> clses = new ArrayList<Class<?>>();
 			List<Object> values = new ArrayList<Object>();

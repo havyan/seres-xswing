@@ -36,7 +36,7 @@ public class Const {
 	
 	public static final String REF = "ref";
 	
-	public static final String CONSTRUCTOR_ARG = "constructor-arg";
+	public static final String ARGUMENT = "argument";
 	
 	public static final String BORDERPANEL = "borderPanel";
 	

@@ -63,7 +63,7 @@
 
 	<xsd:complexType name="bean">
 		<xsd:sequence>
-            <xsd:element name="constructor-arg" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+            <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
             <xsd:element name="property" type="property"
 		    maxOccurs="unbounded" minOccurs="0">
 		  </xsd:element>

@@ -431,7 +431,7 @@
   </north>
   
   <bean id="size" class="java.awt.Dimension">
-    <constructor-arg type="int" value="1000"></constructor-arg>
-    <constructor-arg type="int" value="1000"></constructor-arg>
+    <argument type="int" value="1000"></argument>
+    <argument type="int" value="1000"></argument>
   </bean>
 </xpanel>
