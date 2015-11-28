@@ -9,21 +9,23 @@
       <xsd:element name="gridBagPanel" type="gridBagPanel"></xsd:element>
       <xsd:element name="flowPanel" type="flowPanel"></xsd:element>
       <xsd:element name="gridPanel" type="xsd:string"></xsd:element>
-      <xsd:element name="button" type="bean"></xsd:element>
-      <xsd:element name="comboBox" type="bean"></xsd:element>
+      <xsd:element name="button" type="button"></xsd:element>
+      <xsd:element name="comboBox" type="comboBox"></xsd:element>
       <xsd:element name="bean" type="bean"></xsd:element>
       <xsd:element name="import" type="import"></xsd:element>
-      <xsd:element name="label" type="bean"></xsd:element>
+      <xsd:element name="label" type="label"></xsd:element>
       <xsd:element name="boxPanel" type="boxPanel"></xsd:element>
       <xsd:element name="splitPanel" type="splitPanel"></xsd:element>
       <xsd:element name="scrollPanel" type="scrollPanel"></xsd:element>
       <xsd:element name="textField" type="bean"></xsd:element>
       <xsd:element name="menuBar" type="menuBar"></xsd:element>
       <xsd:element name="menu" type="menu"></xsd:element>
-      <xsd:element name="checkBox" type="bean"></xsd:element>
+      <xsd:element name="checkBox" type="checkBox"></xsd:element>
       <xsd:element name="tabbedPanel" type="tabbedPanel"></xsd:element>
       <xsd:element name="toolBar" type="toolBar"></xsd:element>
       <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
+      <xsd:element name="textArea" type="textArea"></xsd:element>
+      <xsd:element name="radioButton" type="radioButton"></xsd:element>
     </xsd:choice>
     <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
@@ -296,5 +298,79 @@
 
   <xsd:complexType name="processor" mixed="true">
     <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="button">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="label">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="comboBox">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:sequence>
+          <xsd:element name="item" type="comboBoxItem" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="items" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="textArea">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
+        <xsd:attribute name="rows" type="xsd:int"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="textField">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="comboBoxItem"  mixed="true">
+    <xsd:sequence>
+      <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
+
+
+  <xsd:complexType name="checkBox">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="radioButton">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
 </xsd:schema>

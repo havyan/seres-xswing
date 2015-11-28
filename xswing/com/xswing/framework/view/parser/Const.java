@@ -10,7 +10,7 @@ package com.xswing.framework.view.parser;
 public class Const {
 
 	public static final String ID = "id";
-	
+
 	public static final String CENTER = "center";
 
 	public static final String NORTH = "north";
@@ -21,53 +21,55 @@ public class Const {
 	public static final String WEST = "west";
 
 	public static final String BUTTON = "button";
-	
+
 	public static final String COMBOBOX = "comboBox";
-	
+
 	public static final String LABEL = "label";
-	
+
 	public static final String CLASS = "class";
-	
+
 	public static final String PROPERTY = "property";
-	
+
 	public static final String NAME = "name";
-	
+
 	public static final String VALUE = "value";
-	
+
 	public static final String REF = "ref";
-	
+
 	public static final String ARGUMENT = "argument";
-	
+
+	public static final String ICON = "icon";
+
 	public static final String BORDERPANEL = "borderPanel";
-	
+
 	public static final String BEAN = "bean";
-	
+
 	public static final String PATH = "path";
-	
+
 	public static final String IMPORT = "import";
-	
+
 	public static final String CELL = "cell";
-	
+
 	public static final String COMPONENT = "component";
-	
+
 	public static final String CARD = "card";
-	
+
 	public static final String BOXPANEL = "boxPanel";
-	
+
 	public static final String GRIDBAGPANEL = "gridBagPanel";
 
 	public static final String TITLE = "title";
-	
+
 	public static final String TYPE = "type";
 
 	public static final String ALIGN = "align";
-	
+
 	public static final String HGAP = "hgap";
-	
+
 	public static final String VGAP = "vgap";
 
 	public static final String FLOWPANEL = "flowPanel";
-	
+
 	public static final String CARDPANEL = "cardPanel";
 
 	public static final String ORIENTATION = "orientation";
@@ -84,15 +86,23 @@ public class Const {
 
 	public static final String TEXTFIELD = "textField";
 
+	public static final String TEXTAREA = "textArea";
+
 	public static final String TEXT = "text";
+	
+	public static final String SELECTED = "selected";
 
 	public static final String MENUBAR = "menuBar";
 
 	public static final String MENU = "menu";
+	
+	public static final String ITEMS = "items";
 
 	public static final String ITEM = "item";
 
 	public static final String CHECKBOX = "checkBox";
+	
+	public static final String RADIOBUTTON = "radioButton";
 
 	public static final String CLOSABLE = "closable";
 
@@ -101,7 +111,7 @@ public class Const {
 	public static final String TAB = "tab";
 
 	public static final String BORDER = "border";
-	
+
 	public static final String EDITOR = "editor";
 
 	public static final String LINE = "LINE";
@@ -115,5 +125,9 @@ public class Const {
 	public static final String PROCESSOR = "processor";
 
 	public static final String TOOLBAR = "toolBar";
+
+	public static final String COLUMNS = "columns";
+
+	public static final String ROWS = "rows";
 
 }

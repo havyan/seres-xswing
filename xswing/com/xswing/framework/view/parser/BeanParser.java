@@ -8,11 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
-import javax.swing.JTextField;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
@@ -25,16 +21,12 @@ import com.xswing.framework.view.Context;
  * @author HWYan
  * 
  */
-@XElement(names = { Const.BEAN, Const.VALUE, Const.BUTTON, Const.LABEL, Const.COMBOBOX, Const.TEXTFIELD, Const.CHECKBOX })
+@XElement(names = { Const.BEAN, Const.VALUE })
 public class BeanParser<T> extends ElementParser<T> {
 
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
 
 	static {
-		CLASS_MAP.put(Const.BUTTON, JButton.class);
-		CLASS_MAP.put(Const.LABEL, JLabel.class);
-		CLASS_MAP.put(Const.COMBOBOX, JComboBox.class);
-		CLASS_MAP.put(Const.TEXTFIELD, JTextField.class);
 		CLASS_MAP.put(Const.CHECKBOX, JCheckBox.class);
 	}
 
