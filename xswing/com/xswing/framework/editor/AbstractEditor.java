@@ -62,7 +62,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 				String split = splits[i];
 				value = BaseUtils.getProperty(data, split);
 				if (data instanceof Bean) {
-					((Bean) data).addPropertyChangeListener(property, (e) -> {
+					((Bean) data).addPropertyChangeListener(split, (e) -> {
 						reload();
 					});
 				}
