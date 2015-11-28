@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JCheckBox;
+import javax.swing.JTree;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
@@ -21,13 +21,13 @@ import com.xswing.framework.view.Context;
  * @author HWYan
  * 
  */
-@XElement(names = { Const.BEAN, Const.VALUE })
+@XElement(names = { Const.BEAN, Const.VALUE, Const.TREE })
 public class BeanParser<T> extends ElementParser<T> {
 
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
 
 	static {
-		CLASS_MAP.put(Const.CHECKBOX, JCheckBox.class);
+		CLASS_MAP.put(Const.TREE, JTree.class);
 	}
 
 	public Class<?> findClass(Element source) {

@@ -39,6 +39,12 @@ public class Const {
 	public static final String ARGUMENT = "argument";
 
 	public static final String ICON = "icon";
+	
+	public static final String WIDTH = "width";
+	
+	public static final String HEIGHT = "height";
+	
+	public static final String TOOLTIP = "toolTip";
 
 	public static final String BORDERPANEL = "borderPanel";
 
@@ -107,6 +113,8 @@ public class Const {
 	public static final String CLOSABLE = "closable";
 
 	public static final String TABBEDPANEL = "tabbedPanel";
+	
+	public static final String TREE = "tree";
 
 	public static final String TAB = "tab";
 

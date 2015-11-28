@@ -26,12 +26,18 @@
       <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
       <xsd:element name="textArea" type="textArea"></xsd:element>
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
+      <xsd:element name="tree" type="bean"></xsd:element>
     </xsd:choice>
     <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="border" type="border"></xsd:attribute>
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="validator" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="width" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="height" type="xsd:double"></xsd:attribute>
+
+    <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:group name="properties">

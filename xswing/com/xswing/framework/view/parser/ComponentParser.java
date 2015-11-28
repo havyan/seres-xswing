@@ -4,28 +4,46 @@
 package com.xswing.framework.view.parser;
 
 import java.awt.Color;
+import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.border.Border;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
-import com.xswing.framework.editor.Editor;
 import com.xswing.framework.view.Context;
 
 /**
  * @author HWYan
  * 
  */
-@XElement(names = { Const.CENTER, Const.NORTH, Const.SOUTH, Const.EAST, Const.WEST, Const.CELL, Const.COMPONENT,
-		Const.LEFTORTOP, Const.RIGHTORBOTTOM, Const.VIEW, Const.ITEM, Const.TAB, Const.CARD })
+@XElement(names = { Const.CENTER, Const.NORTH, Const.SOUTH, Const.EAST, Const.WEST, Const.CELL, Const.COMPONENT, Const.LEFTORTOP, Const.RIGHTORBOTTOM, Const.VIEW, Const.ITEM,
+		Const.TAB, Const.CARD })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public T parseElement(Context context, Element source) {
 		T component = (T) ParserEngine.parse(context, (Element) source.getChildren().get(0));
+		double width = component.getPreferredSize().getWidth();
+		String widthText = source.getAttributeValue(Const.WIDTH);
+		if (StringUtils.isNotEmpty(widthText)) {
+			width = Double.valueOf(widthText);
+		}
+		double height = component.getPreferredSize().getHeight();
+		String heightText = source.getAttributeValue(Const.HEIGHT);
+		if (StringUtils.isNotEmpty(heightText)) {
+			height = Double.valueOf(heightText);
+		}
+		Dimension size = new Dimension();
+		size.setSize(width, height);
+		component.setPreferredSize(size);
+		String toolTip = source.getAttributeValue(Const.TOOLTIP);
+		if (StringUtils.isNotEmpty(toolTip)) {
+			component.setToolTipText(toolTip);
+		}
 		return component;
 	}
 
@@ -41,12 +59,6 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				component.setName(name);
 			}
 		}
-	}
-
-	protected Editor<T, ?> createEditor(T component, Context context, Element source) {
-		String editor = source.getAttributeValue(Const.EDITOR);
-		// TODO
-		return null;
 	}
 
 	protected Border createBorder(Element source) {
