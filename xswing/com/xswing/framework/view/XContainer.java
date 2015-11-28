@@ -1,6 +1,7 @@
 package com.xswing.framework.view;
 
 import java.awt.BorderLayout;
+import java.net.URL;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -18,6 +19,15 @@ public class XContainer extends JPanel {
 	public XContainer(String path) {
 		initXPanel(path);
 		initReferences();
+	}
+
+	public XContainer(URL url) {
+		initXPanel(url);
+		initReferences();
+	}
+
+	private void initXPanel(URL url) {
+		add(XPanelBuilder.build(url), BorderLayout.CENTER);
 	}
 
 	private void initXPanel(String path) {

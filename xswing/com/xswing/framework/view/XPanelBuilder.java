@@ -3,6 +3,7 @@
  */
 package com.xswing.framework.view;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 
 import org.jdom2.Document;
@@ -50,10 +51,20 @@ public class XPanelBuilder {
 		} else {
 			path = Thread.currentThread().getContextClassLoader().getResource(path).toString();
 		}
+		try {
+			return build(new URL(path));
+		} catch (MalformedURLException e) {
+			ExceptionUtils.logAndShowException(e);
+			return null;
+		}
+	}
+
+	public static XPanel build(URL url) {
+		String path = url.toString();
 		Document doc = null;
 		try {
 			SAXBuilder builder = new SAXBuilder();
-			doc = builder.build(new URL(path));
+			doc = builder.build(url);
 		} catch (Exception e) {
 			ExceptionUtils.logAndShowException(e);
 		}
