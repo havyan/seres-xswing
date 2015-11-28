@@ -137,9 +137,9 @@
       </north>
       <center border="ETCHED">
         <splitPanel>
-          <leftOrTop>
+          <before>
             <splitPanel orientation="VERTICAL_SPLIT">
-              <leftOrTop>
+              <before>
                 <borderPanel>
                   <north>
                     <menuBar>
@@ -168,8 +168,8 @@
                     </scrollPanel>
                   </center>
                 </borderPanel>
-              </leftOrTop>
-              <rightOrBottom>
+              </before>
+              <after>
                 <borderPanel>
                   <north>
                     <menuBar>
@@ -198,11 +198,11 @@
                     </scrollPanel>
                   </center>
                 </borderPanel>
-              </rightOrBottom>
+              </after>
             </splitPanel>
 
-          </leftOrTop>
-          <rightOrBottom>
+          </before>
+          <after>
             <tabbedPanel>
               <tab name="数据源设置" title="数据源设置" closable="false">
                 <borderPanel>
@@ -415,7 +415,7 @@
               </tab>
 
             </tabbedPanel>
-          </rightOrBottom>
+          </after>
         </splitPanel>
       </center>
       <south border="LOWEREDBEVEL">

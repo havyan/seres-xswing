@@ -206,8 +206,8 @@
   <xsd:complexType name="splitPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="leftOrTop" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-      <xsd:element name="rightOrBottom" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="before" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="after" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
     </xsd:sequence>
     <xsd:attribute name="orientation" type="orientation"></xsd:attribute>

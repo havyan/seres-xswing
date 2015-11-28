@@ -39,11 +39,11 @@ public class Const {
 	public static final String ARGUMENT = "argument";
 
 	public static final String ICON = "icon";
-	
+
 	public static final String WIDTH = "width";
-	
+
 	public static final String HEIGHT = "height";
-	
+
 	public static final String TOOLTIP = "toolTip";
 
 	public static final String BORDERPANEL = "borderPanel";
@@ -80,9 +80,9 @@ public class Const {
 
 	public static final String ORIENTATION = "orientation";
 
-	public static final String LEFTORTOP = "leftOrTop";
+	public static final String BEFORE = "before";
 
-	public static final String RIGHTORBOTTOM = "rightOrBottom";
+	public static final String AFTER = "after";
 
 	public static final String SPLITPANEL = "splitPanel";
 
@@ -95,25 +95,25 @@ public class Const {
 	public static final String TEXTAREA = "textArea";
 
 	public static final String TEXT = "text";
-	
+
 	public static final String SELECTED = "selected";
 
 	public static final String MENUBAR = "menuBar";
 
 	public static final String MENU = "menu";
-	
+
 	public static final String ITEMS = "items";
 
 	public static final String ITEM = "item";
 
 	public static final String CHECKBOX = "checkBox";
-	
+
 	public static final String RADIOBUTTON = "radioButton";
 
 	public static final String CLOSABLE = "closable";
 
 	public static final String TABBEDPANEL = "tabbedPanel";
-	
+
 	public static final String TREE = "tree";
 
 	public static final String TAB = "tab";

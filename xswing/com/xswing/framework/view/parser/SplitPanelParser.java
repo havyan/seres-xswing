@@ -28,8 +28,8 @@ public class SplitPanelParser extends BeanParser<JSplitPane> {
 		}
 		panel.setOrientation(orientation);
 
-		JComponent com1 = (JComponent) ParserEngine.parse(context, source.getChild(Const.LEFTORTOP));
-		JComponent com2 = (JComponent) ParserEngine.parse(context, source.getChild(Const.RIGHTORBOTTOM));
+		JComponent com1 = (JComponent) ParserEngine.parse(context, source.getChild(Const.BEFORE));
+		JComponent com2 = (JComponent) ParserEngine.parse(context, source.getChild(Const.AFTER));
 		if (orientation == JSplitPane.HORIZONTAL_SPLIT) {
 			if (com1 != null) {
 				panel.setLeftComponent(com1);

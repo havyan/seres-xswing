@@ -19,7 +19,7 @@ import com.xswing.framework.view.Context;
  * @author HWYan
  * 
  */
-@XElement(names = { Const.CENTER, Const.NORTH, Const.SOUTH, Const.EAST, Const.WEST, Const.CELL, Const.COMPONENT, Const.LEFTORTOP, Const.RIGHTORBOTTOM, Const.VIEW, Const.ITEM,
+@XElement(names = { Const.CENTER, Const.NORTH, Const.SOUTH, Const.EAST, Const.WEST, Const.CELL, Const.COMPONENT, Const.BEFORE, Const.AFTER, Const.VIEW, Const.ITEM,
 		Const.TAB, Const.CARD })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 

@@ -6,9 +6,9 @@
     <borderPanel>
       <center border="ETCHED">
         <splitPanel>
-          <leftOrTop>
+          <before>
             <splitPanel orientation="VERTICAL_SPLIT">
-              <leftOrTop>
+              <before>
                 <borderPanel>
                   <center>
                     <scrollPanel>
@@ -37,7 +37,7 @@
                     </menuBar>
                   </north>
                 </borderPanel>
-              </leftOrTop>
+              </before>
               <rightOrBottom>
                 <borderPanel>
                   <center>
@@ -70,7 +70,7 @@
               </rightOrBottom>
             </splitPanel>
 
-          </leftOrTop>
+          </before>
           <rightOrBottom>
             <tabbedPanel closeable="true">
               <tab name="数据源设置">
