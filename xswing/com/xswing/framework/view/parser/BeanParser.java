@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.JComponent;
 import javax.swing.JTree;
 
 import org.apache.commons.lang3.StringUtils;
@@ -15,13 +16,16 @@ import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
+import com.xswing.framework.editor.Editor;
+import com.xswing.framework.editor.EditorFactory;
+import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
 /**
  * @author HWYan
  * 
  */
-@XElement(names = { Const.BEAN, Const.VALUE, Const.TREE })
+@XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR, Const.TREE })
 public class BeanParser<T> extends ElementParser<T> {
 
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
@@ -131,10 +135,38 @@ public class BeanParser<T> extends ElementParser<T> {
 		}
 	}
 
-	protected void handle(T obj, Context context, Element source) {
+	protected void handle(Context context, T obj, Element source) {
 		if (obj != null) {
 			setProperties(context, obj.getClass(), obj, source);
 		}
+	}
+
+	@Override
+	protected void bind(Context context, String id, T bean, Element source) {
+		super.bind(context, id, bean, source);
+		if (bean instanceof JComponent) {
+			JComponent component = (JComponent) bean;
+			String editorClass = source.getAttributeValue(Const.EDITOR);
+			Editor<? extends JComponent, ?> editor = EditorFactory.create(component, editorClass);
+			editor.setContext(context);
+			String bind = source.getAttributeValue(Const.BIND);
+			if (StringUtils.isNotEmpty(bind)) {
+				editor.setBind(bind.trim());
+			}
+			editor.setValidators(parseValidators(context, source));
+			context.setEditor(id, editor);
+		}
+	}
+
+	protected List<Validator<?>> parseValidators(Context context, Element source) {
+		List<Element> children = source.getChildren(Const.VALIDATOR);
+		List<Validator<?>> validtors = new ArrayList<Validator<?>>();
+		if (children != null && children.size() > 0) {
+			for (Element child : children) {
+				validtors.add((Validator<?>) ParserEngine.parse(context, child));
+			}
+		}
+		return validtors;
 	}
 
 }

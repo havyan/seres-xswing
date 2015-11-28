@@ -17,32 +17,46 @@ public class XContainer extends JPanel {
 	protected XPanel xpanel;
 
 	public XContainer(String path) {
-		initXPanel(path);
-		initReferences();
+		this(path, null);
 	}
 
 	public XContainer(URL url) {
-		initXPanel(url);
+		this(url, null);
+	}
+
+	public XContainer(String path, Object data) {
+		initXPanel(path, data);
 		initReferences();
 	}
 
-	private void initXPanel(URL url) {
-		add(XPanelBuilder.build(url), BorderLayout.CENTER);
+	public XContainer(URL url, Object data) {
+		initXPanel(url, data);
+		initReferences();
 	}
 
-	private void initXPanel(String path) {
+	private void initXPanel(URL url, Object data) {
+		add(XPanelBuilder.buildWithData(url, data), BorderLayout.CENTER);
+	}
+
+	private void initXPanel(String path, Object data) {
 		setLayout(new BorderLayout());
 		if (path.trim().startsWith(".")) {
-			String caller = new Throwable().getStackTrace()[2].getClassName();
+			String caller = null;
+			for (StackTraceElement trace : new Throwable().getStackTrace()) {
+				if (!trace.getClassName().equals(XContainer.class.getName())) {
+					caller = trace.getClassName();
+					break;
+				}
+			}
 			String contextPath = null;
 			try {
 				contextPath = Class.forName(caller).getResource("").toString();
 			} catch (ClassNotFoundException e) {
 				Logger.error(e);
 			}
-			xpanel = XPanelBuilder.build(contextPath, path);
+			xpanel = XPanelBuilder.buildWithData(contextPath, path, data);
 		} else {
-			xpanel = XPanelBuilder.build(path);
+			xpanel = XPanelBuilder.buildWithData(path, data);
 		}
 		add(xpanel, BorderLayout.CENTER);
 	}

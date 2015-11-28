@@ -20,11 +20,20 @@ import com.xswing.framework.view.parser.ParserEngine;
 public class XPanelBuilder {
 
 	public static XPanel build(String path) {
-		String caller = new Throwable().getStackTrace()[1].getClassName();
-		String contextPath;
+		return buildWithData(path, null);
+	}
+
+	public static XPanel buildWithData(String path, Object data) {
+		String caller = null;
+		for (StackTraceElement trace : new Throwable().getStackTrace()) {
+			if (!trace.getClassName().equals(XPanelBuilder.class.getName())) {
+				caller = trace.getClassName();
+				break;
+			}
+		}
 		try {
-			contextPath = Class.forName(caller).getResource("").toString();
-			return build(contextPath, path);
+			String contextPath = Class.forName(caller).getResource("").toString();
+			return buildWithData(contextPath, path, data);
 		} catch (ClassNotFoundException e) {
 			Logger.error(e);
 		}
@@ -32,6 +41,10 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(String contextPath, String path) {
+		return buildWithData(contextPath, path, null);
+	}
+
+	public static XPanel buildWithData(String contextPath, String path, Object data) {
 		contextPath = contextPath.trim();
 		path = path.trim();
 		if (path.startsWith("./")) {
@@ -52,7 +65,7 @@ public class XPanelBuilder {
 			path = Thread.currentThread().getContextClassLoader().getResource(path).toString();
 		}
 		try {
-			return build(new URL(path));
+			return buildWithData(new URL(path), data);
 		} catch (MalformedURLException e) {
 			ExceptionUtils.logAndShowException(e);
 			return null;
@@ -60,6 +73,10 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(URL url) {
+		return buildWithData(url, null);
+	}
+
+	public static XPanel buildWithData(URL url, Object data) {
 		String path = url.toString();
 		Document doc = null;
 		try {
@@ -71,6 +88,7 @@ public class XPanelBuilder {
 		if (doc != null) {
 			Context context = new Context();
 			context.setDoc(doc);
+			context.setData(data);
 			context.setPath(path.substring(0, path.lastIndexOf("/") + 1));
 			XPanel xpanel = (XPanel) ParserEngine.parse(context, doc.getRootElement());
 			context.processRefs();

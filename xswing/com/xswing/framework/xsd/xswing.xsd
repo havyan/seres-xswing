@@ -11,13 +11,13 @@
       <xsd:element name="gridPanel" type="xsd:string"></xsd:element>
       <xsd:element name="button" type="button"></xsd:element>
       <xsd:element name="comboBox" type="comboBox"></xsd:element>
-      <xsd:element name="bean" type="bean"></xsd:element>
+      <xsd:element name="bean" type="componentBean"></xsd:element>
       <xsd:element name="import" type="import"></xsd:element>
       <xsd:element name="label" type="label"></xsd:element>
       <xsd:element name="boxPanel" type="boxPanel"></xsd:element>
       <xsd:element name="splitPanel" type="splitPanel"></xsd:element>
       <xsd:element name="scrollPanel" type="scrollPanel"></xsd:element>
-      <xsd:element name="textField" type="bean"></xsd:element>
+      <xsd:element name="textField" type="textField"></xsd:element>
       <xsd:element name="menuBar" type="menuBar"></xsd:element>
       <xsd:element name="menu" type="menu"></xsd:element>
       <xsd:element name="checkBox" type="checkBox"></xsd:element>
@@ -26,27 +26,24 @@
       <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
       <xsd:element name="textArea" type="textArea"></xsd:element>
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
-      <xsd:element name="tree" type="bean"></xsd:element>
+      <xsd:element name="tree" type="componentBean"></xsd:element>
     </xsd:choice>
     <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="border" type="border"></xsd:attribute>
-    <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="validator" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="width" type="xsd:double"></xsd:attribute>
     <xsd:attribute name="height" type="xsd:double"></xsd:attribute>
 
     <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 
-  <xsd:group name="properties">
+  <xsd:group name="baseGroups">
     <xsd:sequence>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-    </xsd:sequence>
+      <xsd:element name="validator" type="bean" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>    </xsd:sequence>
   </xsd:group>
 
-  <xsd:attributeGroup name="attributes">
+  <xsd:attributeGroup name="baseAttributes">
     <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
     <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
   </xsd:attributeGroup>
@@ -59,17 +56,18 @@
       <xsd:element name="south" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="east" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="west" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:group ref="properties"></xsd:group>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="bean">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="property" mixed="true">
@@ -85,9 +83,10 @@
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:group ref="properties"></xsd:group>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="align" type="align" default="CENTER"></xsd:attribute>
     <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
@@ -97,9 +96,10 @@
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="row" type="row" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-      <xsd:group ref="properties"></xsd:group>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="row">
@@ -150,6 +150,7 @@
           <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -180,9 +181,10 @@
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:group ref="properties"></xsd:group>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>
   </xsd:complexType>
 
@@ -208,10 +210,11 @@
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="before" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:element name="after" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attribute name="orientation" type="orientation"></xsd:attribute>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:simpleType name="orientation">
@@ -224,38 +227,41 @@
   <xsd:complexType name="scrollPanel">
     <xsd:sequence>
       <xsd:element name="view" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="menuBar">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
 
   <xsd:complexType name="menu">
     <xsd:sequence>
-      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0">
-      </xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="tabbedPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="tab" type="tab" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:simpleType name="border">
@@ -271,8 +277,10 @@
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
 
   <xsd:complexType name="argument" mixed="true">
@@ -287,9 +295,10 @@
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="card" type="component" maxOccurs="unbounded" minOccurs="1"></xsd:element>
-      <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
-    <xsd:attributeGroup ref="attributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
   </xsd:complexType>
@@ -311,6 +320,7 @@
       <xsd:extension base="bean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -320,6 +330,7 @@
       <xsd:extension base="bean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -331,6 +342,7 @@
           <xsd:element name="item" type="comboBoxItem" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="items" type="xsd:string"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -340,6 +352,7 @@
       <xsd:extension base="bean">
         <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
         <xsd:attribute name="rows" type="xsd:int"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -352,7 +365,7 @@
     </xsd:complexContent>
   </xsd:complexType>
 
-  <xsd:complexType name="comboBoxItem"  mixed="true">
+  <xsd:complexType name="comboBoxItem" mixed="true">
     <xsd:sequence>
       <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
     </xsd:sequence>
@@ -366,6 +379,7 @@
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -376,6 +390,20 @@
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:attributeGroup name="componentAttributes">
+    <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="bind" type="xsd:string"></xsd:attribute>
+  </xsd:attributeGroup>
+
+  <xsd:complexType name="componentBean">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

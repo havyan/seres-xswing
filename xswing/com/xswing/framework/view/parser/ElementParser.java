@@ -1,9 +1,13 @@
 package com.xswing.framework.view.parser;
 
+import java.util.UUID;
+
 import javax.swing.JComponent;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
+import com.xswing.framework.editor.Editor;
 import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.view.Context;
 
@@ -11,21 +15,23 @@ public abstract class ElementParser<T> implements Parser<T, Element> {
 
 	public T parse(Context context, Element source) {
 		T bean = parseElement(context, source);
-		handle(bean, context, source);
+		handle(context, bean, source);
 		String id = source.getAttributeValue(Const.ID);
-		if (id != null) {
-			context.setBean(id, bean);
-			if (bean instanceof JComponent) {
-				context.setEditor(id, EditorFactory.create((JComponent) bean, source.getAttributeValue(Const.EDITOR)));
-			}
+		if (StringUtils.isEmpty(id)) {
+			id = UUID.randomUUID().toString();
 		}
+		bind(context, id, bean, source);
 		return bean;
 	}
 
 	public abstract T parseElement(Context context, Element source);
 
-	protected void handle(T obj, Context context, Element source) {
+	protected void handle(Context context, T obj, Element source) {
 
+	}
+
+	protected void bind(Context context, String id, T bean, Element source) {
+		context.setBean(id, bean);
 	}
 
 }

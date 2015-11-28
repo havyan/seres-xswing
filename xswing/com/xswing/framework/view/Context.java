@@ -28,6 +28,8 @@ public class Context {
 	private Document doc;
 
 	private String path;
+	
+	private Object data;
 
 	public Document getDoc() {
 		return doc;
@@ -107,6 +109,14 @@ public class Context {
 
 	public void setPath(String path) {
 		this.path = path;
+	}
+
+	public Object getData() {
+		return data;
+	}
+
+	public void setData(Object data) {
+		this.data = data;
 	}
 
 }

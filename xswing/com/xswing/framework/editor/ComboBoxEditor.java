@@ -2,6 +2,7 @@ package com.xswing.framework.editor;
 
 import javax.swing.JComboBox;
 
+@Component(types = { JComboBox.class })
 public class ComboBoxEditor extends AbstractEditor<JComboBox<?>, Object> {
 
 	@Override

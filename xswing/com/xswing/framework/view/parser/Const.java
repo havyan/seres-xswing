@@ -121,6 +121,8 @@ public class Const {
 	public static final String BORDER = "border";
 
 	public static final String EDITOR = "editor";
+	
+	public static final String BIND = "bind";
 
 	public static final String LINE = "LINE";
 
@@ -137,5 +139,7 @@ public class Const {
 	public static final String COLUMNS = "columns";
 
 	public static final String ROWS = "rows";
+
+	public static final String VALIDATOR = "validator";
 
 }
