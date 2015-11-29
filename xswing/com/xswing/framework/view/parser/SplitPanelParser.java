@@ -8,7 +8,6 @@ import javax.swing.JSplitPane;
 
 import org.jdom2.Element;
 
-import com.framework.common.BaseUtils;
 import com.xswing.framework.view.Context;
 
 /**
@@ -23,8 +22,8 @@ public class SplitPanelParser extends BeanParser<JSplitPane> {
 		JSplitPane panel = createBean(context, source);
 		int orientation = JSplitPane.HORIZONTAL_SPLIT;
 		String orientationString = source.getAttributeValue(Const.ORIENTATION);
-		if (orientationString != null && orientationString.length() > 0) {
-			orientation = (int) BaseUtils.getStaticValue(JSplitPane.class, orientationString);
+		if (orientationString != null && orientationString.equals(Const.VERTICAL)) {
+			orientation = JSplitPane.VERTICAL_SPLIT;
 		}
 		panel.setOrientation(orientation);
 

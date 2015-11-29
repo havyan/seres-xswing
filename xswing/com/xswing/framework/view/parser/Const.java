@@ -86,6 +86,10 @@ public class Const {
 
 	public static final String SPLITPANEL = "splitPanel";
 
+	public static final String HORIZONTAL = "HORIZONTAL";
+
+	public static final String VERTICAL = "VERTICAL";
+
 	public static final String VIEW = "view";
 
 	public static final String SCROLLPANEL = "scrollPanel";
@@ -101,6 +105,8 @@ public class Const {
 	public static final String MENUBAR = "menuBar";
 
 	public static final String MENU = "menu";
+	
+	public static final String MENU_UP = "MENU";
 
 	public static final String ITEMS = "items";
 
@@ -118,10 +124,12 @@ public class Const {
 
 	public static final String TAB = "tab";
 
+	public static final String SEPARATOR = "separator";
+
 	public static final String BORDER = "border";
 
 	public static final String EDITOR = "editor";
-	
+
 	public static final String BIND = "bind";
 
 	public static final String LINE = "LINE";
@@ -135,6 +143,8 @@ public class Const {
 	public static final String PROCESSOR = "processor";
 
 	public static final String TOOLBAR = "toolBar";
+	
+	public static final String TOOLBAR_UP = "TOOLBAR";
 
 	public static final String COLUMNS = "columns";
 

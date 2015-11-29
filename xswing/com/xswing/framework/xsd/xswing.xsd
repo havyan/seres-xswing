@@ -27,6 +27,7 @@
       <xsd:element name="textArea" type="textArea"></xsd:element>
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
       <xsd:element name="tree" type="componentBean"></xsd:element>
+      <xsd:element name="separator" type="separator"></xsd:element>
     </xsd:choice>
     <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
@@ -219,8 +220,15 @@
 
   <xsd:simpleType name="orientation">
     <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="VERTICAL_SPLIT"></xsd:enumeration>
-      <xsd:enumeration value="HORIZONTAL_SPLIT"></xsd:enumeration>
+      <xsd:enumeration value="VERTICAL"></xsd:enumeration>
+      <xsd:enumeration value="HORIZONTAL"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="separatorType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="MENU"></xsd:enumeration>
+      <xsd:enumeration value="TOOLBAR"></xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -404,6 +412,15 @@
     <xsd:complexContent>
       <xsd:extension base="bean">
         <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="separator">
+    <xsd:complexContent>
+      <xsd:extension base="bean">
+        <xsd:attribute name="orientation" type="orientation"></xsd:attribute>
+        <xsd:attribute name="type" type="separatorType"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
