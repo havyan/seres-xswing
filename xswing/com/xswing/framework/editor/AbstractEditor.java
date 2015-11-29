@@ -3,13 +3,14 @@
  */
 package com.xswing.framework.editor;
 
+import java.beans.PropertyChangeEvent;
 import java.util.List;
 
 import javax.swing.JComponent;
 
 import com.framework.common.BaseUtils;
+import com.framework.log.Logger;
 import com.framework.proxy.interfaces.Bean;
-import com.framework.proxy.interfaces.DynamicCollection;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
@@ -56,29 +57,29 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		this.bind = property;
 		Object data = context.getData();
 		if (data != null) {
-			String[] splits = property.split("\\.");
-			Object value = null;
-			for (int i = 0; i < splits.length; i++) {
-				String split = splits[i];
-				value = BaseUtils.getProperty(data, split);
-				if (data instanceof Bean) {
-					((Bean) data).addPropertyChangeListener(split, (e) -> {
-						reload();
+			Object value = BaseUtils.getProperty(data, property);
+			if (data instanceof Bean) {
+				Bean bean = (Bean) data;
+				String tempProperty = property;
+				while (tempProperty != null) {
+					bean.addPropertyChangeListener(tempProperty, (e) -> {
+						valueChanged(e);
 					});
-				}
-				if (value instanceof DynamicCollection) {
-					((DynamicCollection) data).addChangeListener((e) -> {
-						reload();
-					});
-				}
-				if (i < splits.length - 1) {
-					data = value;
+					int index = tempProperty.lastIndexOf(".");
+					if (index >= 0) {
+						tempProperty = tempProperty.substring(0, index);
+					} else {
+						tempProperty = null;
+					}
 				}
 			}
-
 			this.setValue(value);
-
 		}
+	}
+
+	protected void valueChanged(PropertyChangeEvent e) {
+		Logger.debug("Property changed: " + e.getPropertyName());
+		reload();
 	}
 
 	protected void reload() {

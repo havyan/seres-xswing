@@ -5,7 +5,6 @@ package com.xswing.framework.view.parser;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.util.UUID;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -14,8 +13,6 @@ import javax.swing.border.Border;
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
-import com.xswing.framework.editor.Editor;
-import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.view.Context;
 
 /**
@@ -24,7 +21,7 @@ import com.xswing.framework.view.Context;
  */
 @XElement(names = { Const.CENTER, Const.NORTH, Const.SOUTH, Const.EAST, Const.WEST, Const.CELL, Const.COMPONENT, Const.BEFORE, Const.AFTER, Const.VIEW, Const.ITEM, Const.TAB,
 		Const.CARD })
-public class ComponentParser<T extends JComponent> extends BeanParser<T> {
+public class ComponentParser<T extends JComponent> extends ElementParser<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -89,6 +86,9 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			}
 		}
 		return border;
+	}
+
+	protected void bind(Context context, String id, T bean, Element source) {
 	}
 
 }
