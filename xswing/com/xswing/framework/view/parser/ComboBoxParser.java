@@ -3,11 +3,13 @@ package com.xswing.framework.view.parser;
 import java.util.List;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
+import com.xswing.framework.editor.Editor;
 import com.xswing.framework.view.Context;
 
 @SuppressWarnings("rawtypes")
@@ -19,8 +21,11 @@ public class ComboBoxParser extends BeanParser<JComboBox> {
 		JComboBox comboBox = super.parseElement(context, source);
 		String itemsText = source.getAttributeValue(Const.ITEMS);
 		if (StringUtils.isNotEmpty(itemsText)) {
-			for (Object e : BaseUtils.getClass(itemsText).getEnumConstants()) {
-				comboBox.addItem(e);
+			if (BaseUtils.isClass(itemsText)) {
+				Class<?> cls = BaseUtils.getClass(itemsText);
+				for (Object e : cls.getEnumConstants()) {
+					comboBox.addItem(e);
+				}
 			}
 		} else {
 			List<Element> items = source.getChildren(Const.ITEM);
@@ -43,5 +48,16 @@ public class ComboBoxParser extends BeanParser<JComboBox> {
 		}
 
 		return comboBox;
+	}
+
+	@Override
+	protected void bindEditor(Editor<? extends JComponent, ?> editor, Element source) {
+		super.bindEditor(editor, source);
+		String itemsText = source.getAttributeValue(Const.ITEMS);
+		if (StringUtils.isNotEmpty(itemsText)) {
+			if (!BaseUtils.isClass(itemsText)) {
+				editor.addBind(Const.ITEMS, itemsText);
+			}
+		}
 	}
 }

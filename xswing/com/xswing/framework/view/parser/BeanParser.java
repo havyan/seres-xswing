@@ -149,12 +149,16 @@ public class BeanParser<T> extends ElementParser<T> {
 			String editorClass = source.getAttributeValue(Const.EDITOR);
 			Editor<? extends JComponent, ?> editor = EditorFactory.create(component, editorClass);
 			editor.setContext(context);
-			String bind = source.getAttributeValue(Const.BIND);
-			if (StringUtils.isNotEmpty(bind)) {
-				editor.setBind(bind.trim());
-			}
+			bindEditor(editor, source);
 			editor.setValidators(parseValidators(context, source));
 			context.setEditor(id, editor);
+		}
+	}
+
+	protected void bindEditor(Editor<? extends JComponent, ?> editor, Element source) {
+		String bind = source.getAttributeValue(Const.BIND);
+		if (StringUtils.isNotEmpty(bind)) {
+			editor.addBind(Const.VALUE, bind.trim());
 		}
 	}
 

@@ -4,7 +4,9 @@
 package com.xswing.framework.editor;
 
 import java.beans.PropertyChangeEvent;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JComponent;
 
@@ -13,6 +15,7 @@ import com.framework.log.Logger;
 import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
+import com.xswing.framework.view.parser.Const;
 
 /**
  * @author think
@@ -26,7 +29,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected Context context;
 
-	protected String bind;
+	protected Map<String, String> binds = new HashMap<String, String>();
 
 	public T getComponent() {
 		return component;
@@ -78,22 +81,27 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		this.context = context;
 	}
 
-	public void setBind(String property) {
-		this.bind = property;
+	public void addBind(String type, String property) {
+		this.binds.put(type, property);
 		Object data = context.getData();
 		if (data != null) {
-			Object value = BaseUtils.getProperty(data, property);
 			if (data instanceof Bean) {
-				bind((Bean) data, property);
+				bind(type, (Bean) data, property);
 			}
+			this.setBindValue(type, BaseUtils.getProperty(data, property));
+		}
+	}
+
+	public void setBindValue(String type, Object value) {
+		if (type.equals(Const.VALUE)) {
 			this.setValue(value);
 		}
 	}
 
-	protected void bind(Bean bean, String property) {
+	protected void bind(String type, Bean bean, String property) {
 		while (property != null) {
 			bean.addPropertyChangeListener(property, (e) -> {
-				valueChanged(e);
+				propertyChanged(type, e);
 			});
 			int index = property.lastIndexOf(".");
 			if (index >= 0) {
@@ -104,10 +112,17 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		}
 	}
 
+	protected void propertyChanged(String type, PropertyChangeEvent e) {
+		if (type.equals(Const.VALUE)) {
+			valueChanged(e);
+		}
+	}
+
 	protected void writeBack() {
 		String result = this.validate();
 		if (result == null) {
-			Logger.debug("Write back value to: " + this.bind);
+			String bind = this.binds.get(Const.VALUE);
+			Logger.debug("Write back value to: " + bind);
 			BaseUtils.setProperty(context.getData(), bind, this.getValue());
 		}
 	}
@@ -120,7 +135,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	protected void reload() {
 		Object data = context.getData();
 		if (data != null) {
-			this.setValue(BaseUtils.getProperty(data, bind));
+			this.setValue(BaseUtils.getProperty(data, this.binds.get(Const.VALUE)));
 		}
 	}
 
