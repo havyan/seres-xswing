@@ -4,6 +4,7 @@
 package com.xswing.framework.editor;
 
 import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -83,12 +84,11 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	public void addBind(String type, String property) {
 		this.binds.put(type, property);
-		Object data = context.getData();
-		if (data != null) {
-			if (data instanceof Bean) {
-				bind(type, (Bean) data, property);
-			}
-			this.setBindValue(type, BaseUtils.getProperty(data, property));
+		this.bind(property, (e) -> {
+			propertyChanged(type, e);
+		});
+		if (context.getData() != null) {
+			this.setBindValue(type, BaseUtils.getProperty(context.getData(), property));
 		}
 	}
 
@@ -98,17 +98,14 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		}
 	}
 
-	protected void bind(String type, Bean bean, String property) {
-		while (property != null) {
-			bean.addPropertyChangeListener(property, (e) -> {
-				propertyChanged(type, e);
+	protected void bind(String property, PropertyChangeListener listener) {
+		if (context.getData() != null && context.getData() instanceof Bean) {
+			Bean bean = (Bean) context.getData();
+			bean.addPropertyChangeListener((e) -> {
+				if (e.getPropertyName().equals(property) || property.startsWith(e.getPropertyName() + ".")) {
+					listener.propertyChange(e);
+				}
 			});
-			int index = property.lastIndexOf(".");
-			if (index >= 0) {
-				property = property.substring(0, index);
-			} else {
-				property = null;
-			}
 		}
 	}
 
