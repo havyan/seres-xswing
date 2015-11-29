@@ -24,11 +24,13 @@ public interface Editor<T extends JComponent, V> {
 	public void setContext(Context context);
 
 	public Context getContext();
+	
+	public String validate();
 
 	public void setBind(String property);
 
-	public void setValidators(List<Validator<?>> validators);
+	public void setValidators(List<Validator> validators);
 
-	public List<Validator<?>> getValidators();
+	public List<Validator> getValidators();
 
 }

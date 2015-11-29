@@ -22,7 +22,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected T component;
 
-	protected List<Validator<?>> validators;
+	protected List<Validator> validators;
 
 	protected Context context;
 
@@ -35,14 +35,39 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	@SuppressWarnings("unchecked")
 	public void setComponent(JComponent component) {
 		this.component = (T) component;
+		initComponent(this.component);
 	}
 
-	public List<Validator<?>> getValidators() {
+	protected void initComponent(T component) {
+
+	}
+
+	public List<Validator> getValidators() {
 		return validators;
 	}
 
-	public void setValidators(List<Validator<?>> validators) {
+	public void setValidators(List<Validator> validators) {
 		this.validators = validators;
+	}
+
+	public String validate() {
+		if (this.validators != null && this.validators.size() > 0) {
+			V value = this.getValue();
+			StringBuilder sb = new StringBuilder();
+			for (Validator validator : this.validators) {
+				String result = validator.validate(value);
+				if (result != null) {
+					sb.append(result);
+				}
+			}
+			if (sb.length() > 0) {
+				return sb.toString();
+			} else {
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 
 	public Context getContext() {
@@ -59,21 +84,31 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		if (data != null) {
 			Object value = BaseUtils.getProperty(data, property);
 			if (data instanceof Bean) {
-				Bean bean = (Bean) data;
-				String tempProperty = property;
-				while (tempProperty != null) {
-					bean.addPropertyChangeListener(tempProperty, (e) -> {
-						valueChanged(e);
-					});
-					int index = tempProperty.lastIndexOf(".");
-					if (index >= 0) {
-						tempProperty = tempProperty.substring(0, index);
-					} else {
-						tempProperty = null;
-					}
-				}
+				bind((Bean) data, property);
 			}
 			this.setValue(value);
+		}
+	}
+
+	protected void bind(Bean bean, String property) {
+		while (property != null) {
+			bean.addPropertyChangeListener(property, (e) -> {
+				valueChanged(e);
+			});
+			int index = property.lastIndexOf(".");
+			if (index >= 0) {
+				property = property.substring(0, index);
+			} else {
+				property = null;
+			}
+		}
+	}
+
+	protected void writeBack() {
+		String result = this.validate();
+		if (result == null) {
+			Logger.debug("Write back value to: " + this.bind);
+			BaseUtils.setProperty(context.getData(), bind, this.getValue());
 		}
 	}
 
@@ -87,6 +122,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		if (data != null) {
 			this.setValue(BaseUtils.getProperty(data, bind));
 		}
+	}
+
+	public void reset() {
+
 	}
 
 }

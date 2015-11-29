@@ -158,12 +158,12 @@ public class BeanParser<T> extends ElementParser<T> {
 		}
 	}
 
-	protected List<Validator<?>> parseValidators(Context context, Element source) {
+	protected List<Validator> parseValidators(Context context, Element source) {
 		List<Element> children = source.getChildren(Const.VALIDATOR);
-		List<Validator<?>> validtors = new ArrayList<Validator<?>>();
+		List<Validator> validtors = new ArrayList<Validator>();
 		if (children != null && children.size() > 0) {
 			for (Element child : children) {
-				validtors.add((Validator<?>) ParserEngine.parse(context, child));
+				validtors.add((Validator) ParserEngine.parse(context, child));
 			}
 		}
 		return validtors;

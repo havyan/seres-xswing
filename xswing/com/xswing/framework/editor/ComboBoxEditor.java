@@ -23,8 +23,9 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox<?>, Object> {
 
 	@Override
 	public void reset() {
-		// TODO Auto-generated method stub
-
+		if (component.getItemCount() > 0) {
+			component.setSelectedIndex(0);
+		}
 	}
 
 }

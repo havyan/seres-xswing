@@ -34,6 +34,9 @@ public class EditorFactory {
 	}
 
 	public static Editor<? extends JComponent, ?> create(JComponent component, String editorClass) {
+		if(component instanceof Editor) {
+			return (Editor<? extends JComponent, ?>) component;
+		}
 		Editor<? extends JComponent, ?> editor = null;
 		if (StringUtils.isNotEmpty(editorClass)) {
 			editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(editorClass);

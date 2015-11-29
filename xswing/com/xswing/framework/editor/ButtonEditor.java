@@ -1,9 +1,9 @@
 package com.xswing.framework.editor;
 
-import javax.swing.AbstractButton;
+import javax.swing.JButton;
 
-@Component(types = { AbstractButton.class })
-public class ButtonEditor extends AbstractEditor<AbstractButton, String> {
+@Component(types = { JButton.class })
+public class ButtonEditor extends AbstractEditor<JButton, String> {
 
 	@Override
 	public void setValue(Object value) {

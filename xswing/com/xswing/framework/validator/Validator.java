@@ -7,8 +7,8 @@ package com.xswing.framework.validator;
  * @author think
  *
  */
-public interface Validator<T> {
-	
-	public void validate(T target);
+public interface Validator {
+
+	public String validate(Object target);
 
 }
