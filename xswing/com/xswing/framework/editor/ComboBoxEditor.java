@@ -1,5 +1,6 @@
 package com.xswing.framework.editor;
 
+import java.beans.PropertyChangeEvent;
 import java.util.Collection;
 
 import javax.swing.JComboBox;
@@ -27,6 +28,14 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 	}
 
 	@Override
+	protected void propertyChanged(String type, PropertyChangeEvent e) {
+		super.propertyChanged(type, e);
+		if (type.equals(Const.ITEMS)) {
+			resetItems(e.getNewValue());
+		}
+	}
+
+	@Override
 	public void reset() {
 		if (component.getItemCount() > 0) {
 			component.setSelectedIndex(0);
@@ -37,20 +46,25 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 		comboBox.addActionListener((e) -> writeBack());
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void setBindValue(String type, Object value) {
 		super.setBindValue(type, value);
 		if (type.equals(Const.ITEMS)) {
-			if (value != null) {
-				if (value instanceof Collection) {
-					for (Object e : (Collection<?>) value) {
-						component.addItem(e);
-					}
-				} else if (value instanceof Object[]) {
-					for (Object e : (Object[]) value) {
-						component.addItem(e);
-					}
+			resetItems(value);
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void resetItems(Object value) {
+		component.removeAllItems();
+		if (value != null) {
+			if (value instanceof Collection) {
+				for (Object e : (Collection<?>) value) {
+					component.addItem(e);
+				}
+			} else if (value instanceof Object[]) {
+				for (Object e : (Object[]) value) {
+					component.addItem(e);
 				}
 			}
 		}

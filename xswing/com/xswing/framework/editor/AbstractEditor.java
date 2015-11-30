@@ -113,11 +113,13 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void writeBack() {
-		String result = this.validate();
-		if (result == null && context.getModel() != null && context.getModel().getData() != null) {
-			String bind = this.binds.get(Const.VALUE);
-			Logger.debug("Write back value to: " + bind);
-			BaseUtils.setProperty(context.getModel().getData(), bind, this.getValue());
+		if (binds.get(Const.VALUE) != null) {
+			String result = this.validate();
+			if (result == null && context.getModel() != null && context.getModel().getData() != null) {
+				String bind = this.binds.get(Const.VALUE);
+				Logger.debug("Write back value to: " + bind);
+				BaseUtils.setProperty(context.getModel().getData(), bind, this.getValue());
+			}
 		}
 	}
 
