@@ -49,56 +49,14 @@ public class GridBagPanelParser extends ComponentParser<JPanel> {
 	 * @param c
 	 */
 	private void parseCell(Context context, JPanel panel, Element e, int r, int c) {
-		String value = e.getAttributeValue("gridx");
-		if (value == null || value.length() == 0) {
-			if (c == 0)
-				constraints.gridx = 0;
-			else
-				constraints.gridx += constraints.gridwidth;
-		} else
-			constraints.gridx = Integer.parseInt(value);
-
-		value = e.getAttributeValue("gridy");
-		if (value == null || value.length() == 0)
-			constraints.gridy = r;
-		else
-			constraints.gridy = Integer.parseInt(value);
-
-		value = e.getAttributeValue("gridwidth");
-		if (value == null || value.length() == 0)
-			constraints.gridwidth = 1;
-		else
-			constraints.gridwidth = Integer.parseInt(value);
-
-		value = e.getAttributeValue("gridheight");
-		if (value == null || value.length() == 0)
-			constraints.gridheight = 1;
-		else
-			constraints.gridheight = Integer.parseInt(value);
-
-		value = e.getAttributeValue("weightx");
-		if (value == null || value.length() == 0)
-			constraints.weightx = 100;
-		else
-			constraints.weightx = Integer.parseInt(value);
-
-		value = e.getAttributeValue("weighty");
-		if (value == null || value.length() == 0)
-			constraints.weighty = 100;
-		else
-			constraints.weighty = Integer.parseInt(value);
-
-		value = e.getAttributeValue("ipadx");
-		if (value == null || value.length() == 0)
-			constraints.ipadx = 0;
-		else
-			constraints.ipadx = Integer.parseInt(value);
-
-		value = e.getAttributeValue("ipady");
-		if (value == null || value.length() == 0)
-			constraints.ipady = 0;
-		else
-			constraints.ipady = Integer.parseInt(value);
+		constraints.gridx = getInt(e, "gridx", c == 0 ? 0 : constraints.gridx + constraints.gridwidth);
+		constraints.gridy = getInt(e, "gridy", r);
+		constraints.gridwidth = getInt(e, "gridwidth", 1);
+		constraints.gridheight = getInt(e, "gridheight", 1);
+		constraints.weightx = getInt(e, "weightx", 100);
+		constraints.weighty = getInt(e, "weighty", 100);
+		constraints.ipadx = getInt(e, "ipadx", 0);
+		constraints.ipady = getInt(e, "ipady", 0);
 
 		Class<GridBagConstraints> cl = GridBagConstraints.class;
 

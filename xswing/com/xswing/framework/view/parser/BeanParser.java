@@ -37,23 +37,17 @@ public class BeanParser<T> extends ElementParser<T> {
 			return cls;
 		} else {
 			Class<?> genericType = BaseUtils.getClassGenricType(this.getClass());
-			String className = source.getAttributeValue(Const.CLASS);
-			if (StringUtils.isNotEmpty(className)) {
-				try {
-					cls = Class.forName(className);
-					if (genericType.isAssignableFrom(cls)) {
-						return cls;
-					} else {
-						throw new IllegalArgumentException(className + "is not a sub class of " + genericType.getName());
-					}
-				} catch (Exception e) {
-					Logger.error(e);
+			cls = getClass(source, Const.CLASS);
+			if (cls != null) {
+				if (genericType.isAssignableFrom(cls)) {
+					return cls;
+				} else {
+					throw new IllegalArgumentException(cls.getName() + " is not a sub class of " + genericType.getName());
 				}
 			} else {
 				return genericType;
 			}
 		}
-		return null;
 	}
 
 	@Override

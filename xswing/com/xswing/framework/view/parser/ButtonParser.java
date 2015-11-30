@@ -14,11 +14,11 @@ public class ButtonParser extends ComponentParser<JButton> {
 	@Override
 	public JButton parseElement(Context context, Element source) {
 		JButton button = super.parseElement(context, source);
-		String icon = source.getAttributeValue(Const.ICON);
+		String icon = getString(source, Const.ICON);
 		if (StringUtils.isNotEmpty(icon)) {
 			button.setIcon(new ImageIcon(icon));
 		}
-		String text = source.getAttributeValue(Const.TEXT);
+		String text = getString(source, Const.TEXT);
 		if (StringUtils.isNotEmpty(text)) {
 			button.setText(text);
 		}

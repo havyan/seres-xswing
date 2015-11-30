@@ -6,7 +6,6 @@ package com.xswing.framework.view.parser;
 import java.awt.Component;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
@@ -25,16 +24,8 @@ public class TabbedPanelParser extends ComponentParser<JCloseableTabbedPane> {
 		List<Element> components = source.getChildren(Const.TAB);
 		for (Element e : components) {
 			Component component = (Component) ParserEngine.parse(context, e);
-			String title = e.getAttributeValue(Const.TITLE);
-			if (StringUtils.isEmpty(title)) {
-				title = component.getName();
-			}
-			boolean closable = true;
-			String closableText = e.getAttributeValue(Const.CLOSABLE);
-			if (StringUtils.isNotEmpty(closableText)) {
-				closable = Boolean.valueOf(closableText);
-			}
-			tabbedPanel.addTab(title, component, closable);
+			String title = getString(e, Const.TITLE, component.getName());
+			tabbedPanel.addTab(title, component, getBoolean(e, Const.CLOSABLE, true));
 		}
 		return tabbedPanel;
 	}

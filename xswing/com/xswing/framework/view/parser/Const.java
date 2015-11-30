@@ -113,6 +113,8 @@ public class Const {
 	public static final String ITEMS = "items";
 
 	public static final String ITEM = "item";
+	
+	public static final String FLOAT = "float";
 
 	public static final String CHECKBOX = "checkBox";
 

@@ -13,18 +13,15 @@ public class CheckBoxParser extends ComponentParser<JCheckBox> {
 	@Override
 	public JCheckBox parseElement(Context context, Element source) {
 		JCheckBox checkBox = super.parseElement(context, source);
-		String icon = source.getAttributeValue(Const.ICON);
+		String icon = getString(source, Const.ICON);
 		if (StringUtils.isNotEmpty(icon)) {
 			checkBox.setIcon(new ImageIcon(icon));
 		}
-		String text = source.getAttributeValue(Const.TEXT);
+		String text = getString(source, Const.TEXT);
 		if (StringUtils.isNotEmpty(text)) {
 			checkBox.setText(text);
 		}
-		String selected = source.getAttributeValue(Const.SELECTED);
-		if (StringUtils.isNotEmpty(text)) {
-			checkBox.setSelected(Boolean.valueOf(selected));
-		}
+		checkBox.setSelected(getBoolean(source, Const.SELECTED, false));
 		return checkBox;
 	}
 }

@@ -21,10 +21,7 @@ public class RadioButtonParser extends ComponentParser<JRadioButton> {
 		if (StringUtils.isNotEmpty(text)) {
 			radioButton.setText(text);
 		}
-		String selected = source.getAttributeValue(Const.SELECTED);
-		if (StringUtils.isNotEmpty(text)) {
-			radioButton.setSelected(Boolean.valueOf(selected));
-		}
+		radioButton.setSelected(getBoolean(source, Const.SELECTED, false));
 		return radioButton;
 	}
 }

@@ -25,9 +25,9 @@ public class XPanelParser extends BorderPanelParser {
 	public JPanel parseElement(Context context, Element source) {
 		XPanel xPanel = (XPanel) super.parseElement(context, source);
 		xPanel.setContext(context);
-		String processorClassName = source.getAttributeValue(Const.PROCESSOR);
-		if (processorClassName != null) {
-			XProcessor processor = (XProcessor) BaseUtils.newInstance(processorClassName);
+		Class<?> processorClass = getClass(source, Const.PROCESSOR);
+		if (processorClass != null) {
+			XProcessor processor = (XProcessor) BaseUtils.newInstance(processorClass);
 			processor.process(xPanel);
 		}
 		List<Element> processors = source.getChildren(Const.PROPERTY);

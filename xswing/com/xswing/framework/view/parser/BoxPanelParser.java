@@ -10,6 +10,7 @@ import java.util.List;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.framework.exception.ExceptionUtils;
@@ -27,7 +28,7 @@ public class BoxPanelParser extends ComponentParser<JPanel> {
 		JPanel panel = createBean(context, source);
 		int axis = BoxLayout.X_AXIS;
 		String axisString = source.getAttributeValue("axis");
-		if (axisString != null && axisString.length() > 0) {
+		if (StringUtils.isNotEmpty(axisString)) {
 			Class<BoxLayout> cl = BoxLayout.class;
 			try {
 				Field f = cl.getField(axisString);

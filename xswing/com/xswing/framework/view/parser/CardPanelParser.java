@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
@@ -18,16 +17,9 @@ public class CardPanelParser extends ComponentParser<JPanel> {
 	public JPanel parseElement(Context context, Element source) {
 		JPanel panel = createBean(context, source);
 		CardLayout layout = new CardLayout();
-		String hgapText = source.getAttributeValue(Const.HGAP);
-		if (StringUtils.isNotEmpty(hgapText)) {
-			layout.setHgap(Integer.valueOf(hgapText));
-		}
-		String vgapText = source.getAttributeValue(Const.VGAP);
-		if (StringUtils.isNotEmpty(vgapText)) {
-			layout.setVgap(Integer.valueOf(vgapText));
-		}
+		layout.setHgap(getInt(source, Const.HGAP, 0));
+		layout.setVgap(getInt(source, Const.VGAP, 0));
 		panel.setLayout(layout);
-
 		List<Element> cards = source.getChildren(Const.CARD);
 		for (Element card : cards) {
 			panel.add((Component) ParserEngine.parse(context, card));

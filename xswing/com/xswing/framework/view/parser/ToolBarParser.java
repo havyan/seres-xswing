@@ -22,7 +22,7 @@ public class ToolBarParser extends ComponentParser<JToolBar> {
 	@Override
 	public JToolBar parseElement(Context context, Element source) {
 		JToolBar toolBar = createBean(context, source);
-
+		toolBar.setFloatable(getBoolean(source, Const.FLOAT, true));
 		List<Element> components = source.getChildren(Const.COMPONENT);
 		for (Element component : components) {
 			toolBar.add((Component) ParserEngine.parse(context, component));

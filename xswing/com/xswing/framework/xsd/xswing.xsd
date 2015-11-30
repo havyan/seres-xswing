@@ -282,6 +282,7 @@
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+    <xsd:attribute name="float" type="xsd:boolean"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="argument" mixed="true">

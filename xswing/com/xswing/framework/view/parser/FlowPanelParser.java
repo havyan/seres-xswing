@@ -9,7 +9,6 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
-import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
@@ -31,14 +30,8 @@ public class FlowPanelParser extends ComponentParser<JPanel> {
 		if (alignText != null) {
 			align = (int) BaseUtils.getStaticValue(FlowLayout.class, alignText);
 		}
-		String hgapText = source.getAttributeValue(Const.HGAP);
-		if (StringUtils.isNotEmpty(hgapText)) {
-			layout.setHgap(Integer.valueOf(hgapText));
-		}
-		String vgapText = source.getAttributeValue(Const.VGAP);
-		if (StringUtils.isNotEmpty(vgapText)) {
-			layout.setVgap(Integer.valueOf(vgapText));
-		}
+		layout.setHgap(getInt(source, Const.HGAP, 5));
+		layout.setVgap(getInt(source, Const.VGAP, 5));
 		layout.setAlignment(align);
 		panel.setLayout(layout);
 
