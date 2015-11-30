@@ -3,6 +3,8 @@
  */
 package com.xswing.framework.model;
 
+import java.util.Map;
+
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
 
@@ -18,8 +20,14 @@ public interface AppModel<T> {
 
 	public void fireAppEvent(AppEvent e);
 
-	public T getData();
-	
-	public void setData(T data);
+	public Map<String, Object> getData();
+
+	public Object getData(String name);
+
+	public <V> V setData(String name, V data);
+
+	public void setMainData(T data);
+
+	public T getMainData();
 
 }

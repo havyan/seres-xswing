@@ -29,10 +29,10 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 
 	@Override
 	protected void propertyChanged(String type, PropertyChangeEvent e) {
-		super.propertyChanged(type, e);
 		if (type.equals(Const.ITEMS)) {
-			resetItems(e.getNewValue());
+			reloadItems();
 		}
+		super.propertyChanged(type, e);
 	}
 
 	@Override
@@ -50,13 +50,14 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 	public void setBindValue(String type, Object value) {
 		super.setBindValue(type, value);
 		if (type.equals(Const.ITEMS)) {
-			resetItems(value);
+			reloadItems();
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void resetItems(Object value) {
+	private void reloadItems() {
 		component.removeAllItems();
+		Object value = getDataProperty(binds.get(Const.ITEMS));
 		if (value != null) {
 			if (value instanceof Collection) {
 				for (Object e : (Collection<?>) value) {

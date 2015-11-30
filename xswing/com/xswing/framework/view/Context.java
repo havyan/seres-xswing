@@ -117,6 +117,14 @@ public class Context {
 		return model;
 	}
 
+	public Map<String, Object> getData() {
+		if (model != null) {
+			return model.getData();
+		} else {
+			return null;
+		}
+	}
+
 	public void setModel(AppModel<?> model) {
 		this.model = model;
 	}

@@ -88,8 +88,8 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		this.bind(property, (e) -> {
 			propertyChanged(type, e);
 		});
-		if (context.getModel() != null && context.getModel().getData() != null) {
-			this.setBindValue(type, BaseUtils.getProperty(context.getModel().getData(), property));
+		if (context.getData() != null) {
+			this.setBindValue(type, BaseUtils.getProperty(context.getData(), property));
 		}
 	}
 
@@ -100,8 +100,8 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void bind(String property, PropertyChangeListener listener) {
-		if (context.getModel() != null && context.getModel().getData() != null && context.getModel().getData() instanceof Bean) {
-			Bean bean = (Bean) context.getModel().getData();
+		if (context.getData() != null && context.getData() instanceof Bean) {
+			Bean bean = (Bean) context.getData();
 			bean.addPropertyChangeListener(property, listener);
 		}
 	}
@@ -115,10 +115,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	protected void writeBack() {
 		if (binds.get(Const.VALUE) != null) {
 			String result = this.validate();
-			if (result == null && context.getModel() != null && context.getModel().getData() != null) {
+			if (result == null && context.getData() != null) {
 				String bind = this.binds.get(Const.VALUE);
 				Logger.debug("Write back value to: " + bind);
-				BaseUtils.setProperty(context.getModel().getData(), bind, this.getValue());
+				BaseUtils.setProperty(context.getData(), bind, this.getValue());
 			}
 		}
 	}
@@ -129,9 +129,13 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void reload() {
-		if (context.getModel() != null && context.getModel().getData() != null) {
-			this.setValue(BaseUtils.getProperty(context.getModel().getData(), this.binds.get(Const.VALUE)));
+		if (context.getData() != null) {
+			this.setValue(getDataProperty(this.binds.get(Const.VALUE)));
 		}
+	}
+
+	protected Object getDataProperty(String property) {
+		return BaseUtils.getProperty(context.getData(), property);
 	}
 
 	public void reset() {
