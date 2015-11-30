@@ -29,9 +29,9 @@ public class Context {
 	private Document doc;
 
 	private String path;
-	
+
 	private AppModel<?> model;
-	
+
 	private View view;
 
 	public Document getDoc() {
@@ -46,12 +46,11 @@ public class Context {
 		this.doc = doc;
 	}
 
-	public boolean setBean(String id, Object bean) {
+	public void setBean(String id, Object bean) {
 		if (!beans.containsKey(id)) {
 			this.beans.put(id, bean);
-			return true;
 		} else {
-			return false;
+			throw new IllegalArgumentException("Duplicated bean for id: " + id);
 		}
 	}
 
@@ -76,7 +75,7 @@ public class Context {
 			return false;
 		}
 	}
-	
+
 	public Editor<? extends JComponent, ?> getEditor(String id) {
 		return editors.get(id);
 	}

@@ -55,7 +55,7 @@ public class Const {
 	public static final String IMPORT = "import";
 
 	public static final String CELL = "cell";
-	
+
 	public static final String COMPONENT = "component";
 
 	public static final String WRAPPER = "wrapper";
@@ -107,13 +107,13 @@ public class Const {
 	public static final String MENUBAR = "menuBar";
 
 	public static final String MENU = "menu";
-	
+
 	public static final String MENU_UP = "MENU";
 
 	public static final String ITEMS = "items";
 
 	public static final String ITEM = "item";
-	
+
 	public static final String FLOAT = "float";
 
 	public static final String CHECKBOX = "checkBox";
@@ -127,7 +127,7 @@ public class Const {
 	public static final String TREE = "tree";
 
 	public static final String TAB = "tab";
-	
+
 	public static final String PADDING = "padding";
 
 	public static final String SEPARATOR = "separator";
@@ -137,7 +137,7 @@ public class Const {
 	public static final String EDITOR = "editor";
 
 	public static final String BIND = "bind";
-	
+
 	public static final String ACTION = "action";
 
 	public static final String LINE = "LINE";
@@ -151,7 +151,7 @@ public class Const {
 	public static final String PROCESSOR = "processor";
 
 	public static final String TOOLBAR = "toolBar";
-	
+
 	public static final String TOOLBAR_UP = "TOOLBAR";
 
 	public static final String COLUMNS = "columns";
@@ -159,5 +159,7 @@ public class Const {
 	public static final String ROWS = "rows";
 
 	public static final String VALIDATOR = "validator";
+
+	public static final String MODEL = "model";
 
 }

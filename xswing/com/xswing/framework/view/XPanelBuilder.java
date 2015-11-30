@@ -5,6 +5,7 @@ package com.xswing.framework.view;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Map;
 
 import org.jdom2.Document;
 import org.jdom2.input.SAXBuilder;
@@ -29,6 +30,10 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(String path, AppModel<?> model, View view) {
+		return build(path, model, view, (Map<String, Object>) null);
+	}
+
+	public static XPanel build(String path, AppModel<?> model, View view, Map<String, Object> prdefinedBeans) {
 		String caller = null;
 		for (StackTraceElement trace : new Throwable().getStackTrace()) {
 			if (!trace.getClassName().equals(XPanelBuilder.class.getName())) {
@@ -38,7 +43,7 @@ public class XPanelBuilder {
 		}
 		try {
 			String contextPath = Class.forName(caller).getResource("").toString();
-			return build(contextPath, path, model, view);
+			return build(contextPath, path, model, view, prdefinedBeans);
 		} catch (ClassNotFoundException e) {
 			Logger.error(e);
 		}
@@ -46,14 +51,14 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(String contextPath, String path) {
-		return build(contextPath, path, (AppModel<?>) null, (View) null);
+		return build(contextPath, path, (AppModel<?>) null, (View) null, (Map<String, Object>) null);
 	}
 
 	public static XPanel build(String contextPath, String path, AppModel<?> model) {
-		return build(contextPath, path, model, (View) null);
+		return build(contextPath, path, model, (View) null, (Map<String, Object>) null);
 	}
 
-	public static XPanel build(String contextPath, String path, AppModel<?> model, View view) {
+	public static XPanel build(String contextPath, String path, AppModel<?> model, View view, Map<String, Object> prdefinedBeans) {
 		contextPath = contextPath.trim();
 		path = path.trim();
 		if (path.startsWith("./")) {
@@ -74,7 +79,7 @@ public class XPanelBuilder {
 			path = Thread.currentThread().getContextClassLoader().getResource(path).toString();
 		}
 		try {
-			return build(new URL(path), model, view);
+			return build(new URL(path), model, view, prdefinedBeans);
 		} catch (MalformedURLException e) {
 			ExceptionUtils.logAndShowException(e);
 			return null;
@@ -82,14 +87,18 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(URL url) {
-		return build(url, (AppModel<?>) null, (View) null);
+		return build(url, (AppModel<?>) null, (View) null, (Map<String, Object>) null);
 	}
 
 	public static XPanel build(URL url, AppModel<?> model) {
-		return build(url, model, (View) null);
+		return build(url, model, (View) null, (Map<String, Object>) null);
 	}
 
 	public static XPanel build(URL url, AppModel<?> model, View view) {
+		return build(url, model, view, (Map<String, Object>) null);
+	}
+
+	public static XPanel build(URL url, AppModel<?> model, View view, Map<String, Object> prdefinedBeans) {
 		String path = url.toString();
 		Document doc = null;
 		try {
@@ -104,6 +113,11 @@ public class XPanelBuilder {
 			context.setModel(model);
 			context.setView(view);
 			context.setPath(path.substring(0, path.lastIndexOf("/") + 1));
+			if (prdefinedBeans != null) {
+				for (Map.Entry<String, Object> entry : prdefinedBeans.entrySet()) {
+					context.setBean(entry.getKey(), entry.getValue());
+				}
+			}
 			XPanel xpanel = (XPanel) ParserEngine.parse(context, doc.getRootElement());
 			context.processRefs();
 			return xpanel;

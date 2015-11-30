@@ -2,6 +2,7 @@ package com.xswing.framework.view;
 
 import java.awt.BorderLayout;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -20,30 +21,47 @@ public class XContainer extends JPanel implements View {
 	protected AppModel<?> model;
 
 	public XContainer(String path) {
-		this(path, null);
+		this(path, (AppModel<?>) null, (Map<String, Object>) null);
 	}
 
 	public XContainer(URL url) {
-		this(url, null);
+		this(url, (AppModel<?>) null, (Map<String, Object>) null);
 	}
 
 	public XContainer(String path, AppModel<?> model) {
-		this.model = model;
-		initXPanel(path);
-		initReferences();
+		this(path, model, (Map<String, Object>) null);
 	}
 
 	public XContainer(URL url, AppModel<?> model) {
+		this(url, model, (Map<String, Object>) null);
+	}
+
+	public XContainer(String path, AppModel<?> model, Map<String, Object> prdefinedBeans) {
 		this.model = model;
-		initXPanel(url);
+		initXPanel(path, prdefinedBeans);
 		initReferences();
 	}
 
-	private void initXPanel(URL url) {
-		add(XPanelBuilder.build(url, model, this), BorderLayout.CENTER);
+	public XContainer(URL url, AppModel<?> model, Map<String, Object> prdefinedBeans) {
+		this.model = model;
+		initXPanel(url, prdefinedBeans);
+		initReferences();
 	}
 
-	private void initXPanel(String path) {
+	private void initXPanel(URL url, Map<String, Object> beans) {
+		if (beans == null) {
+			beans = new HashMap<String, Object>();
+		}
+		beans.put("model", this.model);
+		add(XPanelBuilder.build(url, model, this, beans), BorderLayout.CENTER);
+	}
+
+	private void initXPanel(String path, Map<String, Object> beans) {
+		if (beans == null) {
+			beans = new HashMap<String, Object>();
+		}
+		beans.put("model", this.model);
+		beans.put("view", this);
 		setLayout(new BorderLayout());
 		if (path.trim().startsWith(".")) {
 			String caller = null;
@@ -59,9 +77,9 @@ public class XContainer extends JPanel implements View {
 			} catch (ClassNotFoundException e) {
 				Logger.error(e);
 			}
-			xpanel = XPanelBuilder.build(contextPath, path, model, this);
+			xpanel = XPanelBuilder.build(contextPath, path, model, this, beans);
 		} else {
-			xpanel = XPanelBuilder.build(path, model, this);
+			xpanel = XPanelBuilder.build(path, model, this, beans);
 		}
 		add(xpanel, BorderLayout.CENTER);
 	}

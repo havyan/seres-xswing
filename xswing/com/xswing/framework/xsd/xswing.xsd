@@ -145,6 +145,7 @@
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
         <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+        <xsd:attribute name="model" type="xsd:string"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -291,6 +292,7 @@
     </xsd:sequence>
     <xsd:attribute name="type" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="ref" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="cardPanel">

@@ -77,15 +77,25 @@ public class BeanParser<T> extends ElementParser<T> {
 				if (value != null) {
 					values.add(BaseUtils.createObject(cls, value));
 				} else {
-					Element valueElement = e.getChild(Const.VALUE);
-					if (valueElement != null) {
-						values.add(ParserEngine.parse(context, valueElement));
-					} else {
-						value = e.getText();
-						if (StringUtils.isNotEmpty(value)) {
-							values.add(BaseUtils.createObject(cls, value.trim()));
+					String ref = getString(e, Const.REF);
+					if (StringUtils.isNotEmpty(ref)) {
+						Object refBean = context.getBean(ref);
+						if (refBean != null) {
+							values.add(refBean);
 						} else {
-							values.add(null);
+							throw new IllegalArgumentException("No bean for id: " + ref + ", <argument> element only support predefined bean.");
+						}
+					} else {
+						Element valueElement = e.getChild(Const.VALUE);
+						if (valueElement != null) {
+							values.add(ParserEngine.parse(context, valueElement));
+						} else {
+							value = e.getText();
+							if (StringUtils.isNotEmpty(value)) {
+								values.add(BaseUtils.createObject(cls, value.trim()));
+							} else {
+								values.add(null);
+							}
 						}
 					}
 				}
@@ -108,7 +118,12 @@ public class BeanParser<T> extends ElementParser<T> {
 					Class<?> cls = BaseUtils.getWriteMethod(bean.getClass(), propertyName).getParameterTypes()[0];
 					BaseUtils.setProperty(bean, propertyName, BaseUtils.createObject(cls, value));
 				} else if (ref != null) {
-					context.addBeanRef(bean, propertyName, ref);
+					Object refBean = context.getBean(ref);
+					if (refBean != null) {
+						BaseUtils.setProperty(bean, propertyName, refBean);
+					} else {
+						context.addBeanRef(bean, propertyName, ref);
+					}
 				} else {
 					Element valueElement = property.getChild(Const.VALUE);
 					if (valueElement != null) {
