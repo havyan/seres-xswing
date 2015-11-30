@@ -54,4 +54,12 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 		this.component = (C) component;
 	}
 
+	public Object $(String id) {
+		return view.getBean(id);
+	}
+
+	public <T> T $(String id, Class<T> cls) {
+		return view.getBean(id, cls);
+	}
+
 }
