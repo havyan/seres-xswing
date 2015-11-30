@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.swing.JComponent;
 import javax.swing.JTree;
 
 import org.apache.commons.lang3.StringUtils;
@@ -16,9 +15,6 @@ import org.jdom2.Element;
 
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
-import com.xswing.framework.editor.Editor;
-import com.xswing.framework.editor.EditorFactory;
-import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
 /**

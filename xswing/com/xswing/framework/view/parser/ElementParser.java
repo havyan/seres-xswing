@@ -2,13 +2,9 @@ package com.xswing.framework.view.parser;
 
 import java.util.UUID;
 
-import javax.swing.JComponent;
-
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
-import com.xswing.framework.editor.Editor;
-import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.view.Context;
 
 public abstract class ElementParser<T> implements Parser<T, Element> {

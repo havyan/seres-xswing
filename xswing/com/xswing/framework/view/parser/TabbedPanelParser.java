@@ -6,8 +6,6 @@ package com.xswing.framework.view.parser;
 import java.awt.Component;
 import java.util.List;
 
-import javax.swing.JTabbedPane;
-
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
