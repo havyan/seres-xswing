@@ -9,7 +9,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.LABEL })
-public class LabelParser extends BeanParser<JLabel> {
+public class LabelParser extends ComponentParser<JLabel> {
 
 	@Override
 	public JLabel parseElement(Context context, Element source) {

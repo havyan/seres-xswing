@@ -10,7 +10,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.MENUBAR })
-public class MenuBarParser extends BeanParser<JMenuBar> {
+public class MenuBarParser extends ComponentParser<JMenuBar> {
 
 	@Override
 	public JMenuBar parseElement(Context context, Element source) {

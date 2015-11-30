@@ -135,10 +135,10 @@
           </component>
         </flowPanel>
       </north>
-      <center border="ETCHED">
-        <splitPanel>
+      <center>
+        <splitPanel border="ETCHED">
           <before>
-            <splitPanel orientation="VERTICAL_SPLIT">
+            <splitPanel orientation="VERTICAL">
               <before>
                 <borderPanel>
                   <north>
@@ -204,15 +204,15 @@
           </before>
           <after>
             <tabbedPanel>
-              <tab name="数据源设置" title="数据源设置" closable="false">
-                <borderPanel>
+              <tab title="数据源设置" closable="false">
+                <borderPanel  name="数据源设置">
                   <center>
                     <boxPanel axis="Y_AXIS">
                       <component>
                         <import path="./datasource.xml" />
                       </component>
-                      <component title="数据参数设置">
-                        <gridBagPanel>
+                      <component>
+                        <gridBagPanel title="数据参数设置">
                           <row>
                             <cell anchor="WEST">
                               <label>
@@ -245,8 +245,8 @@
                         </gridBagPanel>
                       </component>
 
-                      <component title="显示参数设置">
-                        <gridBagPanel>
+                      <component>
+                        <gridBagPanel title="显示参数设置">
                           <row>
                             <cell anchor="WEST">
                               <label>
@@ -319,8 +319,8 @@
                         </gridBagPanel>
                       </component>
 
-                      <component title="时间标尺设置">
-                        <gridBagPanel>
+                      <component>
+                        <gridBagPanel title="时间标尺设置">
                           <row>
                             <cell anchor="WEST">
                               <label>
@@ -368,24 +368,24 @@
 
                   <east>
                     <borderPanel>
-                      <center title="一棵树">
-                        <scrollPanel>
+                      <center>
+                        <scrollPanel title="一棵树">
                           <view>
                             <bean class="javax.swing.JTree">
                             </bean>
                           </view>
                         </scrollPanel>
                       </center>
-                      <east title="两棵树">
-                        <scrollPanel>
+                      <east>
+                        <scrollPanel title="两棵树">
                           <view>
                             <bean class="javax.swing.JTree">
                             </bean>
                           </view>
                         </scrollPanel>
                       </east>
-                      <west title="三棵树">
-                        <scrollPanel>
+                      <west>
+                        <scrollPanel title="三棵树">
                           <view>
                             <bean class="javax.swing.JTree">
                             </bean>
@@ -398,19 +398,19 @@
                 </borderPanel>
               </tab>
 
-              <tab name="欢迎界面">
+              <tab title="欢迎界面">
                 <label>
                   <property name="text" value="welcome to xswing"></property>
                 </label>
               </tab>
 
-              <tab name="魔幻界面">
+              <tab title="魔幻界面">
                 <button>
                   <property name="text" value="welcome to xswing"></property>
                 </button>
               </tab>
 
-              <tab name="神奇界面">
+              <tab title="神奇界面">
                 <bean class="javax.swing.JTree"></bean>
               </tab>
 
@@ -418,8 +418,8 @@
           </after>
         </splitPanel>
       </center>
-      <south border="LOWEREDBEVEL">
-        <label>
+      <south>
+        <label border="LOWEREDBEVEL">
           <property name="text" value="init has be done"></property>
         </label>
       </south>

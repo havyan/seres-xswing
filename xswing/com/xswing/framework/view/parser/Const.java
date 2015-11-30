@@ -55,8 +55,10 @@ public class Const {
 	public static final String IMPORT = "import";
 
 	public static final String CELL = "cell";
-
+	
 	public static final String COMPONENT = "component";
+
+	public static final String WRAPPER = "wrapper";
 
 	public static final String CARD = "card";
 
@@ -123,6 +125,8 @@ public class Const {
 	public static final String TREE = "tree";
 
 	public static final String TAB = "tab";
+	
+	public static final String PADDING = "padding";
 
 	public static final String SEPARATOR = "separator";
 

@@ -12,7 +12,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.CARDPANEL })
-public class CardPanelParser extends BeanParser<JPanel> {
+public class CardPanelParser extends ComponentParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {

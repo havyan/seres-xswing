@@ -3,7 +3,7 @@
 
   <xsd:element name="xpanel" type="xpanel"></xsd:element>
 
-  <xsd:complexType name="component">
+  <xsd:complexType name="wrapper">
     <xsd:choice>
       <xsd:element name="borderPanel" type="boderPanel"></xsd:element>
       <xsd:element name="gridBagPanel" type="gridBagPanel"></xsd:element>
@@ -29,13 +29,6 @@
       <xsd:element name="tree" type="componentBean"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
     </xsd:choice>
-    <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="border" type="border"></xsd:attribute>
-    <xsd:attribute name="width" type="xsd:double"></xsd:attribute>
-    <xsd:attribute name="height" type="xsd:double"></xsd:attribute>
-
-    <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:group name="baseGroups">
@@ -52,11 +45,11 @@
   <xsd:complexType name="boderPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="north" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="center" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="south" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="east" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="west" type="component" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="north" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="center" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="south" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="east" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="west" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -83,7 +76,7 @@
   <xsd:complexType name="flowPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="component" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -111,7 +104,7 @@
 
   <xsd:complexType name="cell">
     <xsd:complexContent>
-      <xsd:extension base="component">
+      <xsd:extension base="wrapper">
         <xsd:attribute name="gridx" type="xsd:int"></xsd:attribute>
         <xsd:attribute name="gridy" type="xsd:int"></xsd:attribute>
         <xsd:attribute name="gridwidth" type="xsd:int" default="1"></xsd:attribute>
@@ -181,7 +174,7 @@
   <xsd:complexType name="boxPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="component" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -209,8 +202,8 @@
   <xsd:complexType name="splitPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="before" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
-      <xsd:element name="after" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="before" type="wrapper" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="after" type="wrapper" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attribute name="orientation" type="orientation"></xsd:attribute>
@@ -234,7 +227,7 @@
 
   <xsd:complexType name="scrollPanel">
     <xsd:sequence>
-      <xsd:element name="view" type="component" maxOccurs="1" minOccurs="1"></xsd:element>
+      <xsd:element name="view" type="wrapper" maxOccurs="1" minOccurs="1"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -244,7 +237,7 @@
   <xsd:complexType name="menuBar">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="item" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -254,7 +247,7 @@
 
   <xsd:complexType name="menu">
     <xsd:sequence>
-      <xsd:element name="item" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="item" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
@@ -284,7 +277,7 @@
   <xsd:complexType name="toolBar">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="component" type="component" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="component" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -302,7 +295,7 @@
   <xsd:complexType name="cardPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="card" type="component" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      <xsd:element name="card" type="wrapper" maxOccurs="unbounded" minOccurs="1"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -313,9 +306,9 @@
 
   <xsd:complexType name="tab">
     <xsd:complexContent>
-      <xsd:extension base="component">
-        <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>
-      </xsd:extension>
+      <xsd:extension base="wrapper">
+        <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
@@ -404,6 +397,13 @@
   </xsd:complexType>
 
   <xsd:attributeGroup name="componentAttributes">
+    <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="border" type="border"></xsd:attribute>
+    <xsd:attribute name="width" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="height" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="padding" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="bind" type="xsd:string"></xsd:attribute>
   </xsd:attributeGroup>

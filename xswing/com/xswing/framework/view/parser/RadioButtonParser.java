@@ -9,7 +9,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.RADIOBUTTON })
-public class RadioButtonParser extends BeanParser<JRadioButton> {
+public class RadioButtonParser extends ComponentParser<JRadioButton> {
 	@Override
 	public JRadioButton parseElement(Context context, Element source) {
 		JRadioButton radioButton = super.parseElement(context, source);

@@ -14,7 +14,7 @@ import com.xswing.framework.view.Context;
  *
  */
 @XElement(names = { Const.SEPARATOR })
-public class SeparatorParser extends BeanParser<JSeparator> {
+public class SeparatorParser extends ComponentParser<JSeparator> {
 
 	@Override
 	public JSeparator parseElement(Context context, Element source) {

@@ -14,7 +14,7 @@ import com.xswing.framework.view.Context;
 
 @SuppressWarnings("rawtypes")
 @XElement(names = { Const.COMBOBOX })
-public class ComboBoxParser extends BeanParser<JComboBox> {
+public class ComboBoxParser extends ComponentParser<JComboBox> {
 	@SuppressWarnings({ "unchecked" })
 	@Override
 	public JComboBox<?> parseElement(Context context, Element source) {

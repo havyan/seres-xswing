@@ -1,61 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing">
-	<center title="borderPanel">
-		<borderPanel>
-			<center>
-				<borderPanel>
-					<center>
-						<button id="bt1">
-							<property name="text" value="hello, world"></property>
-						</button>
-					</center>
-					<north>
-						<comboBox></comboBox>
-					</north>
-					
-					<south>
-						<bean class="javax.swing.JCheckBox">
-							<property name="text" value="check"></property>
-						</bean>
-					</south>
-					
-					<east>
-						<import path="./import.xml"/>
-					</east>
-				</borderPanel>
-			</center>
+  <center>
+    <borderPanel title="borderPanel">
+      <north>
+        <label>
+          <property name="text" value="north"></property>
+        </label>
+      </north>
+      <center>
+        <borderPanel>
+          <north>
+            <comboBox></comboBox>
+          </north>
+          <center>
+            <button id="bt1">
+              <property name="text" value="hello, world"></property>
+            </button>
+          </center>
+          <south>
+            <bean class="javax.swing.JCheckBox">
+              <property name="text" value="check"></property>
+            </bean>
+          </south>
 
-			<north>
-				<label>
-					<property name="text" value="north"></property>
-				</label>
-			</north>
+          <east>
+            <import path="./import.xml" />
+          </east>
+        </borderPanel>
+      </center>
 
-			<south>
-				<label>
-					<property name="text" value="south"></property>
-				</label>
-			</south>
+      <south>
+        <label>
+          <property name="text" value="south"></property>
+        </label>
+      </south>
 
-			<east>
-				<gridBagPanel>
-					<row>
-						<cell>
-							<button>
-								<property name="text" value="新增的按钮"></property>
-							</button>
-						</cell>
-					</row>
-				</gridBagPanel>
-			</east>
+      <east>
+        <gridBagPanel>
+          <row>
+            <cell>
+              <button>
+                <property name="text" value="新增的按钮"></property>
+              </button>
+            </cell>
+          </row>
+        </gridBagPanel>
+      </east>
 
-			<west>
-				<label>
-					<property name="text" value="west"></property>
-				</label>
-			</west>
-		</borderPanel>
-	</center>
+      <west>
+        <label>
+          <property name="text" value="west"></property>
+        </label>
+      </west>
+    </borderPanel>
+  </center>
 
-	<processor></processor>
+  <processor></processor>
 </xpanel>

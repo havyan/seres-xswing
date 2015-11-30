@@ -17,7 +17,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.TOOLBAR })
-public class ToolBarParser extends BeanParser<JToolBar> {
+public class ToolBarParser extends ComponentParser<JToolBar> {
 
 	@Override
 	public JToolBar parseElement(Context context, Element source) {

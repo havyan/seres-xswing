@@ -9,7 +9,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.CHECKBOX })
-public class CheckBoxParser extends BeanParser<JCheckBox> {
+public class CheckBoxParser extends ComponentParser<JCheckBox> {
 	@Override
 	public JCheckBox parseElement(Context context, Element source) {
 		JCheckBox checkBox = super.parseElement(context, source);

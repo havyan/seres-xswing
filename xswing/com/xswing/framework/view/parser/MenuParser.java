@@ -18,7 +18,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.MENU })
-public class MenuParser extends BeanParser<JMenuItem> {
+public class MenuParser extends ComponentParser<JMenuItem> {
 
 	@Override
 	public JMenuItem parseElement(Context context, Element source) {

@@ -20,7 +20,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.FLOWPANEL })
-public class FlowPanelParser extends BeanParser<JPanel> {
+public class FlowPanelParser extends ComponentParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {

@@ -15,7 +15,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.SPLITPANEL })
-public class SplitPanelParser extends BeanParser<JSplitPane> {
+public class SplitPanelParser extends ComponentParser<JSplitPane> {
 
 	@Override
 	public JSplitPane parseElement(Context context, Element source) {

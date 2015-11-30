@@ -8,7 +8,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.TEXTAREA })
-public class TextAreaParser extends BeanParser<JTextArea> {
+public class TextAreaParser extends ComponentParser<JTextArea> {
 	@Override
 	public JTextArea parseElement(Context context, Element source) {
 		JTextArea textArea = super.parseElement(context, source);

@@ -21,7 +21,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.GRIDBAGPANEL })
-public class GridBagPanelParser extends BeanParser<JPanel> {
+public class GridBagPanelParser extends ComponentParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {

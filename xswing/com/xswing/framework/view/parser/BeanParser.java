@@ -141,36 +141,4 @@ public class BeanParser<T> extends ElementParser<T> {
 		}
 	}
 
-	@Override
-	protected void bind(Context context, String id, T bean, Element source) {
-		super.bind(context, id, bean, source);
-		if (bean instanceof JComponent) {
-			JComponent component = (JComponent) bean;
-			String editorClass = source.getAttributeValue(Const.EDITOR);
-			Editor<? extends JComponent, ?> editor = EditorFactory.create(component, editorClass);
-			editor.setContext(context);
-			bindEditor(editor, source);
-			editor.setValidators(parseValidators(context, source));
-			context.setEditor(id, editor);
-		}
-	}
-
-	protected void bindEditor(Editor<? extends JComponent, ?> editor, Element source) {
-		String bind = source.getAttributeValue(Const.BIND);
-		if (StringUtils.isNotEmpty(bind)) {
-			editor.addBind(Const.VALUE, bind.trim());
-		}
-	}
-
-	protected List<Validator> parseValidators(Context context, Element source) {
-		List<Element> children = source.getChildren(Const.VALIDATOR);
-		List<Validator> validtors = new ArrayList<Validator>();
-		if (children != null && children.size() > 0) {
-			for (Element child : children) {
-				validtors.add((Validator) ParserEngine.parse(context, child));
-			}
-		}
-		return validtors;
-	}
-
 }

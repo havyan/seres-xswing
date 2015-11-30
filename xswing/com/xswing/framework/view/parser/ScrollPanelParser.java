@@ -15,7 +15,7 @@ import com.xswing.framework.view.Context;
  * 
  */
 @XElement(names = { Const.SCROLLPANEL })
-public class ScrollPanelParser extends BeanParser<JScrollPane> {
+public class ScrollPanelParser extends ComponentParser<JScrollPane> {
 
 	@Override
 	public JScrollPane parseElement(Context context, Element source) {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="../xsd/xswing.xsd">
-	<center title="配置数据源">
-		<gridBagPanel>
+	<center>
+		<gridBagPanel title="配置数据源">
 			<row>
 				<cell anchor="WEST">
 					<label>

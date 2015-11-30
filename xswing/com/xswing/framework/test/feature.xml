@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing">
-	<center border="LINE">
-		<gridBagPanel>
+	<center>
+		<gridBagPanel border="LINE">
 			<row>
 				<cell anchor="WEST">
 					<label>

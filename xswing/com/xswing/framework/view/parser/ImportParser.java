@@ -14,7 +14,7 @@ import com.xswing.framework.view.XPanelBuilder;
  * 
  */
 @XElement(names = { Const.IMPORT })
-public class ImportParser extends BeanParser<XPanel> {
+public class ImportParser extends ComponentParser<XPanel> {
 
 	@Override
 	public XPanel parseElement(Context context, Element source) {

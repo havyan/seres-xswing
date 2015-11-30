@@ -6,6 +6,7 @@ package com.xswing.framework.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.framework.proxy.DynamicObjectFactory2;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
 
@@ -29,6 +30,10 @@ public abstract class AbstractAppModel {
 		for(AppListener l : appListeners){
 			l.handleEvent(e);
 		}
+	}
+	
+	public <T> T asBean(T target) {
+		return DynamicObjectFactory2.createDynamicObject(target);
 	}
 	
 }

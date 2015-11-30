@@ -9,7 +9,7 @@ import org.jdom2.Element;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.BUTTON })
-public class ButtonParser extends BeanParser<JButton> {
+public class ButtonParser extends ComponentParser<JButton> {
 
 	@Override
 	public JButton parseElement(Context context, Element source) {
