@@ -2,7 +2,6 @@ package com.xswing.framework.view;
 
 import java.awt.BorderLayout;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.JComponent;
@@ -48,20 +47,11 @@ public class XContainer extends JPanel implements View {
 		initReferences();
 	}
 
-	private void initXPanel(URL url, Map<String, Object> beans) {
-		if (beans == null) {
-			beans = new HashMap<String, Object>();
-		}
-		beans.put("model", this.model);
-		add(XPanelBuilder.build(url, model, this, beans), BorderLayout.CENTER);
+	private void initXPanel(URL url, Map<String, Object> prdefinedBeans) {
+		add(XPanelBuilder.build(url, model, this, prdefinedBeans), BorderLayout.CENTER);
 	}
 
-	private void initXPanel(String path, Map<String, Object> beans) {
-		if (beans == null) {
-			beans = new HashMap<String, Object>();
-		}
-		beans.put("model", this.model);
-		beans.put("view", this);
+	private void initXPanel(String path, Map<String, Object> prdefinedBeans) {
 		setLayout(new BorderLayout());
 		if (path.trim().startsWith(".")) {
 			String caller = null;
@@ -77,9 +67,9 @@ public class XContainer extends JPanel implements View {
 			} catch (ClassNotFoundException e) {
 				Logger.error(e);
 			}
-			xpanel = XPanelBuilder.build(contextPath, path, model, this, beans);
+			xpanel = XPanelBuilder.build(contextPath, path, model, this, prdefinedBeans);
 		} else {
-			xpanel = XPanelBuilder.build(path, model, this, beans);
+			xpanel = XPanelBuilder.build(path, model, this, prdefinedBeans);
 		}
 		add(xpanel, BorderLayout.CENTER);
 	}

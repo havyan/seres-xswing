@@ -113,6 +113,12 @@ public class XPanelBuilder {
 			context.setModel(model);
 			context.setView(view);
 			context.setPath(path.substring(0, path.lastIndexOf("/") + 1));
+			if (model != null) {
+				context.setBean("model", model);
+			}
+			if (view != null) {
+				context.setBean("view", view);
+			}
 			if (prdefinedBeans != null) {
 				for (Map.Entry<String, Object> entry : prdefinedBeans.entrySet()) {
 					context.setBean(entry.getKey(), entry.getValue());
