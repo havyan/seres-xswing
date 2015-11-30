@@ -128,6 +128,9 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			action.setModel(context.getModel());
 			action.setView(context.getView());
 			action.setComponent(bean);
+			if (context.getModel() != null) {
+				context.getModel().addAppListener(action);
+			}
 			return action;
 		}
 		return null;
