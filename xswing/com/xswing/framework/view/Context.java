@@ -12,6 +12,7 @@ import org.jdom2.Document;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.model.AppModel;
 
 /**
  * @author HWYan
@@ -29,7 +30,9 @@ public class Context {
 
 	private String path;
 	
-	private Object data;
+	private AppModel<?> model;
+	
+	private View view;
 
 	public Document getDoc() {
 		return doc;
@@ -111,12 +114,20 @@ public class Context {
 		this.path = path;
 	}
 
-	public Object getData() {
-		return data;
+	public AppModel<?> getModel() {
+		return model;
 	}
 
-	public void setData(Object data) {
-		this.data = data;
+	public void setModel(AppModel<?> model) {
+		this.model = model;
+	}
+
+	public View getView() {
+		return view;
+	}
+
+	public void setView(View view) {
+		this.view = view;
 	}
 
 }

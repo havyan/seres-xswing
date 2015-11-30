@@ -11,6 +11,7 @@ import org.jdom2.input.SAXBuilder;
 
 import com.framework.exception.ExceptionUtils;
 import com.framework.log.Logger;
+import com.xswing.framework.model.AppModel;
 import com.xswing.framework.view.parser.ParserEngine;
 
 /**
@@ -20,10 +21,14 @@ import com.xswing.framework.view.parser.ParserEngine;
 public class XPanelBuilder {
 
 	public static XPanel build(String path) {
-		return buildWithData(path, null);
+		return build(path, (AppModel<?>) null, (View) null);
 	}
 
-	public static XPanel buildWithData(String path, Object data) {
+	public static XPanel build(String path, AppModel<?> model) {
+		return build(path, model, (View) null);
+	}
+
+	public static XPanel build(String path, AppModel<?> model, View view) {
 		String caller = null;
 		for (StackTraceElement trace : new Throwable().getStackTrace()) {
 			if (!trace.getClassName().equals(XPanelBuilder.class.getName())) {
@@ -33,7 +38,7 @@ public class XPanelBuilder {
 		}
 		try {
 			String contextPath = Class.forName(caller).getResource("").toString();
-			return buildWithData(contextPath, path, data);
+			return build(contextPath, path, model, view);
 		} catch (ClassNotFoundException e) {
 			Logger.error(e);
 		}
@@ -41,10 +46,14 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(String contextPath, String path) {
-		return buildWithData(contextPath, path, null);
+		return build(contextPath, path, (AppModel<?>) null, (View) null);
 	}
 
-	public static XPanel buildWithData(String contextPath, String path, Object data) {
+	public static XPanel build(String contextPath, String path, AppModel<?> model) {
+		return build(contextPath, path, model, (View) null);
+	}
+
+	public static XPanel build(String contextPath, String path, AppModel<?> model, View view) {
 		contextPath = contextPath.trim();
 		path = path.trim();
 		if (path.startsWith("./")) {
@@ -65,7 +74,7 @@ public class XPanelBuilder {
 			path = Thread.currentThread().getContextClassLoader().getResource(path).toString();
 		}
 		try {
-			return buildWithData(new URL(path), data);
+			return build(new URL(path), model, view);
 		} catch (MalformedURLException e) {
 			ExceptionUtils.logAndShowException(e);
 			return null;
@@ -73,10 +82,14 @@ public class XPanelBuilder {
 	}
 
 	public static XPanel build(URL url) {
-		return buildWithData(url, null);
+		return build(url, (AppModel<?>) null, (View) null);
 	}
 
-	public static XPanel buildWithData(URL url, Object data) {
+	public static XPanel build(URL url, AppModel<?> model) {
+		return build(url, model, (View) null);
+	}
+
+	public static XPanel build(URL url, AppModel<?> model, View view) {
 		String path = url.toString();
 		Document doc = null;
 		try {
@@ -88,7 +101,8 @@ public class XPanelBuilder {
 		if (doc != null) {
 			Context context = new Context();
 			context.setDoc(doc);
-			context.setData(data);
+			context.setModel(model);
+			context.setView(view);
 			context.setPath(path.substring(0, path.lastIndexOf("/") + 1));
 			XPanel xpanel = (XPanel) ParserEngine.parse(context, doc.getRootElement());
 			context.processRefs();

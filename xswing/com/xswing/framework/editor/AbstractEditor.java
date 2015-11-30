@@ -14,6 +14,7 @@ import javax.swing.JComponent;
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
 import com.framework.proxy.interfaces.Bean;
+import com.xswing.framework.action.Action;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 import com.xswing.framework.view.parser.Const;
@@ -87,8 +88,8 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		this.bind(property, (e) -> {
 			propertyChanged(type, e);
 		});
-		if (context.getData() != null) {
-			this.setBindValue(type, BaseUtils.getProperty(context.getData(), property));
+		if (context.getModel() != null && context.getModel().getData() != null) {
+			this.setBindValue(type, BaseUtils.getProperty(context.getModel().getData(), property));
 		}
 	}
 
@@ -99,13 +100,9 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void bind(String property, PropertyChangeListener listener) {
-		if (context.getData() != null && context.getData() instanceof Bean) {
-			Bean bean = (Bean) context.getData();
-			bean.addPropertyChangeListener((e) -> {
-				if (e.getPropertyName().equals(property) || property.startsWith(e.getPropertyName() + ".")) {
-					listener.propertyChange(e);
-				}
-			});
+		if (context.getModel() != null && context.getModel().getData() != null && context.getModel().getData() instanceof Bean) {
+			Bean bean = (Bean) context.getModel().getData();
+			bean.addPropertyChangeListener(property, listener);
 		}
 	}
 
@@ -117,10 +114,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected void writeBack() {
 		String result = this.validate();
-		if (result == null) {
+		if (result == null && context.getModel() != null && context.getModel().getData() != null) {
 			String bind = this.binds.get(Const.VALUE);
 			Logger.debug("Write back value to: " + bind);
-			BaseUtils.setProperty(context.getData(), bind, this.getValue());
+			BaseUtils.setProperty(context.getModel().getData(), bind, this.getValue());
 		}
 	}
 
@@ -130,9 +127,8 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void reload() {
-		Object data = context.getData();
-		if (data != null) {
-			this.setValue(BaseUtils.getProperty(data, this.binds.get(Const.VALUE)));
+		if (context.getModel() != null && context.getModel().getData() != null) {
+			this.setValue(BaseUtils.getProperty(context.getModel().getData(), this.binds.get(Const.VALUE)));
 		}
 	}
 
@@ -140,4 +136,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	}
 
+	public void registerAction(Action<?, ?, ?> action) {
+
+	}
 }

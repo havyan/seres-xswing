@@ -2,6 +2,8 @@ package com.xswing.framework.editor;
 
 import javax.swing.JButton;
 
+import com.xswing.framework.action.Action;
+
 @Component(types = { JButton.class })
 public class ButtonEditor extends AbstractEditor<JButton, String> {
 
@@ -23,6 +25,10 @@ public class ButtonEditor extends AbstractEditor<JButton, String> {
 	@Override
 	public void reset() {
 		component.setText("");
+	}
+
+	public void registerAction(Action<?, ?, ?> action) {
+		component.addActionListener(action);
 	}
 
 }

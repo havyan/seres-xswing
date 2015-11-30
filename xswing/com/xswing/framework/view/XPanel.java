@@ -10,14 +10,17 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.model.AppModel;
 
 /**
  * @author yhw
  * 
  */
-public class XPanel extends JPanel {
+public class XPanel extends JPanel implements View {
 
 	private static final long serialVersionUID = 1L;
+
+	protected AppModel<?> model;
 
 	private Context context;
 
@@ -45,7 +48,7 @@ public class XPanel extends JPanel {
 	public Object getValue(String id) {
 		return getEditor(id).getValue();
 	}
-	
+
 	public void setValue(String id, Object value) {
 		getEditor(id).setValue(value);
 	}
@@ -65,5 +68,15 @@ public class XPanel extends JPanel {
 
 	public void setContext(Context context) {
 		this.context = context;
+	}
+
+	@Override
+	public AppModel<?> getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(AppModel<?> model) {
+		this.model = model;
 	}
 }

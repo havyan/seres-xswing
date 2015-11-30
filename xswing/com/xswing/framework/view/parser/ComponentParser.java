@@ -14,6 +14,8 @@ import javax.swing.border.EmptyBorder;
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
+import com.framework.common.BaseUtils;
+import com.xswing.framework.action.Action;
 import com.xswing.framework.editor.Editor;
 import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.validator.Validator;
@@ -94,6 +96,10 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		editor.setContext(context);
 		bindEditor(editor, source);
 		editor.setValidators(parseValidators(context, source));
+		Action<?, ?, ?> action = createAction(context, bean, source);
+		if (action != null) {
+			editor.registerAction(action);
+		}
 		context.setEditor(id, editor);
 	}
 
@@ -113,6 +119,18 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			}
 		}
 		return validtors;
+	}
+
+	protected Action<?, ?, ?> createAction(Context context, T bean, Element source) {
+		String actionClass = source.getAttributeValue(Const.ACTION);
+		if (StringUtils.isNotEmpty(actionClass)) {
+			Action<?, ?, ?> action = (Action<?, ?, ?>) BaseUtils.newInstance(actionClass);
+			action.setModel(context.getModel());
+			action.setView(context.getView());
+			action.setComponent(bean);
+			return action;
+		}
+		return null;
 	}
 
 }

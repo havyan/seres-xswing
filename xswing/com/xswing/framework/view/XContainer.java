@@ -10,11 +10,14 @@ import javax.swing.JPanel;
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.model.AppModel;
 
-public class XContainer extends JPanel {
+public class XContainer extends JPanel implements View {
 	private static final long serialVersionUID = 1L;
 
 	protected XPanel xpanel;
+
+	protected AppModel<?> model;
 
 	public XContainer(String path) {
 		this(path, null);
@@ -24,21 +27,23 @@ public class XContainer extends JPanel {
 		this(url, null);
 	}
 
-	public XContainer(String path, Object data) {
-		initXPanel(path, data);
+	public XContainer(String path, AppModel<?> model) {
+		this.model = model;
+		initXPanel(path);
 		initReferences();
 	}
 
-	public XContainer(URL url, Object data) {
-		initXPanel(url, data);
+	public XContainer(URL url, AppModel<?> model) {
+		this.model = model;
+		initXPanel(url);
 		initReferences();
 	}
 
-	private void initXPanel(URL url, Object data) {
-		add(XPanelBuilder.buildWithData(url, data), BorderLayout.CENTER);
+	private void initXPanel(URL url) {
+		add(XPanelBuilder.build(url, model, this), BorderLayout.CENTER);
 	}
 
-	private void initXPanel(String path, Object data) {
+	private void initXPanel(String path) {
 		setLayout(new BorderLayout());
 		if (path.trim().startsWith(".")) {
 			String caller = null;
@@ -54,9 +59,9 @@ public class XContainer extends JPanel {
 			} catch (ClassNotFoundException e) {
 				Logger.error(e);
 			}
-			xpanel = XPanelBuilder.buildWithData(contextPath, path, data);
+			xpanel = XPanelBuilder.build(contextPath, path, model, this);
 		} else {
-			xpanel = XPanelBuilder.buildWithData(path, data);
+			xpanel = XPanelBuilder.build(path, model, this);
 		}
 		add(xpanel, BorderLayout.CENTER);
 	}
@@ -93,6 +98,46 @@ public class XContainer extends JPanel {
 
 	public <T> T $(String id, Class<T> cls) {
 		return getBean(id, cls);
+	}
+
+	@Override
+	public JComponent getComponent(String id) {
+		return xpanel.getComponent(id);
+	}
+
+	@Override
+	public void setValue(String id, Object value) {
+		xpanel.setValue(id, value);
+	}
+
+	@Override
+	public <T extends JComponent> T getComponent(String id, Class<T> cls) {
+		return xpanel.getComponent(id, cls);
+	}
+
+	@Override
+	public Map<String, Object> getBeans() {
+		return xpanel.getBeans();
+	}
+
+	@Override
+	public Context getContext() {
+		return xpanel.getContext();
+	}
+
+	@Override
+	public void setContext(Context context) {
+		xpanel.setContext(context);
+	}
+
+	@Override
+	public AppModel<?> getModel() {
+		return model;
+	}
+
+	@Override
+	public void setModel(AppModel<?> model) {
+		this.model = model;
 	}
 
 }
