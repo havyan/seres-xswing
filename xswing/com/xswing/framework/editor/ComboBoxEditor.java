@@ -33,6 +33,10 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 		}
 	}
 
+	protected void initComponent(JComboBox comboBox) {
+		comboBox.addActionListener((e) -> writeBack());
+	}
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public void setBindValue(String type, Object value) {
