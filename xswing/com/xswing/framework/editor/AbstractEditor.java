@@ -107,9 +107,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	protected void propertyChanged(String type, PropertyChangeEvent e) {
-		if (type.equals(Const.VALUE)) {
-			valueChanged(e);
-		}
+		this.setBindValue(type, getDataProperty(this.binds.get(type)));
 	}
 
 	protected void writeBack() {
@@ -120,17 +118,6 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 				Logger.debug("Write back value to: " + bind);
 				BaseUtils.setProperty(context.getData(), bind, this.getValue());
 			}
-		}
-	}
-
-	protected void valueChanged(PropertyChangeEvent e) {
-		Logger.debug("Property changed: " + e.getPropertyName());
-		reload();
-	}
-
-	protected void reload() {
-		if (context.getData() != null) {
-			this.setValue(getDataProperty(this.binds.get(Const.VALUE)));
 		}
 	}
 

@@ -1,6 +1,5 @@
 package com.xswing.framework.editor;
 
-import java.beans.PropertyChangeEvent;
 import java.util.Collection;
 
 import javax.swing.JComboBox;
@@ -28,14 +27,6 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 	}
 
 	@Override
-	protected void propertyChanged(String type, PropertyChangeEvent e) {
-		if (type.equals(Const.ITEMS)) {
-			reloadItems();
-		}
-		super.propertyChanged(type, e);
-	}
-
-	@Override
 	public void reset() {
 		if (component.getItemCount() > 0) {
 			component.setSelectedIndex(0);
@@ -50,14 +41,13 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 	public void setBindValue(String type, Object value) {
 		super.setBindValue(type, value);
 		if (type.equals(Const.ITEMS)) {
-			reloadItems();
+			setItems(value);
 		}
 	}
 
 	@SuppressWarnings("unchecked")
-	private void reloadItems() {
+	private void setItems(Object value) {
 		component.removeAllItems();
-		Object value = getDataProperty(binds.get(Const.ITEMS));
 		if (value != null) {
 			if (value instanceof Collection) {
 				for (Object e : (Collection<?>) value) {
