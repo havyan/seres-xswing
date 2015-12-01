@@ -18,7 +18,7 @@ import com.xswing.framework.event.AppListener;
  */
 public abstract class AbstractAppModel<T> implements AppModel<T> {
 
-	protected static final String MAIN_DATA_NAME = "data";
+	protected static final String MAIN_DATA_NAME = "main";
 
 	protected static final String UI_DATA_NAME = "ui";
 

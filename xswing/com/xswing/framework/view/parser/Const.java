@@ -161,6 +161,8 @@ public class Const {
 	public static final String ROWS = "rows";
 
 	public static final String VALIDATOR = "validator";
+	
+	public static final String COMPONENTBEAN = "componentBean";
 
 	public static final String MODEL = "model";
 

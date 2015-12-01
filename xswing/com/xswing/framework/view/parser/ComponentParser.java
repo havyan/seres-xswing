@@ -24,7 +24,7 @@ import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
-@XElement(names = { Const.TREE })
+@XElement(names = { Const.TREE, Const.COMPONENTBEAN })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();

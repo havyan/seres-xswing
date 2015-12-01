@@ -3,6 +3,7 @@
  */
 package com.xswing.framework.view.parser;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -52,6 +53,10 @@ public class ParserEngine {
 			parser = new XPanelParser();
 		} else {
 			Class<Parser<?, Element>> cls = PARSERS.get(name);
+			String[] wrappers = WrapperParser.class.getAnnotation(XElement.class).names();
+			if (e.getName().equals(Const.BEAN) && Arrays.asList(wrappers).contains(e.getParentElement().getName())) {
+				cls = PARSERS.get(Const.COMPONENTBEAN);
+			}
 			if (cls != null) {
 				parser = (Parser<?, Element>) BaseUtils.newInstance(cls);
 			}
