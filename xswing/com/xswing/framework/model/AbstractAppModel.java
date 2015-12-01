@@ -27,7 +27,7 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 	private List<AppListener> appListeners = new ArrayList<AppListener>();
 
 	public AbstractAppModel(T data) {
-		this.setMainData(data);
+		this.setMain(data);
 	}
 
 	public void addAppListener(AppListener l) {
@@ -67,12 +67,12 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		return dynamicObject;
 	}
 
-	public void setMainData(T data) {
+	public void setMain(Object data) {
 		this.setData(MAIN_DATA_NAME, data);
 	}
 
 	@SuppressWarnings("unchecked")
-	public T getMainData() {
+	public T getMain() {
 		return (T) this.getData(MAIN_DATA_NAME);
 	}
 

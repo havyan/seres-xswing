@@ -12,8 +12,8 @@ import javax.swing.JCheckBox;
 @Component(types = { JCheckBox.class })
 public class CheckBoxEditor extends AbstractEditor<JCheckBox, Boolean> {
 
-	protected void initComponent(JCheckBox checkBox) {
-		checkBox.addActionListener((e) -> writeBack());
+	public void init() {
+		component.addActionListener((e) -> writeBack());
 	}
 
 	@Override

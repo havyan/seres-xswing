@@ -26,8 +26,8 @@ public interface AppModel<T> {
 
 	public <V> V setData(String name, V data);
 
-	public void setMainData(T data);
+	public void setMain(Object data);
 
-	public T getMainData();
+	public T getMain();
 
 }

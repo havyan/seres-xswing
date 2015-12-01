@@ -33,8 +33,8 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 		}
 	}
 
-	protected void initComponent(JComboBox comboBox) {
-		comboBox.addActionListener((e) -> writeBack());
+	public void init() {
+		component.addActionListener((e) -> writeBack());
 	}
 
 	@Override

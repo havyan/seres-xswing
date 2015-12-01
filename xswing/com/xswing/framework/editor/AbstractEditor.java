@@ -33,6 +33,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected Map<String, String> binds = new HashMap<String, String>();
 
+	public void init() {
+
+	}
+
 	public T getComponent() {
 		return component;
 	}
@@ -40,11 +44,6 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	@SuppressWarnings("unchecked")
 	public void setComponent(JComponent component) {
 		this.component = (T) component;
-		initComponent(this.component);
-	}
-
-	protected void initComponent(T component) {
-
 	}
 
 	public List<Validator> getValidators() {
@@ -123,6 +122,11 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected Object getDataProperty(String property) {
 		return BaseUtils.getProperty(context.getData(), property);
+	}
+
+	@Override
+	public void setEnabled(boolean enabled) {
+		component.setEnabled(enabled);
 	}
 
 	public void reset() {

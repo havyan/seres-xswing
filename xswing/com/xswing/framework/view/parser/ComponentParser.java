@@ -106,6 +106,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		String editorClass = source.getAttributeValue(Const.EDITOR);
 		Editor<? extends JComponent, ?> editor = EditorFactory.create(component, editorClass);
 		editor.setContext(context);
+		editor.init();
 		bindEditor(editor, source);
 		editor.setValidators(parseValidators(context, source));
 		Action<?, ?, ?> action = createAction(context, bean, source);

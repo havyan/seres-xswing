@@ -9,6 +9,8 @@ import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
 public interface Editor<T extends JComponent, V> {
+	
+	public void init();
 
 	public void setValue(Object value);
 
