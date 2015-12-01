@@ -26,7 +26,7 @@
       <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
       <xsd:element name="textArea" type="textArea"></xsd:element>
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
-      <xsd:element name="tree" type="cbean"></xsd:element>
+      <xsd:element name="tree" type="tree"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
       <xsd:element name="popupMenu" type="menu"></xsd:element>
     </xsd:choice>
@@ -323,49 +323,45 @@
 
   <xsd:complexType name="button">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
   <xsd:complexType name="label">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
   <xsd:complexType name="comboBox">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:sequence>
           <xsd:element name="item" type="comboBoxItem" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="items" type="xsd:string"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
   <xsd:complexType name="textArea">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
         <xsd:attribute name="rows" type="xsd:int"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
   <xsd:complexType name="textField">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
@@ -381,22 +377,20 @@
 
   <xsd:complexType name="checkBox">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
   <xsd:complexType name="radioButton">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="selected" type="xsd:boolean"></xsd:attribute>
-        <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -424,9 +418,17 @@
 
   <xsd:complexType name="separator">
     <xsd:complexContent>
-      <xsd:extension base="bean">
+      <xsd:extension base="cbean">
         <xsd:attribute name="orientation" type="orientation"></xsd:attribute>
         <xsd:attribute name="type" type="separatorType"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="tree">
+    <xsd:complexContent>
+      <xsd:extension base="cbean">
+        <xsd:attribute name="rootVisible" type="xsd:boolean"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>

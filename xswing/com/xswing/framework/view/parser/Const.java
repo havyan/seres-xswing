@@ -166,4 +166,6 @@ public class Const {
 
 	public static final String MODEL = "model";
 
+	public static final String ROOTVISIBLE = "rootVisible";
+
 }
