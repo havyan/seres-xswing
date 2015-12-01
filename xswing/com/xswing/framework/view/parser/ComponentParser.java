@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JPopupMenu;
 import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
@@ -25,14 +24,13 @@ import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
-@XElement(names = { Const.TREE, Const.POPUPMENU })
+@XElement(names = { Const.TREE })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
 
 	static {
 		CLASS_MAP.put(Const.TREE, JTree.class);
-		CLASS_MAP.put(Const.POPUPMENU, JPopupMenu.class);
 	}
 
 	public Class<?> findClass(Element source) {

@@ -28,7 +28,7 @@
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
       <xsd:element name="tree" type="componentBean"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
-      <xsd:element name="popupMenu" type="componentBean"></xsd:element>
+      <xsd:element name="popupMenu" type="menu"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 
@@ -249,6 +249,7 @@
 
   <xsd:complexType name="menu">
     <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="item" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>

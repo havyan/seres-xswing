@@ -24,7 +24,7 @@ public class MenuParser extends ComponentParser<JMenuItem> {
 	public JMenuItem parseElement(Context context, Element source) {
 		String text = source.getAttributeValue(Const.TEXT);
 		JMenuItem menu = null;
-		List<Element> childMenus = source.getChildren();
+		List<Element> childMenus = source.getChildren(Const.ITEM);
 		if ((childMenus != null && childMenus.size() > 0) || source.getParentElement().getName().equals(Const.MENUBAR)) {
 			menu = new JMenu(text);
 			for (Element e : childMenus) {
