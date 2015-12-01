@@ -163,7 +163,7 @@
                   <center>
                     <scrollPanel>
                       <view>
-                        <bean class="javax.swing.JTree"></bean>
+                        <cbean class="javax.swing.JTree"></cbean>
                       </view>
                     </scrollPanel>
                   </center>
@@ -193,7 +193,7 @@
                   <center>
                     <scrollPanel>
                       <view>
-                        <bean class="javax.swing.JTree"></bean>
+                        <cbean class="javax.swing.JTree"></cbean>
                       </view>
                     </scrollPanel>
                   </center>
@@ -205,7 +205,7 @@
           <after>
             <tabbedPanel>
               <tab title="数据源设置" closable="false">
-                <borderPanel  name="数据源设置">
+                <borderPanel name="数据源设置">
                   <center>
                     <boxPanel axis="Y_AXIS">
                       <component>
@@ -264,8 +264,8 @@
                               </label>
                             </cell>
                             <cell gridwidth="2" anchor="WEST">
-                              <bean class="com.toedter.calendar.JDateChooser">
-                              </bean>
+                              <cbean class="com.toedter.calendar.JDateChooser">
+                              </cbean>
                             </cell>
                             <cell anchor="NORTHWEST">
                               <button>
@@ -280,8 +280,8 @@
                               </label>
                             </cell>
                             <cell anchor="WEST">
-                              <bean id="unitHeight" class="javax.swing.JSpinner">
-                              </bean>
+                              <cbean id="unitHeight" class="javax.swing.JSpinner">
+                              </cbean>
                             </cell>
 
                             <cell anchor="WEST">
@@ -290,8 +290,8 @@
                               </label>
                             </cell>
                             <cell anchor="WEST">
-                              <bean id="barHeight" class="javax.swing.JSpinner">
-                              </bean>
+                              <cbean id="barHeight" class="javax.swing.JSpinner">
+                              </cbean>
                             </cell>
                           </row>
 
@@ -302,8 +302,8 @@
                               </label>
                             </cell>
                             <cell anchor="WEST">
-                              <bean id="collectionWidth" class="javax.swing.JSpinner">
-                              </bean>
+                              <cbean id="collectionWidth" class="javax.swing.JSpinner">
+                              </cbean>
                             </cell>
 
                             <cell anchor="WEST">
@@ -312,8 +312,8 @@
                               </label>
                             </cell>
                             <cell anchor="WEST">
-                              <bean id="groupWidth" class="javax.swing.JSpinner">
-                              </bean>
+                              <cbean id="groupWidth" class="javax.swing.JSpinner">
+                              </cbean>
                             </cell>
                           </row>
                         </gridBagPanel>
@@ -346,8 +346,8 @@
                               </label>
                             </cell>
                             <cell gridwidth="3" anchor="WEST">
-                              <bean class="com.toedter.calendar.JDateChooser">
-                              </bean>
+                              <cbean class="com.toedter.calendar.JDateChooser">
+                              </cbean>
                             </cell>
                           </row>
                           <row>
@@ -357,8 +357,8 @@
                               </label>
                             </cell>
                             <cell gridwidth="3" anchor="WEST">
-                              <bean class="com.toedter.calendar.JDateChooser">
-                              </bean>
+                              <cbean class="com.toedter.calendar.JDateChooser">
+                              </cbean>
                             </cell>
                           </row>
                         </gridBagPanel>
@@ -371,24 +371,24 @@
                       <center>
                         <scrollPanel title="一棵树">
                           <view>
-                            <bean class="javax.swing.JTree">
-                            </bean>
+                            <cbean class="javax.swing.JTree">
+                            </cbean>
                           </view>
                         </scrollPanel>
                       </center>
                       <east>
                         <scrollPanel title="两棵树">
                           <view>
-                            <bean class="javax.swing.JTree">
-                            </bean>
+                            <cbean class="javax.swing.JTree">
+                            </cbean>
                           </view>
                         </scrollPanel>
                       </east>
                       <west>
                         <scrollPanel title="三棵树">
                           <view>
-                            <bean class="javax.swing.JTree">
-                            </bean>
+                            <cbean class="javax.swing.JTree">
+                            </cbean>
                           </view>
                         </scrollPanel>
                       </west>
@@ -411,7 +411,7 @@
               </tab>
 
               <tab title="神奇界面">
-                <bean class="javax.swing.JTree"></bean>
+                <cbean class="javax.swing.JTree"></cbean>
               </tab>
 
             </tabbedPanel>

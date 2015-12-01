@@ -1,121 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xpanel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.seres.com/xsd/xswing">
-	<center>
-		<gridBagPanel>
-			<row>
-				<cell>
-					<label>
-						<property name="text" value="姓名："></property>
-					</label>
-				</cell>
-				
-				<cell>
-					<textField>
-						<property name="columns" value="10"></property>
-					</textField>
-				</cell>
-			</row>
-			
-			<row>
-				<cell>
-					<label>
-						<property name="text" value="年龄："></property>
-					</label>
-				</cell>
-				
-				<cell>
-					<textField>
-						<property name="columns" value="10"></property>
-					</textField>
-				</cell>
-			</row>
-		</gridBagPanel>
-	</center>
-	
-		<north>
-		<menuBar>
-			<item>
-				<menu text="file">
-					<item>
-						<menu text="open"></menu>
-					</item>
-					<item>
-						<menu text="save"></menu>
-					</item>
-					<item>
-						<menu text="save as"></menu>
-					</item>
-					<item>
-						<menu text="close"></menu>
-					</item>
-				</menu>
-			</item>
 
-			<item>
-				<menu text="edit">
-					<item>
-						<menu text="copy"></menu>
-					</item>
-					<item>
-						<menu text="cut"></menu>
-					</item>
-					<item>
-						<menu text="undo"></menu>
-					</item>
-					<item>
-						<menu text="redo"></menu>
-					</item>
-				</menu>
-			</item>
+  <north>
+    <menuBar>
+      <item>
+        <menu text="file">
+          <item>
+            <menu text="open"></menu>
+          </item>
+          <item>
+            <menu text="save"></menu>
+          </item>
+          <item>
+            <menu text="save as"></menu>
+          </item>
+          <item>
+            <menu text="close"></menu>
+          </item>
+        </menu>
+      </item>
 
-			<item>
-				<menu text="tools">
-					<item>
-						<menu text="a">
-							<item>
-								<comboBox></comboBox>
-							</item>
-						</menu>
-					</item>
-					<item>
-						<menu text="cut"></menu>
-					</item>
-					<item>
-						<menu text="undo"></menu>
-					</item>
-					<item>
-						<menu text="redo"></menu>
-					</item>
-				</menu>
-			</item>
+      <item>
+        <menu text="edit">
+          <item>
+            <menu text="copy"></menu>
+          </item>
+          <item>
+            <menu text="cut"></menu>
+          </item>
+          <item>
+            <menu text="undo"></menu>
+          </item>
+          <item>
+            <menu text="redo"></menu>
+          </item>
+        </menu>
+      </item>
 
-			<item>
-				<menu text="run">
-					<item>
-						<checkBox>
-							<property name="text" value="selected"></property>
-						</checkBox>
-					</item>
-				</menu>
-			</item>
-		</menuBar>
-	</north>
-	
-	<south>
-		<flowPanel>
-			<component>
-				<button>
-					<property name="text" value="确认"></property>
-				</button>
-			</component>
-			
-			<component>
-				<button>
-					<property name="text" value="取消"></property>
-				</button>
-			</component>
-		</flowPanel>
-	</south>
-	
-	
+      <item>
+        <menu text="tools">
+          <item>
+            <menu text="a">
+              <item>
+                <comboBox></comboBox>
+              </item>
+            </menu>
+          </item>
+          <item>
+            <menu text="cut"></menu>
+          </item>
+          <item>
+            <menu text="undo"></menu>
+          </item>
+          <item>
+            <menu text="redo"></menu>
+          </item>
+        </menu>
+      </item>
+
+      <item>
+        <menu text="run">
+          <item>
+            <checkBox>
+              <property name="text" value="selected"></property>
+            </checkBox>
+          </item>
+        </menu>
+      </item>
+    </menuBar>
+  </north>
+  <center>
+    <gridBagPanel>
+      <row>
+        <cell>
+          <label>
+            <property name="text" value="姓名："></property>
+          </label>
+        </cell>
+
+        <cell>
+          <textField>
+            <property name="columns" value="10"></property>
+          </textField>
+        </cell>
+      </row>
+
+      <row>
+        <cell>
+          <label>
+            <property name="text" value="年龄："></property>
+          </label>
+        </cell>
+
+        <cell>
+          <textField>
+            <property name="columns" value="10"></property>
+          </textField>
+        </cell>
+      </row>
+    </gridBagPanel>
+  </center>
+  <south>
+    <flowPanel>
+      <component>
+        <button>
+          <property name="text" value="确认"></property>
+        </button>
+      </component>
+
+      <component>
+        <button>
+          <property name="text" value="取消"></property>
+        </button>
+      </component>
+    </flowPanel>
+  </south>
+
+
 </xpanel>

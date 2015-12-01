@@ -18,9 +18,9 @@
             </button>
           </center>
           <south>
-            <bean class="javax.swing.JCheckBox">
+            <cbean class="javax.swing.JCheckBox">
               <property name="text" value="check"></property>
-            </bean>
+            </cbean>
           </south>
 
           <east>

@@ -11,7 +11,7 @@
       <xsd:element name="gridPanel" type="xsd:string"></xsd:element>
       <xsd:element name="button" type="button"></xsd:element>
       <xsd:element name="comboBox" type="comboBox"></xsd:element>
-      <xsd:element name="bean" type="componentBean"></xsd:element>
+      <xsd:element name="cbean" type="cbean"></xsd:element>
       <xsd:element name="import" type="import"></xsd:element>
       <xsd:element name="label" type="label"></xsd:element>
       <xsd:element name="boxPanel" type="boxPanel"></xsd:element>
@@ -26,7 +26,7 @@
       <xsd:element name="cardPanel" type="cardPanel"></xsd:element>
       <xsd:element name="textArea" type="textArea"></xsd:element>
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
-      <xsd:element name="tree" type="componentBean"></xsd:element>
+      <xsd:element name="tree" type="cbean"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
       <xsd:element name="popupMenu" type="menu"></xsd:element>
     </xsd:choice>
@@ -414,7 +414,7 @@
     <xsd:attribute name="action" type="xsd:string"></xsd:attribute>
   </xsd:attributeGroup>
 
-  <xsd:complexType name="componentBean">
+  <xsd:complexType name="cbean">
     <xsd:complexContent>
       <xsd:extension base="bean">
         <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>

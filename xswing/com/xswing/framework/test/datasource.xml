@@ -80,9 +80,9 @@
 					</textField>
 				</cell>
 				<cell>
-					<bean class="javax.swing.JCheckBox">
+					<cbean class="javax.swing.JCheckBox">
 						<property name="text" value="编辑"></property>
-					</bean>
+					</cbean>
 				</cell>
 			</row>
 		</gridBagPanel>
