@@ -41,11 +41,13 @@ public class XPanelParser extends BorderPanelParser {
 				processor.process(xPanel);
 			}
 		}
+		List<Element> components = source.getChildren(Const.COMPONENT);
+		if (components != null) {
+			components.stream().forEach(e -> ParserEngine.parse(context, e));
+		}
 		List<Element> beans = source.getChildren(Const.BEAN);
-		if (beans != null && beans.size() > 0) {
-			for (Element e : beans) {
-				ParserEngine.parse(context, e);
-			}
+		if (beans != null) {
+			beans.stream().forEach(e -> ParserEngine.parse(context, e));
 		}
 		return xPanel;
 	}

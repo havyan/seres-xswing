@@ -8,13 +8,14 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.event.AppListener;
 import com.xswing.framework.model.AppModel;
 
 /**
  * @author HWYan
  *
  */
-public interface View {
+public interface View extends AppListener {
 
 	public Object getBean(String id);
 

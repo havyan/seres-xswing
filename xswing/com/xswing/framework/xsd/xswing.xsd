@@ -127,8 +127,8 @@
     <xsd:complexContent>
       <xsd:extension base="boderPanel">
         <xsd:sequence>
-          <xsd:element name="processor" type="processor" maxOccurs="unbounded" minOccurs="0">
-          </xsd:element>
+          <xsd:element name="processor" type="processor" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+          <xsd:element name="component" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
           <xsd:element name="bean" type="bean" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="processor" type="xsd:string"></xsd:attribute>

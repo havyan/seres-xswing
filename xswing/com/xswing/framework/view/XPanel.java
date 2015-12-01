@@ -10,6 +10,7 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.model.AppModel;
 
 /**
@@ -78,5 +79,10 @@ public class XPanel extends JPanel implements View {
 	@Override
 	public void setModel(AppModel<?> model) {
 		this.model = model;
+	}
+
+	@Override
+	public void handleEvent(AppEvent event) {
+		
 	}
 }
