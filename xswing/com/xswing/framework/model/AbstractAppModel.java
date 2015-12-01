@@ -3,12 +3,14 @@
  */
 package com.xswing.framework.model;
 
+import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.framework.proxy.DynamicObjectFactory2;
+import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
 
@@ -36,6 +38,10 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 
 	public void removeAppListener(AppListener l) {
 		appListeners.remove(l);
+	}
+
+	public void bind(String dataPath, PropertyChangeListener l) {
+		((Bean) data).addPropertyChangeListener(dataPath, l);
 	}
 
 	public void fireAppEvent(AppEvent e) {
@@ -67,8 +73,8 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		return dynamicObject;
 	}
 
-	public void setMain(Object data) {
-		this.setData(MAIN_DATA_NAME, data);
+	public <V> V setMain(V data) {
+		return this.setData(MAIN_DATA_NAME, data);
 	}
 
 	@SuppressWarnings("unchecked")

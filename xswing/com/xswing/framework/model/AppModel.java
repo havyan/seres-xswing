@@ -3,6 +3,7 @@
  */
 package com.xswing.framework.model;
 
+import java.beans.PropertyChangeListener;
 import java.util.Map;
 
 import com.xswing.framework.event.AppEvent;
@@ -19,6 +20,8 @@ public interface AppModel<T> {
 	public void removeAppListener(AppListener l);
 
 	public void fireAppEvent(AppEvent e);
+	
+	public void bind(String dataPath, PropertyChangeListener l);
 
 	public Map<String, Object> getData();
 
@@ -26,7 +29,7 @@ public interface AppModel<T> {
 
 	public <V> V setData(String name, V data);
 
-	public void setMain(Object data);
+	public <V> V setMain(V data);
 
 	public T getMain();
 
