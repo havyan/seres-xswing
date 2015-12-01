@@ -61,8 +61,16 @@ public class Context {
 	public Object getBean(String id) {
 		if (id.contains(".")) {
 			String[] strs = id.split("\\.", 2);
-			XPanel xPanel = (XPanel) beans.get(strs[0]);
-			return xPanel.getBean(strs[1]);
+			Object bean = beans.get(strs[0]);
+			if (bean != null) {
+				if (bean instanceof XPanel) {
+					return ((XPanel) bean).getBean(strs[1]);
+				} else {
+					return BaseUtils.getProperty(bean, strs[1]);
+				}
+			} else {
+				return null;
+			}
 		}
 		return beans.get(id);
 	}
