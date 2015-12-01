@@ -48,12 +48,15 @@ public class BeanParser<T> extends ElementParser<T> {
 			List<Object> values = new ArrayList<Object>();
 			for (Element e : arguments) {
 				String type = e.getAttributeValue(Const.TYPE);
-				Class<?> cls = BaseUtils.getPrimitiveClass(type);
-				if (cls == null) {
-					try {
-						cls = Class.forName(type);
-					} catch (ClassNotFoundException ex) {
-						Logger.error(ex);
+				Class<?> cls = null;
+				if (StringUtils.isNotEmpty(type)) {
+					cls = BaseUtils.getPrimitiveClass(type);
+					if (cls == null) {
+						try {
+							cls = Class.forName(type);
+						} catch (ClassNotFoundException ex) {
+							Logger.error(ex);
+						}
 					}
 				}
 				clses.add(cls);
@@ -80,6 +83,14 @@ public class BeanParser<T> extends ElementParser<T> {
 							} else {
 								values.add(null);
 							}
+						}
+					}
+				}
+				for (int i = 0; i < clses.size(); i++) {
+					if (clses.get(i) == null) {
+						Object paramValue = values.get(i);
+						if (paramValue != null) {
+							clses.set(i, paramValue.getClass());
 						}
 					}
 				}
