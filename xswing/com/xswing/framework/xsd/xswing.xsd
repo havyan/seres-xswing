@@ -28,6 +28,7 @@
       <xsd:element name="radioButton" type="radioButton"></xsd:element>
       <xsd:element name="tree" type="componentBean"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
+      <xsd:element name="popupMenu" type="componentBean"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 

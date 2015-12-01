@@ -3,10 +3,14 @@ package com.xswing.framework.view.parser;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.JPopupMenu;
+import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -21,7 +25,24 @@ import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
+@XElement(names = { Const.TREE, Const.POPUPMENU })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
+
+	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
+
+	static {
+		CLASS_MAP.put(Const.TREE, JTree.class);
+		CLASS_MAP.put(Const.POPUPMENU, JPopupMenu.class);
+	}
+
+	public Class<?> findClass(Element source) {
+		Class<?> cls = CLASS_MAP.get(source.getName());
+		if (cls != null) {
+			return cls;
+		} else {
+			return super.findClass(source);
+		}
+	}
 
 	protected void handle(Context context, T component, Element source) {
 		super.handle(context, component, source);

@@ -126,6 +126,8 @@ public class Const {
 
 	public static final String TREE = "tree";
 
+	public static final String POPUPMENU = "popupMenu";
+
 	public static final String TAB = "tab";
 
 	public static final String PADDING = "padding";

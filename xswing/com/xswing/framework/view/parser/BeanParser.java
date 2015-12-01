@@ -4,11 +4,7 @@
 package com.xswing.framework.view.parser;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.swing.JTree;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
@@ -21,32 +17,20 @@ import com.xswing.framework.view.Context;
  * @author HWYan
  * 
  */
-@XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR, Const.TREE })
+@XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR })
 public class BeanParser<T> extends ElementParser<T> {
 
-	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
-
-	static {
-		CLASS_MAP.put(Const.TREE, JTree.class);
-	}
-
 	public Class<?> findClass(Element source) {
-		String name = source.getName();
-		Class<?> cls = CLASS_MAP.get(name);
+		Class<?> genericType = BaseUtils.getClassGenricType(this.getClass());
+		Class<?> cls = getClass(source, Const.CLASS);
 		if (cls != null) {
-			return cls;
-		} else {
-			Class<?> genericType = BaseUtils.getClassGenricType(this.getClass());
-			cls = getClass(source, Const.CLASS);
-			if (cls != null) {
-				if (genericType.isAssignableFrom(cls)) {
-					return cls;
-				} else {
-					throw new IllegalArgumentException(cls.getName() + " is not a sub class of " + genericType.getName());
-				}
+			if (genericType.isAssignableFrom(cls)) {
+				return cls;
 			} else {
-				return genericType;
+				throw new IllegalArgumentException(cls.getName() + " is not a sub class of " + genericType.getName());
 			}
+		} else {
+			return genericType;
 		}
 	}
 
