@@ -125,7 +125,7 @@ public class Context {
 		return model;
 	}
 
-	public Map<String, Object> getData() {
+	public Object getData() {
 		if (model != null) {
 			return model.getData();
 		} else {

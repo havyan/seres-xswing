@@ -32,9 +32,9 @@ public interface View extends AppListener {
 	public <T extends JComponent> T getComponent(String id, Class<T> cls);
 
 	public Map<String, Object> getBeans();
-	
+
 	public AppModel<?> getModel();
-	
+
 	public void setModel(AppModel<?> model);
 
 	public Context getContext();

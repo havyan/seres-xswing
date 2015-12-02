@@ -83,6 +83,6 @@ public class XPanel extends JPanel implements View {
 
 	@Override
 	public void handleEvent(AppEvent event) {
-		
+
 	}
 }

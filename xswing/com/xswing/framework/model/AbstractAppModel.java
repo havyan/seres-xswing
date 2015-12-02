@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.framework.events.PropertyChangeListenerProxy;
 import com.framework.proxy.DynamicObjectFactory2;
 import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.event.AppEvent;
@@ -20,16 +21,18 @@ import com.xswing.framework.event.AppListener;
  */
 public abstract class AbstractAppModel<T> implements AppModel<T> {
 
-	protected static final String MAIN_DATA_NAME = "main";
-
-	protected static final String UI_DATA_NAME = "ui";
-
-	protected final Map<String, Object> data = asDynamicObject(new HashMap<String, Object>());
+	protected T data;
 
 	private List<AppListener> appListeners = new ArrayList<AppListener>();
 
+	private Map<String, List<AppListener>> appListenersMap = new HashMap<String, List<AppListener>>();
+
+	public AbstractAppModel() {
+
+	}
+
 	public AbstractAppModel(T data) {
-		this.setMain(data);
+		this.setData(data);
 	}
 
 	public void addAppListener(AppListener l) {
@@ -40,13 +43,59 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		appListeners.remove(l);
 	}
 
+	public void addAppListener(String eventName, AppListener l) {
+		List<AppListener> listeners = appListenersMap.get(eventName);
+		if (listeners == null) {
+			listeners = new ArrayList<AppListener>();
+			appListenersMap.put(eventName, listeners);
+		}
+		listeners.add(l);
+	}
+
+	public void removeAppListener(String eventName, AppListener l) {
+		List<AppListener> listeners = appListenersMap.get(eventName);
+		if (listeners != null) {
+			listeners.remove(l);
+		}
+	}
+
 	public void bind(String dataPath, PropertyChangeListener l) {
-		((Bean) data).addPropertyChangeListener(dataPath, l);
+		((Bean) data).addPropertyChangeListener(dataPath, new PropertyChangeListenerProxy(this, l));
+	}
+
+	protected void unbindAll() {
+		if (data != null && data instanceof Bean) {
+			((Bean) data).removeAllPropertyChangeListenerFrom(this);
+		}
+	}
+
+	protected void rebindTo(Bean bean) {
+		if (data != null && data instanceof Bean && bean != null) {
+			Bean current = (Bean) data;
+			PropertyChangeListenerProxy[] listeners = current.getPropertyChangeListenersFrom(this);
+			for (PropertyChangeListenerProxy listener : listeners) {
+				bean.addPropertyChangeListener(listener);
+			}
+			Map<String, PropertyChangeListenerProxy[]> map = current.getPropertyChangeListenersMapFrom(this);
+			for (Map.Entry<String, PropertyChangeListenerProxy[]> entry : map.entrySet()) {
+				String propertyName = entry.getKey();
+				listeners = entry.getValue();
+				for (PropertyChangeListenerProxy listener : listeners) {
+					bean.addPropertyChangeListener(propertyName, listener);
+				}
+			}
+		}
 	}
 
 	public void fireAppEvent(AppEvent e) {
 		for (AppListener l : appListeners) {
 			l.handleEvent(e);
+		}
+		List<AppListener> listeners = appListenersMap.get(e.getName());
+		if (listeners != null) {
+			for (AppListener l : listeners) {
+				l.handleEvent(e);
+			}
 		}
 	}
 
@@ -54,32 +103,35 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		return DynamicObjectFactory2.createDynamicObject(target);
 	}
 
-	public Map<String, Object> getData() {
+	public T getData() {
 		return data;
 	}
 
-	public Object getData(String name) {
-		return data.get(name);
+	public T setData(T data) {
+		if (data != null) {
+			data = asDynamicObject(data);
+			if (data instanceof Bean) {
+				rebindTo((Bean) data);
+			}
+		}
+		unbindAll();
+		this.data = data;
+		fireAppEvent(new AppEvent(DATA_CHANGED));
+		return data;
 	}
 
-	@SuppressWarnings("unchecked")
-	public <V> V getData(String name, Class<V> cls) {
-		return (V) data.get(name);
+	public void setDataProperty(String property, Object value) {
+		if (data != null && data instanceof Bean) {
+			((Bean) data).setProperty(property, value);
+		}
 	}
 
-	public <V> V setData(String name, V data) {
-		V dynamicObject = asDynamicObject(data);
-		this.data.put(name, dynamicObject);
-		return dynamicObject;
-	}
-
-	public <V> V setMain(V data) {
-		return this.setData(MAIN_DATA_NAME, data);
-	}
-
-	@SuppressWarnings("unchecked")
-	public T getMain() {
-		return (T) this.getData(MAIN_DATA_NAME);
+	public Object getDataProperty(String property) {
+		if (data != null && data instanceof Bean) {
+			return ((Bean) data).getProperty(property);
+		} else {
+			return null;
+		}
 	}
 
 }

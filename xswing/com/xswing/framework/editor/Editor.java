@@ -5,10 +5,11 @@ import java.util.List;
 import javax.swing.JComponent;
 
 import com.xswing.framework.action.Action;
+import com.xswing.framework.event.AppListener;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
-public interface Editor<T extends JComponent, V> {
+public interface Editor<T extends JComponent, V> extends AppListener {
 	
 	public void init();
 

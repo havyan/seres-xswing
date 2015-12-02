@@ -4,7 +4,6 @@
 package com.xswing.framework.model;
 
 import java.beans.PropertyChangeListener;
-import java.util.Map;
 
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
@@ -18,19 +17,23 @@ public interface AppModel<T> {
 	public void addAppListener(AppListener l);
 
 	public void removeAppListener(AppListener l);
+	
+	public void addAppListener(String eventName, AppListener l);
+
+	public void removeAppListener(String eventName, AppListener l);
 
 	public void fireAppEvent(AppEvent e);
-	
+
 	public void bind(String dataPath, PropertyChangeListener l);
 
-	public Map<String, Object> getData();
+	public void setDataProperty(String property, Object value);
 
-	public Object getData(String name);
+	public Object getDataProperty(String property);
 
-	public <V> V setData(String name, V data);
+	public T getData();
 
-	public <V> V setMain(V data);
-
-	public T getMain();
+	public T setData(T data);
+	
+	public final String DATA_CHANGED = "DATA_CHANGED";
 
 }

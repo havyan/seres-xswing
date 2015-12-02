@@ -13,36 +13,36 @@ import com.xswing.framework.editor.Editor;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.model.AppModel;
 
-public class XContainer extends JPanel implements View {
+public class XContainer<M extends AppModel<?>> extends JPanel implements View {
 	private static final long serialVersionUID = 1L;
 
 	protected XPanel xpanel;
 
-	protected AppModel<?> model;
+	protected M model;
 
 	public XContainer(String path) {
-		this(path, (AppModel<?>) null, (Map<String, Object>) null);
+		this(path, (M) null, (Map<String, Object>) null);
 	}
 
 	public XContainer(URL url) {
-		this(url, (AppModel<?>) null, (Map<String, Object>) null);
+		this(url, (M) null, (Map<String, Object>) null);
 	}
 
-	public XContainer(String path, AppModel<?> model) {
+	public XContainer(String path, M model) {
 		this(path, model, (Map<String, Object>) null);
 	}
 
-	public XContainer(URL url, AppModel<?> model) {
+	public XContainer(URL url, M model) {
 		this(url, model, (Map<String, Object>) null);
 	}
 
-	public XContainer(String path, AppModel<?> model, Map<String, Object> prdefinedBeans) {
+	public XContainer(String path, M model, Map<String, Object> prdefinedBeans) {
 		this.model = model;
 		initXPanel(path, prdefinedBeans);
 		initReferences();
 	}
 
-	public XContainer(URL url, AppModel<?> model, Map<String, Object> prdefinedBeans) {
+	public XContainer(URL url, M model, Map<String, Object> prdefinedBeans) {
 		this.model = model;
 		initXPanel(url, prdefinedBeans);
 		initReferences();
@@ -79,7 +79,7 @@ public class XContainer extends JPanel implements View {
 		Map<String, Object> beans = xpanel.getBeans();
 		for (Map.Entry<String, Object> entry : beans.entrySet()) {
 			if (BaseUtils.hasField(this, entry.getKey())) {
-				BaseUtils.setField(this, entry.getKey(), entry.getValue());
+				BaseUtils.setFieldValue(this, entry.getKey(), entry.getValue());
 			}
 		}
 	}
@@ -140,18 +140,19 @@ public class XContainer extends JPanel implements View {
 	}
 
 	@Override
-	public AppModel<?> getModel() {
+	public M getModel() {
 		return model;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setModel(AppModel<?> model) {
-		this.model = model;
+		this.model = (M) model;
 	}
 
 	@Override
 	public void handleEvent(AppEvent event) {
-		
+
 	}
 
 }

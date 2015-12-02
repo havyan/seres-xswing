@@ -12,9 +12,12 @@ import java.util.Map;
 import javax.swing.JComponent;
 
 import com.framework.common.BaseUtils;
+import com.framework.events.PropertyChangeListenerProxy;
 import com.framework.log.Logger;
 import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.action.Action;
+import com.xswing.framework.event.AppEvent;
+import com.xswing.framework.model.AppModel;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 import com.xswing.framework.view.parser.Const;
@@ -78,14 +81,43 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		return context;
 	}
 
+	public void handleEvent(AppEvent event) {
+		if (AppModel.DATA_CHANGED.equals(event.getName())) {
+			this.rebind();
+		}
+	}
+
+	protected void rebind() {
+		unbind();
+		for (Map.Entry<String, String> entry : binds.entrySet()) {
+			addBind(entry.getKey(), entry.getValue());
+		}
+	}
+
 	public void setContext(Context context) {
+		if (this.context != null && this.context.getModel() != null) {
+			unbind();
+			this.context.getModel().removeAppListener(this);
+		}
 		this.context = context;
+		if (context.getModel() != null) {
+			context.getModel().addAppListener(this);
+		}
+	}
+
+	protected void unbind() {
+		if (context.getData() != null && context.getData() instanceof Bean) {
+			Bean bean = (Bean) context.getData();
+			bean.removePropertyChangeListenerFrom(this);
+		}
 	}
 
 	public void addBind(String type, String property) {
 		this.binds.put(type, property);
-		this.bind(property, (e) -> {
-			propertyChanged(type, e);
+		this.bind(property, new PropertyChangeListenerProxy(this) {
+			public void propertyChange(PropertyChangeEvent e) {
+				propertyChanged(type, e);
+			}
 		});
 		if (context.getData() != null) {
 			this.setBindValue(type, BaseUtils.getProperty(context.getData(), property));

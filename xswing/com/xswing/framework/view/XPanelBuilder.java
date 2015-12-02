@@ -13,6 +13,7 @@ import org.jdom2.input.SAXBuilder;
 import com.framework.exception.ExceptionUtils;
 import com.framework.log.Logger;
 import com.xswing.framework.model.AppModel;
+import com.xswing.framework.model.DefaultAppModel;
 import com.xswing.framework.view.parser.ParserEngine;
 
 /**
@@ -22,6 +23,17 @@ import com.xswing.framework.view.parser.ParserEngine;
 public class XPanelBuilder {
 
 	public static XPanel build(String path) {
+		return build(path, (AppModel<?>) null, (View) null);
+	}
+
+	public static XPanel build(String path, Object data) {
+		if (data != null) {
+			if (data instanceof AppModel) {
+				return build(path, (AppModel<?>) data, (View) null);
+			} else {
+				return build(path, new DefaultAppModel(data), (View) null);
+			}
+		}
 		return build(path, (AppModel<?>) null, (View) null);
 	}
 
