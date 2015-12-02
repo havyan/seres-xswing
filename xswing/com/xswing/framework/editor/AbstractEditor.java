@@ -3,24 +3,16 @@
  */
 package com.xswing.framework.editor;
 
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JComponent;
 
 import com.framework.common.BaseUtils;
-import com.framework.events.PropertyChangeListenerProxy;
 import com.framework.log.Logger;
-import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.action.Action;
 import com.xswing.framework.event.AppEvent;
-import com.xswing.framework.model.AppModel;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
-import com.xswing.framework.view.parser.Const;
 
 /**
  * @author think
@@ -34,7 +26,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected Context context;
 
-	protected Map<String, String> binds = new HashMap<String, String>();
+	protected String valueProperty;
 
 	public void init() {
 
@@ -82,21 +74,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	public void handleEvent(AppEvent event) {
-		if (AppModel.DATA_CHANGED.equals(event.getName())) {
-			this.rebind();
-		}
-	}
-
-	protected void rebind() {
-		unbind();
-		for (Map.Entry<String, String> entry : binds.entrySet()) {
-			addBind(entry.getKey(), entry.getValue());
-		}
 	}
 
 	public void setContext(Context context) {
 		if (this.context != null && this.context.getModel() != null) {
-			unbind();
 			this.context.getModel().removeAppListener(this);
 		}
 		this.context = context;
@@ -105,50 +86,20 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		}
 	}
 
-	protected void unbind() {
-		if (context.getData() != null && context.getData() instanceof Bean) {
-			Bean bean = (Bean) context.getData();
-			bean.removePropertyChangeListenerFrom(this);
-		}
+	public void setValueProperty(String property) {
+		this.valueProperty = property;
 	}
 
-	public void addBind(String type, String property) {
-		this.binds.put(type, property);
-		this.bind(property, new PropertyChangeListenerProxy(this) {
-			public void propertyChange(PropertyChangeEvent e) {
-				propertyChanged(type, e);
-			}
-		});
-		if (context.getData() != null) {
-			this.setBindValue(type, BaseUtils.getProperty(context.getData(), property));
-		}
-	}
-
-	public void setBindValue(String type, Object value) {
-		if (type.equals(Const.VALUE)) {
-			this.setValue(value);
-		}
-	}
-
-	protected void bind(String property, PropertyChangeListener listener) {
-		if (context.getData() != null && context.getData() instanceof Bean) {
-			Bean bean = (Bean) context.getData();
-			bean.addPropertyChangeListener(property, listener);
-		}
-	}
-
-	protected void propertyChanged(String type, PropertyChangeEvent e) {
-		this.setBindValue(type, getDataProperty(this.binds.get(type)));
+	public String getValueProperty() {
+		return valueProperty;
 	}
 
 	protected void writeBack() {
-		if (binds.get(Const.VALUE) != null) {
-			String result = this.validate();
-			if (result == null && context.getData() != null) {
-				String bind = this.binds.get(Const.VALUE);
-				Logger.debug("Write back value to: " + bind);
-				BaseUtils.setProperty(context.getData(), bind, this.getValue());
-			}
+		String result = this.validate();
+		if (result == null && context.getData() != null) {
+			String property = this.getValueProperty();
+			Logger.debug("Write back value to: " + property);
+			BaseUtils.setProperty(context.getData(), property, this.getValue());
 		}
 	}
 

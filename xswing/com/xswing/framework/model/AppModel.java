@@ -35,5 +35,9 @@ public interface AppModel<T> {
 	public T setData(T data);
 	
 	public final String DATA_CHANGED = "DATA_CHANGED";
+	
+	public final String OLD_DATA = "OLD_DATA";
+	
+	public final String NEW_DATA = "NEW_DATA";
 
 }

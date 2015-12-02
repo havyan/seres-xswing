@@ -404,7 +404,7 @@
     <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="padding" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="bind" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="action" type="xsd:string"></xsd:attribute>
   </xsd:attributeGroup>
 

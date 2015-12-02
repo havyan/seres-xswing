@@ -10,7 +10,7 @@ import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
 
 public interface Editor<T extends JComponent, V> extends AppListener {
-	
+
 	public void init();
 
 	public void setValue(Object value);
@@ -20,6 +20,10 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	public void setEnabled(boolean enabled);
 
 	public void reset();
+	
+	public void setValueProperty(String property);
+	
+	public String getValueProperty();
 
 	public T getComponent();
 
@@ -30,8 +34,6 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	public Context getContext();
 
 	public String validate();
-
-	public void addBind(String type, String property);
 
 	public void setValidators(List<Validator> validators);
 

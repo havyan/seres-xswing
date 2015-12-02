@@ -9,7 +9,6 @@ import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
-import javax.swing.JTree;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -30,7 +29,6 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
 
 	static {
-		CLASS_MAP.put(Const.TREE, JTree.class);
 	}
 
 	public Class<?> findClass(Element source) {
@@ -107,20 +105,19 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		Editor<? extends JComponent, ?> editor = EditorFactory.create(component, editorClass);
 		editor.setContext(context);
 		editor.init();
-		bindEditor(editor, source);
+		String valueText = getString(source, Const.VALUE);
+		if (StringUtils.isNotEmpty(valueText)) {
+			editor.setValueProperty(findProperty(valueText));
+			bindSet(context, bean, valueText, value -> {
+				editor.setValue(value);
+			});
+		}
 		editor.setValidators(parseValidators(context, source));
 		Action<?, ?, ?> action = createAction(context, bean, source);
 		if (action != null) {
 			editor.registerAction(action);
 		}
 		context.setEditor(id, editor);
-	}
-
-	protected void bindEditor(Editor<? extends JComponent, ?> editor, Element source) {
-		String bind = source.getAttributeValue(Const.BIND);
-		if (StringUtils.isNotEmpty(bind)) {
-			editor.addBind(Const.VALUE, bind.trim());
-		}
 	}
 
 	protected List<Validator> parseValidators(Context context, Element source) {

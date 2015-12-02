@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.framework.common.BaseUtils;
 import com.framework.events.PropertyChangeListenerProxy;
 import com.framework.proxy.DynamicObjectFactory2;
 import com.framework.proxy.interfaces.Bean;
@@ -69,24 +70,6 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		}
 	}
 
-	protected void rebindTo(Bean bean) {
-		if (data != null && data instanceof Bean && bean != null) {
-			Bean current = (Bean) data;
-			PropertyChangeListenerProxy[] listeners = current.getPropertyChangeListenersFrom(this);
-			for (PropertyChangeListenerProxy listener : listeners) {
-				bean.addPropertyChangeListener(listener);
-			}
-			Map<String, PropertyChangeListenerProxy[]> map = current.getPropertyChangeListenersMapFrom(this);
-			for (Map.Entry<String, PropertyChangeListenerProxy[]> entry : map.entrySet()) {
-				String propertyName = entry.getKey();
-				listeners = entry.getValue();
-				for (PropertyChangeListenerProxy listener : listeners) {
-					bean.addPropertyChangeListener(propertyName, listener);
-				}
-			}
-		}
-	}
-
 	public void fireAppEvent(AppEvent e) {
 		for (AppListener l : appListeners) {
 			l.handleEvent(e);
@@ -108,15 +91,21 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 	}
 
 	public T setData(T data) {
-		if (data != null) {
-			data = asDynamicObject(data);
-			if (data instanceof Bean) {
-				rebindTo((Bean) data);
+		if (data != this.data) {
+			T oldData = this.data;
+			if (data != null) {
+				data = asDynamicObject(data);
+			}
+			BaseUtils.takeBinds(oldData, data, this);
+			this.data = data;
+			AppEvent event = new AppEvent(DATA_CHANGED);
+			event.setParam(OLD_DATA, oldData);
+			event.setParam(NEW_DATA, data);
+			fireAppEvent(event);
+			if (this.data != null && this.data instanceof Bean) {
+				((Bean) this.data).fireChange();
 			}
 		}
-		unbindAll();
-		this.data = data;
-		fireAppEvent(new AppEvent(DATA_CHANGED));
 		return data;
 	}
 

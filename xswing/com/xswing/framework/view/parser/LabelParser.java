@@ -18,11 +18,18 @@ public class LabelParser extends ComponentParser<JLabel> {
 		if (StringUtils.isNotEmpty(icon)) {
 			label.setIcon(new ImageIcon(icon));
 		}
-		String text = source.getAttributeValue(Const.TEXT);
-		if (StringUtils.isNotEmpty(text)) {
-			label.setText(text);
-		}
 		return label;
+	}
+
+	@Override
+	protected void bind(Context context, String id, JLabel bean, Element source) {
+		super.bind(context, id, bean, source);
+		String text = getString(source, Const.TEXT);
+		if (StringUtils.isNotEmpty(text)) {
+			bindSet(context, bean, text, value -> {
+				bean.setText(value.toString());
+			});
+		}
 	}
 
 }
