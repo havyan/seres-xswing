@@ -67,11 +67,7 @@ public class BeanParser<T> extends ElementParser<T> {
 					String ref = getString(e, Const.REF);
 					if (StringUtils.isNotEmpty(ref)) {
 						Object refBean = context.getBean(ref);
-						if (refBean != null) {
-							values.add(refBean);
-						} else {
-							throw new IllegalArgumentException("No bean for id: " + ref + ", <argument> element only support predefined bean.");
-						}
+						values.add(refBean);
 					} else {
 						Element valueElement = e.getChild(Const.VALUE);
 						if (valueElement != null) {

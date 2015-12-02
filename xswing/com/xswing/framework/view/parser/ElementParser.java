@@ -25,9 +25,9 @@ public abstract class ElementParser<T> implements Parser<T, Element> {
 
 	public T parse(Context context, Element source) {
 		T bean = parseElement(context, source);
-		handle(context, bean, source);
 		String id = getString(source, Const.ID, UUID.randomUUID().toString());
 		bind(context, id, bean, source);
+		handle(context, bean, source);
 		return bean;
 	}
 
@@ -138,10 +138,10 @@ public abstract class ElementParser<T> implements Parser<T, Element> {
 			while (matcher.find()) {
 				String find = matcher.group();
 				Object value = getProperty(context, matcher.group(1));
-				if (value != null) {
-					text = text.replace(find, value.toString());
+				if (value == null) {
+					value = "";
 				}
-				matcher.group(0);
+				text = text.replace(find, value.toString());
 			}
 		}
 		return text;

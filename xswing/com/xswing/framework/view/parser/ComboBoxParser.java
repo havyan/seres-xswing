@@ -42,7 +42,6 @@ public class ComboBoxParser extends ComponentParser<JComboBox> {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void bind(Context context, String id, JComboBox bean, Element source) {
-		super.bind(context, id, bean, source);
 		bindSet(context, bean, getString(source, Const.ITEMS), value -> {
 			bean.removeAllItems();
 			if (value != null) {
@@ -65,5 +64,6 @@ public class ComboBoxParser extends ComponentParser<JComboBox> {
 				}
 			}
 		});
+		super.bind(context, id, bean, source);
 	}
 }
