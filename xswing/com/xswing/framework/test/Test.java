@@ -8,8 +8,6 @@ import javax.swing.UIManager;
 
 import com.framework.exception.ExceptionUtils;
 import com.xswing.framework.view.XPanelBuilder;
-import com.xswing.framework.view.parser.BeanParser;
-import com.xswing.framework.view.parser.XElement;
 
 /**
  * @author HWYan
@@ -37,13 +35,44 @@ public class Test {
 		} catch (Exception e) {
 			ExceptionUtils.logAndShowException(e);
 		}
-		XElement xmlElement = BeanParser.class.getAnnotation(XElement.class);
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(XPanelBuilder.build("./gantt.xml"));
+		frame.add(XPanelBuilder.build("./gantt.xml", new Person("Haowei", 32)));
 		frame.pack();
 		frame.setResizable(true);
 		frame.setVisible(true);
+	}
+
+	public static class Person {
+		private String name;
+
+		private int age;
+		
+		public Person(){
+			
+		}
+
+		public Person(String name, int age) {
+			super();
+			this.name = name;
+			this.age = age;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public void setName(String name) {
+			this.name = name;
+		}
+
+		public int getAge() {
+			return age;
+		}
+
+		public void setAge(int age) {
+			this.age = age;
+		}
 	}
 
 }

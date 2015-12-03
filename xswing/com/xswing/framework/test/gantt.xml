@@ -133,6 +133,10 @@
               <property name="text" value="复制"></property>
             </button>
           </component>
+          
+          <component>
+            <label text="This is a test from {{name}}"></label>
+          </component>
         </flowPanel>
       </north>
       <center>
