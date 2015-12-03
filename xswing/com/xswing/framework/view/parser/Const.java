@@ -168,4 +168,6 @@ public class Const {
 
 	public static final String ROOTVISIBLE = "rootVisible";
 
+	public static final String ROWHEIGHT = "rowHeight";
+
 }

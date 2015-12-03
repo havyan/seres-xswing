@@ -429,6 +429,7 @@
     <xsd:complexContent>
       <xsd:extension base="cbean">
         <xsd:attribute name="rootVisible" type="xsd:boolean"></xsd:attribute>
+        <xsd:attribute name="rowHeight" type="xsd:int"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
