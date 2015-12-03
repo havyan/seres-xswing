@@ -91,12 +91,11 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 	}
 
 	public T setData(T data) {
-		if (data == null) {
-			data = createDefaultData();
-		}
 		if (data != this.data) {
 			T oldData = this.data;
-			data = asDynamicObject(data);
+			if (data != null) {
+				data = asDynamicObject(data);
+			}
 			BaseUtils.takeBinds(oldData, data, this);
 			this.data = data;
 			AppEvent event = new AppEvent(DATA_CHANGED);
@@ -108,12 +107,6 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 			}
 		}
 		return data;
-	}
-
-	@SuppressWarnings("unchecked")
-	protected T createDefaultData() {
-		// TODO Need a none-argument constructor
-		return (T) BaseUtils.newInstance(BaseUtils.getClassGenricType(this.getClass()));
 	}
 
 	public void setDataProperty(String property, Object value) {

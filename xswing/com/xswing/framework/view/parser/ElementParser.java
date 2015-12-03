@@ -14,7 +14,6 @@ import org.jdom2.Element;
 import com.framework.common.BaseUtils;
 import com.framework.events.PropertyChangeListenerProxy;
 import com.framework.proxy.interfaces.Bean;
-import com.xswing.framework.model.AppModel;
 import com.xswing.framework.view.Context;
 
 public abstract class ElementParser<T> implements Parser<T, Element> {
@@ -39,9 +38,6 @@ public abstract class ElementParser<T> implements Parser<T, Element> {
 
 	protected void bind(Context context, String id, T bean, Element source) {
 		context.setBean(id, bean);
-		context.getModel().addAppListener(AppModel.DATA_CHANGED, e -> {
-			BaseUtils.takeBinds(e.getParam(AppModel.OLD_DATA), e.getParam(AppModel.NEW_DATA), bean);
-		});
 	}
 
 	protected void bindProperty(Object data, String property, PropertyChangeListener l) {

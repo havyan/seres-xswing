@@ -11,14 +11,17 @@ import javax.swing.JComponent;
 import org.jdom2.Document;
 
 import com.framework.common.BaseUtils;
+import com.framework.proxy.DynamicObjectFactory2;
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.event.AppEvent;
+import com.xswing.framework.event.AppListener;
 import com.xswing.framework.model.AppModel;
 
 /**
  * @author HWYan
  * 
  */
-public class Context {
+public class Context implements AppListener {
 
 	private Map<String, Object> beans = new HashMap<String, Object>();
 
@@ -29,6 +32,8 @@ public class Context {
 	private Document doc;
 
 	private String path;
+
+	private Object tempData;
 
 	private AppModel<?> model;
 
@@ -126,15 +131,24 @@ public class Context {
 	}
 
 	public Object getData() {
-		if (model != null) {
+		if (model != null && model.getData() != null) {
 			return model.getData();
 		} else {
-			return null;
+			return tempData;
 		}
 	}
 
 	public void setModel(AppModel<?> model) {
+		if (this.model != null) {
+			this.model.removeAppListener(this);
+		}
 		this.model = model;
+		if (this.model != null) {
+			this.model.addAppListener(this);
+		}
+		if (this.model == null || this.model.getData() == null) {
+			tempData = DynamicObjectFactory2.createDynamicObject(new HashMap<String, Object>());
+		}
 	}
 
 	public View getView() {
@@ -143,6 +157,28 @@ public class Context {
 
 	public void setView(View view) {
 		this.view = view;
+	}
+
+	@Override
+	public void handleEvent(AppEvent event) {
+		if (AppModel.DATA_CHANGED.equals(event.getName())) {
+			Object oldData = event.getParam(AppModel.OLD_DATA);
+			Object newData = event.getParam(AppModel.NEW_DATA);
+			if (oldData != null || newData != null) {
+				if (oldData == null) {
+					oldData = tempData;
+				}
+				if (newData == null) {
+					tempData = DynamicObjectFactory2.createDynamicObject(new HashMap<String, Object>());
+					newData = tempData;
+				} else {
+					tempData = null;
+				}
+			}
+			for (Object bean : beans.values()) {
+				BaseUtils.takeBinds(oldData, newData, bean);
+			}
+		}
 	}
 
 }
