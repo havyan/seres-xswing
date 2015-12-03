@@ -102,9 +102,6 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 			event.setParam(OLD_DATA, oldData);
 			event.setParam(NEW_DATA, data);
 			fireAppEvent(event);
-			if (this.data != null && this.data instanceof Bean) {
-				((Bean) this.data).fireChange();
-			}
 		}
 		return data;
 	}
