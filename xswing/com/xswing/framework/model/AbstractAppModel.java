@@ -22,14 +22,16 @@ import com.xswing.framework.event.AppListener;
  */
 public abstract class AbstractAppModel<T> implements AppModel<T> {
 
-	protected T data;
+	private T data;
 
 	private List<AppListener> appListeners = new ArrayList<AppListener>();
 
 	private Map<String, List<AppListener>> appListenersMap = new HashMap<String, List<AppListener>>();
 
-	public AbstractAppModel() {
+	private Object tempData;
 
+	public AbstractAppModel() {
+		tempData = asDynamicObject(new HashMap<String, Object>());
 	}
 
 	public AbstractAppModel(T data) {
@@ -61,8 +63,9 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 	}
 
 	public void bind(String dataPath, PropertyChangeListener l) {
-		if (data != null && data instanceof Bean) {
-			((Bean) data).addPropertyChangeListener(dataPath, new PropertyChangeListenerProxy(this, l));
+		Object bean = this.data != null ? this.data : this.tempData;
+		if (bean != null && bean instanceof Bean) {
+			((Bean) bean).addPropertyChangeListener(dataPath, new PropertyChangeListenerProxy(this, l));
 		}
 	}
 
@@ -98,7 +101,16 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 			if (data != null) {
 				data = asDynamicObject(data);
 			}
-			BaseUtils.takeBinds(oldData, data, this);
+			Object bindsFrom = oldData;
+			Object bindsTo = data;
+			if (bindsFrom == null) {
+				bindsFrom = tempData;
+			}
+			if (bindsTo == null) {
+				tempData = asDynamicObject(new HashMap<String, Object>());
+				bindsTo = tempData;
+			}
+			BaseUtils.takeBinds(bindsFrom, bindsTo, this);
 			this.data = data;
 			AppEvent event = new AppEvent(DATA_CHANGED);
 			event.setParam(OLD_DATA, oldData);

@@ -139,6 +139,7 @@ public class Context implements AppListener {
 	}
 
 	public void setModel(AppModel<?> model) {
+		Object oldData = getData();
 		if (this.model != null) {
 			this.model.removeAppListener(this);
 		}
@@ -148,6 +149,12 @@ public class Context implements AppListener {
 		}
 		if (this.model == null || this.model.getData() == null) {
 			tempData = DynamicObjectFactory2.createDynamicObject(new HashMap<String, Object>());
+		}
+		Object newData = getData();
+		if (oldData != null && newData != null) {
+			for (Object bean : beans.values()) {
+				BaseUtils.takeBinds(oldData, newData, bean);
+			}
 		}
 	}
 
