@@ -12,6 +12,7 @@ import org.jdom2.Document;
 
 import com.framework.common.BaseUtils;
 import com.framework.proxy.DynamicObjectFactory2;
+import com.framework.proxy.interfaces.Bean;
 import com.xswing.framework.editor.Editor;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
@@ -154,6 +155,15 @@ public class Context implements AppListener {
 		if (oldData != null && newData != null) {
 			for (Object bean : beans.values()) {
 				BaseUtils.takeBinds(oldData, newData, bean);
+			}
+		}
+	}
+
+	public void unbind() {
+		Object data = getData();
+		if (data != null && data instanceof Bean) {
+			for (Object bean : beans.values()) {
+				((Bean) data).removeAllPropertyChangeListenerFrom(bean);
 			}
 		}
 	}

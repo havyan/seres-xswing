@@ -85,4 +85,15 @@ public class XPanel extends JPanel implements View {
 	public void handleEvent(AppEvent event) {
 
 	}
+
+	public void destroy() {
+		this.context.unbind();
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		this.destroy();
+	}
+
 }

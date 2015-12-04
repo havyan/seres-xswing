@@ -155,4 +155,14 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View {
 
 	}
 
+	public void destroy() {
+		this.xpanel.destroy();
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		this.destroy();
+	}
+
 }
