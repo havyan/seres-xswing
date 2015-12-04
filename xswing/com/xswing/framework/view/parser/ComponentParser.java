@@ -43,23 +43,27 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 	protected void handle(Context context, T component, Element source) {
 		super.handle(context, component, source);
 		if (component != null) {
-			Dimension size = component.getPreferredSize();
-			double width = getDouble(source, Const.WIDTH, size.getWidth());
-			double height = getDouble(source, Const.HEIGHT, size.getHeight());
-			size = new Dimension();
-			size.setSize(width, height);
-			component.setPreferredSize(size);
-			String toolTip = getString(source, Const.TOOLTIP);
-			if (StringUtils.isNotEmpty(toolTip)) {
-				component.setToolTipText(toolTip);
-			}
-			Border border = createBorder(source);
-			if (border != null) {
-				component.setBorder(border);
-			}
-			String name = getString(source, Const.NAME);
-			if (name != null) {
-				component.setName(name);
+			String widthText = getString(source, Const.WIDTH);
+			String heightText = getString(source, Const.HEIGHT);
+			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
+				Dimension size = component.getPreferredSize();
+				double width = StringUtils.isNotEmpty(widthText) ? Double.valueOf(widthText) : size.width;
+				double height = StringUtils.isNotEmpty(heightText) ? Double.valueOf(heightText) : size.height;
+				size = new Dimension();
+				size.setSize(width, height);
+				component.setPreferredSize(size);
+				String toolTip = getString(source, Const.TOOLTIP);
+				if (StringUtils.isNotEmpty(toolTip)) {
+					component.setToolTipText(toolTip);
+				}
+				Border border = createBorder(source);
+				if (border != null) {
+					component.setBorder(border);
+				}
+				String name = getString(source, Const.NAME);
+				if (name != null) {
+					component.setName(name);
+				}
 			}
 		}
 	}
