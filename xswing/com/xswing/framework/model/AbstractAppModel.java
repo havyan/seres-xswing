@@ -35,6 +35,7 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 	}
 
 	public AbstractAppModel(T data) {
+		this();
 		this.setData(data);
 	}
 
