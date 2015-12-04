@@ -19,8 +19,9 @@ public class ScrollPanelParser extends ComponentParser<JScrollPane> {
 
 	@Override
 	public JScrollPane parseElement(Context context, Element source) {
-		JComponent view = (JComponent) ParserEngine.parse(context, source.getChild(Const.VIEW)); 
-		JScrollPane scrollPanel = new JScrollPane(view);
+		JScrollPane scrollPanel = createBean(context, source);
+		JComponent view = (JComponent) ParserEngine.parse(context, source.getChild(Const.VIEW));
+		scrollPanel.setViewportView(view);
 		return scrollPanel;
 	}
 
