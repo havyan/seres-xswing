@@ -115,7 +115,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			});
 		}
 		editor.setValidators(parseValidators(context, source));
-		Action<?, ?, ?> action = createAction(context, bean, source);
+		Action<?, ?, ?> action = createAction(context, editor, source);
 		if (action != null) {
 			editor.registerAction(action);
 		}
@@ -133,13 +133,13 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		return validtors;
 	}
 
-	protected Action<?, ?, ?> createAction(Context context, T bean, Element source) {
+	protected Action<?, ?, ?> createAction(Context context, Editor<? extends JComponent, ?> editor, Element source) {
 		String actionClass = source.getAttributeValue(Const.ACTION);
 		if (StringUtils.isNotEmpty(actionClass)) {
 			Action<?, ?, ?> action = (Action<?, ?, ?>) BaseUtils.newInstance(actionClass);
 			action.setModel(context.getModel());
 			action.setView(context.getView());
-			action.setComponent(bean);
+			action.setEditor(editor);
 			if (context.getModel() != null) {
 				context.getModel().addAppListener(action);
 			}
