@@ -13,20 +13,11 @@ import com.xswing.framework.view.Context;
 
 public interface Editor<T extends JComponent, V> extends AppListener {
 
-	default void init() {
-
-	}
+	public void init();
 
 	public void setValue(Object value);
 
 	public V getValue();
-
-	default void setEnabled(boolean enabled) {
-		T component = this.getComponent();
-		if (component != null) {
-			component.setEnabled(enabled);
-		}
-	}
 
 	public void reset();
 
@@ -41,6 +32,19 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	public void setContext(Context context);
 
 	public Context getContext();
+
+	public void setValidators(List<Validator> validators);
+
+	public List<Validator> getValidators();
+
+	public void registerAction(Action<?, ?, ?> action);
+
+	default void setEnabled(boolean enabled) {
+		T component = this.getComponent();
+		if (component != null) {
+			component.setEnabled(enabled);
+		}
+	}
 
 	default String validateValue() {
 		List<Validator> validators = this.getValidators();
@@ -72,11 +76,5 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 			BaseUtils.setProperty(context.getData(), property, this.getValue());
 		}
 	}
-
-	public void setValidators(List<Validator> validators);
-
-	public List<Validator> getValidators();
-
-	public void registerAction(Action<?, ?, ?> action);
 
 }
