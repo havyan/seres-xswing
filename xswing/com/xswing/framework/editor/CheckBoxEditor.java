@@ -4,6 +4,7 @@
 package com.xswing.framework.editor;
 
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 
 import com.xswing.framework.action.Action;
 
@@ -14,8 +15,9 @@ import com.xswing.framework.action.Action;
 @Component(types = { JCheckBox.class })
 public class CheckBoxEditor extends AbstractEditor<JCheckBox, Boolean> {
 
-	public void init() {
-		component.addActionListener((e) -> writeBack());
+	public void setComponent(JComponent component) {
+		super.setComponent(component);
+		this.component.addActionListener((e) -> writeBack());
 	}
 
 	@Override

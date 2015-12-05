@@ -39,6 +39,4 @@ public interface View extends AppListener {
 
 	public Context getContext();
 
-	public void setContext(Context context);
-
 }

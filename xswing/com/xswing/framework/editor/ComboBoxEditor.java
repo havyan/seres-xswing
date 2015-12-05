@@ -1,6 +1,7 @@
 package com.xswing.framework.editor;
 
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 
 @SuppressWarnings("rawtypes")
 @Component(types = { JComboBox.class })
@@ -29,8 +30,9 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 		}
 	}
 
-	public void init() {
-		component.addActionListener((e) -> writeBack());
+	public void setComponent(JComponent component) {
+		super.setComponent(component);
+		this.component.addActionListener((e) -> writeBack());
 	}
 
 }

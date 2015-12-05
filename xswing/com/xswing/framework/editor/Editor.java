@@ -46,7 +46,7 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 		}
 	}
 
-	default String validateValue() {
+	default String check() {
 		List<Validator> validators = this.getValidators();
 		if (validators != null && validators.size() > 0) {
 			V value = this.getValue();
@@ -69,7 +69,7 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 
 	default void writeBack() {
 		Context context = this.getContext();
-		String result = this.validateValue();
+		String result = this.check();
 		if (result == null && context != null && context.getData() != null) {
 			String property = this.getValueProperty();
 			Logger.debug("Write back value to: " + property);

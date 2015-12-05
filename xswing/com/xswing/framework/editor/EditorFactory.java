@@ -9,6 +9,7 @@ import javax.swing.JComponent;
 import org.apache.commons.lang3.StringUtils;
 
 import com.framework.common.BaseUtils;
+import com.xswing.framework.view.Context;
 
 @SuppressWarnings("unchecked")
 public class EditorFactory {
@@ -33,23 +34,28 @@ public class EditorFactory {
 		}
 	}
 
-	public static Editor<? extends JComponent, ?> create(JComponent component, String editorClass) {
-		if(component instanceof Editor) {
+	public static Editor<? extends JComponent, ?> create(Context context, JComponent component, String editorClass) {
+		if (component instanceof Editor) {
 			return (Editor<? extends JComponent, ?>) component;
 		}
 		Editor<? extends JComponent, ?> editor = null;
 		if (StringUtils.isNotEmpty(editorClass)) {
 			editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(editorClass);
 			if (editor != null) {
+				editor.setContext(context);
 				editor.setComponent(component);
 			}
+		} else if (component instanceof Editor) {
+			return (Editor<? extends JComponent, ?>) component;
+		} else if (component instanceof EditorPeer) {
+			return ((EditorPeer) component).getEditor();
 		} else {
-			editor = createDefault(component);
+			editor = createDefault(context, component);
 		}
 		return editor;
 	}
 
-	public static Editor<? extends JComponent, ?> createDefault(JComponent component) {
+	public static Editor<? extends JComponent, ?> createDefault(Context context, JComponent component) {
 		Editor<? extends JComponent, ?> editor = null;
 		for (Map.Entry<Class<?>, Class<Editor<? extends JComponent, ?>>> entry : EDITORS.entrySet()) {
 			if (entry.getKey().isInstance(component)) {
@@ -60,6 +66,7 @@ public class EditorFactory {
 		if (editor == null) {
 			editor = new DefaultEditor();
 		}
+		editor.setContext(context);
 		editor.setComponent(component);
 		return editor;
 	}

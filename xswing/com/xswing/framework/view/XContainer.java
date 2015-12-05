@@ -10,10 +10,11 @@ import javax.swing.JPanel;
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
 import com.xswing.framework.editor.Editor;
+import com.xswing.framework.editor.EditorPeer;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.model.AppModel;
 
-public class XContainer<M extends AppModel<?>> extends JPanel implements View {
+public class XContainer<M extends AppModel<?>> extends JPanel implements View, EditorPeer {
 	private static final long serialVersionUID = 1L;
 
 	protected XPanel xpanel;
@@ -135,11 +136,6 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View {
 	}
 
 	@Override
-	public void setContext(Context context) {
-		xpanel.setContext(context);
-	}
-
-	@Override
 	public M getModel() {
 		return model;
 	}
@@ -163,6 +159,18 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View {
 	protected void finalize() throws Throwable {
 		super.finalize();
 		this.destroy();
+	}
+
+	public void setValue(Object value) {
+	}
+
+	public Object getValue() {
+		return null;
+	}
+
+	@Override
+	public JComponent getComponent() {
+		return this;
 	}
 
 }
