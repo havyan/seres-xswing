@@ -43,6 +43,18 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 	protected void handle(Context context, T component, Element source) {
 		super.handle(context, component, source);
 		if (component != null) {
+			String name = getString(source, Const.NAME);
+			if (name != null) {
+				component.setName(name);
+			}
+			Border border = createBorder(source);
+			if (border != null) {
+				component.setBorder(border);
+			}
+			String toolTip = getString(source, Const.TOOLTIP);
+			if (StringUtils.isNotEmpty(toolTip)) {
+				component.setToolTipText(toolTip);
+			}
 			String widthText = getString(source, Const.WIDTH);
 			String heightText = getString(source, Const.HEIGHT);
 			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
@@ -52,18 +64,6 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				size = new Dimension();
 				size.setSize(width, height);
 				component.setPreferredSize(size);
-				String toolTip = getString(source, Const.TOOLTIP);
-				if (StringUtils.isNotEmpty(toolTip)) {
-					component.setToolTipText(toolTip);
-				}
-				Border border = createBorder(source);
-				if (border != null) {
-					component.setBorder(border);
-				}
-				String name = getString(source, Const.NAME);
-				if (name != null) {
-					component.setName(name);
-				}
 			}
 		}
 	}
