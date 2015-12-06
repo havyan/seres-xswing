@@ -4,7 +4,7 @@ import javax.swing.JButton;
 
 import com.xswing.framework.action.Action;
 
-@Component(types = { JButton.class })
+@Component(name = "button", types = { JButton.class })
 public class ButtonEditor extends AbstractEditor<JButton, String> {
 
 	@Override

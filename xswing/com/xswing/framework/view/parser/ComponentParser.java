@@ -105,8 +105,8 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 	protected void bind(Context context, String id, T bean, Element source) {
 		super.bind(context, id, bean, source);
 		JComponent component = (JComponent) bean;
-		String editorClass = source.getAttributeValue(Const.EDITOR);
-		Editor<? extends JComponent, ?> editor = EditorFactory.create(context, component, editorClass);
+		String editorText = source.getAttributeValue(Const.EDITOR);
+		Editor<? extends JComponent, ?> editor = EditorFactory.create(context, component, editorText);
 		String valueText = getString(source, Const.VALUE);
 		if (StringUtils.isNotEmpty(valueText)) {
 			editor.setValueProperty(findProperty(valueText));

@@ -4,7 +4,7 @@ import javax.swing.JMenuItem;
 
 import com.xswing.framework.action.Action;
 
-@Component(types = { JMenuItem.class })
+@Component(name = "menuItem", types = { JMenuItem.class })
 public class MenuItemEditor extends AbstractEditor<JMenuItem, String> {
 
 	@Override

@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 import javax.swing.JComponent;
 
 @SuppressWarnings("rawtypes")
-@Component(types = { JComboBox.class })
+@Component(name = "comboBox", types = { JComboBox.class })
 public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 
 	@Override

@@ -2,7 +2,7 @@ package com.xswing.framework.editor;
 
 import javax.swing.JLabel;
 
-@Component(types = { JLabel.class })
+@Component(name = "label", types = { JLabel.class })
 public class LabelEditor extends AbstractEditor<JLabel, String> {
 
 	@Override

@@ -14,13 +14,16 @@ import com.xswing.framework.view.Context;
 @SuppressWarnings("unchecked")
 public class EditorFactory {
 
-	public static final Map<Class<?>, Class<Editor<? extends JComponent, ?>>> EDITORS = new HashMap<Class<?>, Class<Editor<? extends JComponent, ?>>>();
+	public static final Map<String, Class<Editor<? extends JComponent, ?>>> NAME_EDITORS = new HashMap<String, Class<Editor<? extends JComponent, ?>>>();
+
+	public static final Map<Class<?>, Class<Editor<? extends JComponent, ?>>> CLASS_EDITORS = new HashMap<Class<?>, Class<Editor<? extends JComponent, ?>>>();
 
 	public static void register(Class<Editor<? extends JComponent, ?>> cls) {
 		Component component = cls.getAnnotation(Component.class);
 		if (component != null) {
+			NAME_EDITORS.put(component.name(), cls);
 			for (Class<?> type : component.types()) {
-				EDITORS.put(type, cls);
+				CLASS_EDITORS.put(type, cls);
 			}
 		}
 	}
@@ -34,13 +37,18 @@ public class EditorFactory {
 		}
 	}
 
-	public static Editor<? extends JComponent, ?> create(Context context, JComponent component, String editorClass) {
+	public static Editor<? extends JComponent, ?> create(Context context, JComponent component, String editorText) {
 		if (component instanceof Editor) {
 			return (Editor<? extends JComponent, ?>) component;
 		}
 		Editor<? extends JComponent, ?> editor = null;
-		if (StringUtils.isNotEmpty(editorClass)) {
-			editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(editorClass);
+		if (StringUtils.isNotEmpty(editorText)) {
+			Class<Editor<? extends JComponent, ?>> cls = NAME_EDITORS.get(editorText);
+			if (cls != null) {
+				editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(cls);
+			} else {
+				editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(editorText);
+			}
 			if (editor != null) {
 				editor.setContext(context);
 				editor.setComponent(component);
@@ -57,7 +65,7 @@ public class EditorFactory {
 
 	public static Editor<? extends JComponent, ?> createDefault(Context context, JComponent component) {
 		Editor<? extends JComponent, ?> editor = null;
-		for (Map.Entry<Class<?>, Class<Editor<? extends JComponent, ?>>> entry : EDITORS.entrySet()) {
+		for (Map.Entry<Class<?>, Class<Editor<? extends JComponent, ?>>> entry : CLASS_EDITORS.entrySet()) {
 			if (entry.getKey().isInstance(component)) {
 				editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(entry.getValue());
 				break;

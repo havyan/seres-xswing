@@ -12,7 +12,7 @@ import com.xswing.framework.action.Action;
  * @author think
  *
  */
-@Component(types = { JCheckBox.class })
+@Component(name = "checkBox", types = { JCheckBox.class })
 public class CheckBoxEditor extends AbstractEditor<JCheckBox, Boolean> {
 
 	public void setComponent(JComponent component) {

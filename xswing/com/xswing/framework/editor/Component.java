@@ -10,6 +10,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Component {
 
-	Class<?>[] types();
+	String name();
+
+	Class<?>[] types() default {};
 
 }

@@ -2,7 +2,7 @@ package com.xswing.framework.editor;
 
 import javax.swing.text.JTextComponent;
 
-@Component(types = { JTextComponent.class })
+@Component(name = "text", types = { JTextComponent.class })
 public class TextEditor extends AbstractEditor<JTextComponent, String> {
 
 	@Override
