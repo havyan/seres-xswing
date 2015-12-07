@@ -1,8 +1,12 @@
 package com.xswing.framework.editor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
+
+import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.framework.common.BaseUtils;
 import com.framework.log.Logger;
@@ -37,6 +41,8 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 
 	public List<Validator> getValidators();
 
+	public void showErrors(String[] errors);
+
 	public void registerAction(Action<?, ?, ?> action);
 
 	default void setEnabled(boolean enabled) {
@@ -46,34 +52,32 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 		}
 	}
 
-	default String check() {
+	default String[] check() {
+		List<String> errors = new ArrayList<String>();
 		List<Validator> validators = this.getValidators();
 		if (validators != null && validators.size() > 0) {
 			V value = this.getValue();
-			StringBuilder sb = new StringBuilder();
 			for (Validator validator : validators) {
 				String result = validator.validate(value);
-				if (result != null) {
-					sb.append(result).append("\n");
+				if (StringUtils.isNotEmpty(result)) {
+					errors.add(result);
 				}
 			}
-			if (sb.length() > 0) {
-				return sb.toString();
-			} else {
-				return null;
-			}
-		} else {
-			return null;
 		}
+		return errors.toArray(new String[0]);
 	}
 
 	default void writeBack() {
 		Context context = this.getContext();
-		String result = this.check();
-		if (result == null && context != null && context.getData() != null) {
+		String[] errors = this.check();
+		if (ArrayUtils.isEmpty(errors)) {
 			String property = this.getValueProperty();
-			Logger.debug("Write back value to: " + property);
-			BaseUtils.setProperty(context.getData(), property, this.getValue());
+			if (context != null && context.getData() != null && StringUtils.isNoneEmpty(property)) {
+				Logger.debug("Write back value to: " + property);
+				BaseUtils.setProperty(context.getData(), property, this.getValue());
+			}
+		} else {
+			this.showErrors(errors);
 		}
 	}
 

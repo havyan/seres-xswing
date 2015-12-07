@@ -3,16 +3,20 @@
  */
 package com.xswing.framework.editor;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.action.Action;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
+import com.xswing.framework.view.component.PopupMessage;
 
 /**
  * @author think
@@ -84,5 +88,15 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	public void registerAction(Action<?, ?, ?> action) {
 
+	}
+
+	public void showErrors(String[] errors) {
+		if (ArrayUtils.isNotEmpty(errors)) {
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < errors.length; i++) {
+				sb.append(i + 1).append(". ").append(errors[i]).append("\n");
+			}
+			PopupMessage.show(getComponent(), "Error", sb.toString(), Color.WHITE, Color.RED, Color.RED);
+		}
 	}
 }
