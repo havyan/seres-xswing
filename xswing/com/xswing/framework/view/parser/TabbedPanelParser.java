@@ -9,18 +9,18 @@ import java.util.List;
 import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
-import com.xswing.framework.view.component.JCloseableTabbedPane;
+import com.xswing.framework.view.component.ClosableTabbedPanel;
 
 /**
  * @author HWYan
  * 
  */
 @XElement(names = { Const.TABBEDPANEL })
-public class TabbedPanelParser extends ComponentParser<JCloseableTabbedPane> {
+public class TabbedPanelParser extends ComponentParser<ClosableTabbedPanel> {
 
 	@Override
-	public JCloseableTabbedPane parseElement(Context context, Element source) {
-		JCloseableTabbedPane tabbedPanel = createBean(context, source);
+	public ClosableTabbedPanel parseElement(Context context, Element source) {
+		ClosableTabbedPanel tabbedPanel = createBean(context, source);
 		List<Element> components = source.getChildren(Const.TAB);
 		for (Element e : components) {
 			Component component = (Component) ParserEngine.parse(context, e);

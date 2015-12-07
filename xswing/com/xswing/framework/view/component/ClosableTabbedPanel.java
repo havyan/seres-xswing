@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
@@ -25,7 +24,7 @@ import javax.swing.UIManager;
 /**
  * 
  */
-public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
+public class ClosableTabbedPanel extends JTabbedPane implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private JPopupMenu popup = null;
@@ -121,13 +120,13 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 					if (SwingUtilities.isRightMouseButton(e) && popup != null) {
 						popup.show(e.getComponent(), e.getX(), e.getY());
 					} else {
-						JCloseableTabbedPane.this.setSelectedComponent(component);
+						ClosableTabbedPanel.this.setSelectedComponent(component);
 					}
 				}
 			});
 			closeLabel.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					JCloseableTabbedPane.this.remove(component);
+					ClosableTabbedPanel.this.remove(component);
 				}
 
 				public void mouseEntered(MouseEvent e) {
@@ -142,56 +141,7 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 
 	}
 
-	class CloseIcon implements Icon {
-
-		private Color color = Color.BLACK;
-
-		public CloseIcon() {
-			super();
-		}
-
-		public CloseIcon(Color color) {
-			super();
-			this.color = color;
-		}
-
-		public synchronized void paintIcon(Component c, Graphics g, int x1, int y1) {
-			int x = x1 + 5, y = y1;
-			Color oldColor = g.getColor();
-			g.setColor(color);
-			// draw X
-			// left top
-			g.drawRect(x + 4, y + 4, 1, 1);
-			g.drawRect(x + 5, y + 5, 1, 1);
-			g.drawRect(x + 5, y + 9, 1, 1);
-			g.drawRect(x + 4, y + 10, 1, 1);
-			// center
-			g.drawRect(x + 6, y + 6, 1, 1);
-			g.drawRect(x + 8, y + 6, 1, 1);
-			g.drawRect(x + 6, y + 8, 1, 1);
-			g.drawRect(x + 8, y + 8, 1, 1);
-			// right top
-			g.drawRect(x + 10, y + 4, 1, 1);
-			g.drawRect(x + 9, y + 5, 1, 1);
-			// right bottom
-			g.drawRect(x + 9, y + 9, 1, 1);
-			g.drawRect(x + 10, y + 10, 1, 1);
-			g.setColor(oldColor);
-		}
-
-		@Override
-		public int getIconWidth() {
-			return 18;
-		}
-
-		@Override
-		public int getIconHeight() {
-			return 16;
-		}
-	};
-
 	/**
-	 * 测试
 	 * 
 	 * @param args
 	 *            String[]
@@ -205,17 +155,11 @@ public class JCloseableTabbedPane extends JTabbedPane implements Serializable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("JCloseableTabbedPane Demo");
 		frame.getContentPane().setLayout(new BorderLayout());
-		final JCloseableTabbedPane tab = new JCloseableTabbedPane();
+		final ClosableTabbedPanel tab = new ClosableTabbedPanel();
 		tab.addTab("TabbedPane", new JPanel(), false);
 		tab.addTab("Has", new JPanel());
 		tab.addTab("Popup", new JPanel());
 		tab.addTab("PopupMenu", new JPanel());
-
-		// tab.setIconDrawCenter(1, false);
-
-		// 添加关闭按钮事件
-
-		// 设置弹出菜单
 		JPopupMenu menu = new JPopupMenu();
 		for (int i = 0; i < 10; i++) {
 			menu.add(new JMenuItem("item " + i));
