@@ -153,8 +153,14 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		String[] errors = this.check();
 		if (ArrayUtils.isNotEmpty(errors)) {
 			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < errors.length; i++) {
-				sb.append(i + 1).append(". ").append(errors[i]).append("\n");
+			if (errors.length == 1) {
+				sb.append(errors[0]);
+			} else {
+				sb.append("<html><body>");
+				for (int i = 0; i < errors.length; i++) {
+					sb.append(i + 1).append(". ").append(errors[i]).append("<br>");
+				}
+				sb.append("</body></html>");
 			}
 			popup = PopupMessage.show(getComponent(), sb.toString(), Color.WHITE, Color.RED, Color.RED);
 		}
