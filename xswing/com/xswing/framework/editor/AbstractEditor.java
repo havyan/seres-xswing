@@ -4,12 +4,20 @@
 package com.xswing.framework.editor;
 
 import java.awt.Color;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
+import javax.swing.Popup;
+import javax.swing.border.Border;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.framework.common.BaseUtils;
 import com.xswing.framework.action.Action;
@@ -32,6 +40,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected String valueProperty;
 
+	private Border border;
+
+	protected Popup popup;
+
 	public void init() {
 
 	}
@@ -43,6 +55,38 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	@SuppressWarnings("unchecked")
 	public void setComponent(JComponent component) {
 		this.component = (T) component;
+		border = component.getBorder();
+		component.addMouseListener(new MouseAdapter() {
+			public void mouseEntered(MouseEvent e) {
+				showErrors();
+			}
+
+			public void mouseExited(MouseEvent e) {
+				if (popup != null) {
+					popup.hide();
+				}
+			}
+		});
+		component.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent e) {
+
+			}
+
+			@Override
+			public void focusLost(FocusEvent e) {
+				String[] errors = check();
+				if (errors != null && errors.length > 0) {
+					component.setBorder(BorderFactory.createLineBorder(Color.RED));
+				} else {
+					if (border != null) {
+						component.setBorder(border);
+					}
+				}
+			}
+
+		});
 	}
 
 	public List<Validator> getValidators() {
@@ -90,13 +134,29 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	}
 
-	public void showErrors(String[] errors) {
+	public String[] check() {
+		List<String> errors = new ArrayList<String>();
+		List<Validator> validators = this.getValidators();
+		if (validators != null && validators.size() > 0) {
+			V value = this.getValue();
+			for (Validator validator : validators) {
+				String result = validator.validate(value);
+				if (StringUtils.isNotEmpty(result)) {
+					errors.add(result);
+				}
+			}
+		}
+		return errors.toArray(new String[0]);
+	}
+
+	public void showErrors() {
+		String[] errors = this.check();
 		if (ArrayUtils.isNotEmpty(errors)) {
 			StringBuilder sb = new StringBuilder();
 			for (int i = 0; i < errors.length; i++) {
 				sb.append(i + 1).append(". ").append(errors[i]).append("\n");
 			}
-			PopupMessage.show(getComponent(), "Error", sb.toString(), Color.WHITE, Color.RED, Color.RED);
+			popup = PopupMessage.show(getComponent(), sb.toString(), Color.WHITE, Color.RED, Color.RED);
 		}
 	}
 }

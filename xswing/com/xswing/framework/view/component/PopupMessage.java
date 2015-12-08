@@ -23,37 +23,47 @@ import com.sun.awt.AWTUtilities;
 
 public class PopupMessage {
 
-	public static void show(Component from, String title, String content) {
-		show(from, title, content, Color.WHITE, Color.BLACK, Color.GRAY, from.getWidth() / 2, from.getHeight() / 2);
+	public static Popup show(Component from, String content) {
+		return show(from, null, content, Color.WHITE, Color.BLACK, Color.GRAY, from.getWidth() / 2, from.getHeight() / 2);
 	}
 
-	public static void show(Component from, String title, String content, Color background, Color foreground, Color border) {
-		show(from, title, content, background, foreground, border, from.getWidth(), from.getHeight() / 2);
+	public static Popup show(Component from, String title, String content) {
+		return show(from, title, content, Color.WHITE, Color.BLACK, Color.GRAY, from.getWidth() / 2, from.getHeight() / 2);
 	}
 
-	public static void show(Component from, String title, String content, Color background, Color foreground, Color border, int x, int y) {
+	public static Popup show(Component from, String content, Color background, Color foreground, Color border) {
+		return show(from, null, content, background, foreground, border, from.getWidth(), from.getHeight() / 2);
+	}
+
+	public static Popup show(Component from, String title, String content, Color background, Color foreground, Color border) {
+		return show(from, title, content, background, foreground, border, from.getWidth(), from.getHeight() / 2);
+	}
+
+	public static Popup show(Component from, String title, String content, Color background, Color foreground, Color border, int x, int y) {
 		PopupPanel contents = new PopupPanel(background, border);
 		contents.setBackground(background);
 		contents.setForeground(foreground);
 		contents.setLayout(new BorderLayout());
-		JPanel header = new JPanel(new BorderLayout());
-		header.setBackground(background);
-		header.setOpaque(false);
-		JLabel titleLabel = new JLabel();
-		titleLabel.setOpaque(false);
-		titleLabel.setBackground(background);
-		titleLabel.setForeground(foreground);
-		titleLabel.setBorder(new EmptyBorder(0, 20, 0, 0));
-		titleLabel.setText(title);
-		titleLabel.setPreferredSize(new Dimension(150, 25));
 		JLabel closeLabel = new JLabel(new CloseIcon());
 		closeLabel.setBorder(new EmptyBorder(0, 0, 0, 5));
-		titleLabel.setBackground(background);
-		header.add(titleLabel);
-		header.add(closeLabel, BorderLayout.EAST);
+		if (title != null) {
+			JPanel header = new JPanel(new BorderLayout());
+			header.setBackground(background);
+			header.setOpaque(false);
+			JLabel titleLabel = new JLabel();
+			titleLabel.setOpaque(false);
+			titleLabel.setBackground(background);
+			titleLabel.setForeground(foreground);
+			titleLabel.setBorder(new EmptyBorder(0, 20, 0, 0));
+			titleLabel.setText(title);
+			titleLabel.setPreferredSize(new Dimension(150, 25));
+			titleLabel.setBackground(background);
+			header.add(titleLabel);
+			header.add(closeLabel, BorderLayout.EAST);
+			contents.add(header, BorderLayout.NORTH);
+		}
 		JLabel contentLabel = new JLabel();
-		contentLabel.setBorder(new EmptyBorder(10, 25, 10, 10));
-		contents.add(header, BorderLayout.NORTH);
+		contentLabel.setBorder(new EmptyBorder(10, 20, 10, 10));
 		contentLabel.setText(content);
 		contentLabel.setOpaque(false);
 		contentLabel.setBackground(background);
@@ -83,6 +93,7 @@ public class PopupMessage {
 				closeLabel.setIcon(new CloseIcon());
 			}
 		});
+		return popup;
 	}
 
 	private static class PopupPanel extends JPanel {

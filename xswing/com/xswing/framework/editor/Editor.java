@@ -1,6 +1,5 @@
 package com.xswing.framework.editor;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
@@ -41,8 +40,6 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 
 	public List<Validator> getValidators();
 
-	public void showErrors(String[] errors);
-
 	public void registerAction(Action<?, ?, ?> action);
 
 	default void setEnabled(boolean enabled) {
@@ -52,20 +49,7 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 		}
 	}
 
-	default String[] check() {
-		List<String> errors = new ArrayList<String>();
-		List<Validator> validators = this.getValidators();
-		if (validators != null && validators.size() > 0) {
-			V value = this.getValue();
-			for (Validator validator : validators) {
-				String result = validator.validate(value);
-				if (StringUtils.isNotEmpty(result)) {
-					errors.add(result);
-				}
-			}
-		}
-		return errors.toArray(new String[0]);
-	}
+	public String[] check();
 
 	default void writeBack() {
 		Context context = this.getContext();
@@ -76,8 +60,6 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 				Logger.debug("Write back value to: " + property);
 				BaseUtils.setProperty(context.getData(), property, this.getValue());
 			}
-		} else {
-			this.showErrors(errors);
 		}
 	}
 

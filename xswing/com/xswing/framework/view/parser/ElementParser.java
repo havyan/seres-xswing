@@ -25,8 +25,8 @@ public abstract class ElementParser<T> implements Parser<T, Element> {
 	public T parse(Context context, Element source) {
 		T bean = parseElement(context, source);
 		String id = getString(source, Const.ID, UUID.randomUUID().toString());
-		bind(context, id, bean, source);
 		handle(context, bean, source);
+		bind(context, id, bean, source);
 		return bean;
 	}
 
