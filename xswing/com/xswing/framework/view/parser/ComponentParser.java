@@ -51,6 +51,14 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			if (border != null) {
 				component.setBorder(border);
 			}
+			Color background = createColor(getString(source, Const.BACKGROUND));
+			if (background != null) {
+				component.setBackground(background);
+			}
+			Color foreground = createColor(getString(source, Const.FOREGROUND));
+			if (foreground != null) {
+				component.setForeground(foreground);
+			}
 			String toolTip = getString(source, Const.TOOLTIP);
 			if (StringUtils.isNotEmpty(toolTip)) {
 				component.setToolTipText(toolTip);
@@ -66,6 +74,25 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				component.setPreferredSize(size);
 			}
 		}
+	}
+
+	protected Color createColor(String colorText) {
+		Color color = null;
+		if (StringUtils.isNotEmpty(colorText)) {
+			if (colorText.contains(",")) {
+				String[] splits = colorText.split(",");
+				if (splits.length >= 3) {
+					int r = Integer.valueOf(splits[0]);
+					int g = Integer.valueOf(splits[1]);
+					int b = Integer.valueOf(splits[2]);
+					int a = splits.length > 3 ? Integer.valueOf(splits[3]) : 255;
+					color = new Color(r, g, b, a);
+				}
+			} else {
+				color = (Color) BaseUtils.getStaticValue(Color.class, colorText);
+			}
+		}
+		return color;
 	}
 
 	protected Border createBorder(Element source) {

@@ -45,6 +45,10 @@ public class Const {
 	public static final String HEIGHT = "height";
 
 	public static final String TOOLTIP = "toolTip";
+	
+	public static final String BACKGROUND = "background";
+	
+	public static final String FOREGROUND = "foreground";
 
 	public static final String BORDERPANEL = "borderPanel";
 

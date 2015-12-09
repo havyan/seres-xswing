@@ -68,7 +68,6 @@ public class PopupMessage {
 		contentLabel.setOpaque(false);
 		contentLabel.setBackground(background);
 		contentLabel.setForeground(foreground);
-		contents.setOpaque(false);
 		contents.add(contentLabel);
 		PopupFactory popupFactory = PopupFactory.getSharedInstance();
 		if (from != null) {
@@ -78,8 +77,10 @@ public class PopupMessage {
 		}
 		Popup popup = popupFactory.getPopup(from, contents, x, y);
 		popup.show();
-		JWindow root = (JWindow) SwingUtilities.getRoot(contents);
-		AWTUtilities.setWindowOpaque(root, false);
+		JWindow window = (JWindow) SwingUtilities.getAncestorOfClass(JWindow.class, contents);
+		if (window != null && window.getClass().getSimpleName().equals("HeavyWeightWindow")) {
+			AWTUtilities.setWindowOpaque(window, false);
+		}
 		closeLabel.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				popup.hide();

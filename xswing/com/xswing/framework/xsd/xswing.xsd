@@ -406,6 +406,8 @@
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="action" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="background" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="foreground" type="xsd:string"></xsd:attribute>
   </xsd:attributeGroup>
 
   <xsd:complexType name="cbean">
