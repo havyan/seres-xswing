@@ -2,11 +2,11 @@ package com.xswing.framework.validator;
 
 import org.apache.commons.lang3.StringUtils;
 
-public class EmptyValidator implements Validator {
+public class EmptyValidator implements Validator<String> {
 
 	@Override
-	public String validate(Object target) {
-		if (target instanceof String && StringUtils.isEmpty((String) target)) {
+	public String validate(String target) {
+		if (StringUtils.isEmpty(target)) {
 			return "Value can't be empty";
 		}
 		return null;

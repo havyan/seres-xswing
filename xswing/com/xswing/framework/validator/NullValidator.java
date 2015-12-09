@@ -1,6 +1,6 @@
 package com.xswing.framework.validator;
 
-public class NullValidator implements Validator {
+public class NullValidator implements Validator<Object> {
 
 	@Override
 	public String validate(Object target) {

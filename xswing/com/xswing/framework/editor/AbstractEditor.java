@@ -34,7 +34,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	protected T component;
 
-	protected List<Validator> validators = new ArrayList<Validator>();
+	protected List<Validator<?>> validators = new ArrayList<Validator<?>>();
 
 	protected Context context;
 
@@ -89,11 +89,11 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 		});
 	}
 
-	public List<Validator> getValidators() {
+	public List<Validator<?>> getValidators() {
 		return validators;
 	}
 
-	public void setValidators(List<Validator> validators) {
+	public void setValidators(List<Validator<?>> validators) {
 		this.validators = validators;
 	}
 
@@ -134,9 +134,10 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String[] check() {
 		List<String> errors = new ArrayList<String>();
-		List<Validator> validators = this.getValidators();
+		List<Validator<?>> validators = this.getValidators();
 		if (validators != null && validators.size() > 0) {
 			V value = this.getValue();
 			for (Validator validator : validators) {

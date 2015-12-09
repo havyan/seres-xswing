@@ -36,9 +36,9 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 
 	public Context getContext();
 
-	public void setValidators(List<Validator> validators);
+	public void setValidators(List<Validator<?>> validators);
 
-	public List<Validator> getValidators();
+	public List<Validator<?>> getValidators();
 
 	public void registerAction(Action<?, ?, ?> action);
 

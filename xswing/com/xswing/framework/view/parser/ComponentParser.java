@@ -21,6 +21,7 @@ import com.xswing.framework.action.Action;
 import com.xswing.framework.editor.Editor;
 import com.xswing.framework.editor.EditorFactory;
 import com.xswing.framework.validator.Validator;
+import com.xswing.framework.validator.XValidator;
 import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.CBEAN })
@@ -141,7 +142,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				editor.setValue(value);
 			});
 		}
-		editor.setValidators(parseValidators(context, source));
+		editor.setValidators(parseValidators(context, source, editor));
 		Action<?, ?, ?> action = createAction(context, editor, source);
 		if (action != null) {
 			editor.registerAction(action);
@@ -149,12 +150,19 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		context.setEditor(id, editor);
 	}
 
-	protected List<Validator> parseValidators(Context context, Element source) {
+	protected List<Validator<?>> parseValidators(Context context, Element source, Editor<? extends JComponent, ?> editor) {
 		List<Element> children = source.getChildren(Const.VALIDATOR);
-		List<Validator> validtors = new ArrayList<Validator>();
+		List<Validator<?>> validtors = new ArrayList<Validator<?>>();
 		if (children != null && children.size() > 0) {
 			for (Element child : children) {
-				validtors.add((Validator) ParserEngine.parse(context, child));
+				Validator<?> validator = (Validator<?>) ParserEngine.parse(context, child);
+				if (validator instanceof XValidator) {
+					XValidator<?, ?, ?> xvalidator = (XValidator<?, ?, ?>) validator;
+					xvalidator.setEditor(editor);
+					xvalidator.setModel(context.getModel());
+					xvalidator.setView(context.getView());
+				}
+				validtors.add(validator);
 			}
 		}
 		return validtors;
