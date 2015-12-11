@@ -81,6 +81,10 @@ public class Context implements AppListener {
 		return beans.get(id);
 	}
 
+	public Map<String, Editor<? extends JComponent, ?>> getEditors() {
+		return editors;
+	}
+
 	public boolean setEditor(String id, Editor<? extends JComponent, ?> editor) {
 		if (!editors.containsKey(id)) {
 			this.editors.put(id, editor);

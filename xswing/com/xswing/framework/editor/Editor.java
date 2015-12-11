@@ -41,6 +41,12 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	public List<Validator<?>> getValidators();
 
 	public void registerAction(Action<?, ?, ?> action);
+	
+	public void showErrors();
+	
+	public void hideErrors();
+	
+	public void highlight();
 
 	default void setEnabled(boolean enabled) {
 		T component = this.getComponent();

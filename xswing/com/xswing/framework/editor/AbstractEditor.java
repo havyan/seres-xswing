@@ -62,9 +62,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 			}
 
 			public void mouseExited(MouseEvent e) {
-				if (popup != null) {
-					popup.hide();
-				}
+				hideErrors();
 			}
 		});
 		component.addFocusListener(new FocusListener() {
@@ -78,7 +76,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 			public void focusLost(FocusEvent e) {
 				String[] errors = check();
 				if (errors != null && errors.length > 0) {
-					component.setBorder(BorderFactory.createLineBorder(Color.RED));
+					highlight();
 				} else {
 					if (border != null) {
 						component.setBorder(border);
@@ -151,6 +149,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	}
 
 	public void showErrors() {
+		hideErrors();
 		String[] errors = this.check();
 		if (ArrayUtils.isNotEmpty(errors)) {
 			StringBuilder sb = new StringBuilder();
@@ -164,6 +163,18 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 				sb.append("</body></html>");
 			}
 			popup = PopupMessage.show(getComponent(), sb.toString(), Color.WHITE, Color.RED, Color.RED);
+		}
+	}
+
+	public void hideErrors() {
+		if (popup != null) {
+			popup.hide();
+		}
+	}
+
+	public void highlight() {
+		if (component != null) {
+			component.setBorder(BorderFactory.createLineBorder(Color.RED));
 		}
 	}
 }

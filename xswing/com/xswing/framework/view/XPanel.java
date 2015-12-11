@@ -4,10 +4,15 @@
 package com.xswing.framework.view;
 
 import java.awt.BorderLayout;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JPanel;
+
+import org.apache.commons.lang3.ArrayUtils;
 
 import com.xswing.framework.editor.Editor;
 import com.xswing.framework.event.AppEvent;
@@ -84,6 +89,19 @@ public class XPanel extends JPanel implements View {
 	@Override
 	public void handleEvent(AppEvent event) {
 
+	}
+
+	public String[] check() {
+		List<String> errors = new ArrayList<String>();
+		for (Editor<? extends JComponent, ?> editor : this.context.getEditors().values()) {
+			String[] editorErrors = editor.check();
+			if (ArrayUtils.isNotEmpty(editorErrors)) {
+				errors.addAll(Arrays.asList(editorErrors));
+				editor.highlight();
+				editor.showErrors();
+			}
+		}
+		return errors.toArray(new String[0]);
 	}
 
 	public void destroy() {

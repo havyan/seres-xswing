@@ -173,4 +173,9 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 		return this;
 	}
 
+	@Override
+	public String[] check() {
+		return this.xpanel.check();
+	}
+
 }

@@ -38,5 +38,7 @@ public interface View extends AppListener {
 	public void setModel(AppModel<?> model);
 
 	public Context getContext();
+	
+	public String[] check();
 
 }
