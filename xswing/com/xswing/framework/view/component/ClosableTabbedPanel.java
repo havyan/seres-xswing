@@ -20,6 +20,7 @@ import javax.swing.JPopupMenu;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.border.EmptyBorder;
 
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -78,7 +79,7 @@ public class ClosableTabbedPanel extends JTabbedPane implements Serializable {
 			}
 		}
 		if (closable) {
-			this.setTabComponentAt(index, new CloseTab(title, component));
+			this.setTabComponentAt(index, new CloseTab(title, icon, component));
 		}
 	}
 
@@ -126,14 +127,17 @@ public class ClosableTabbedPanel extends JTabbedPane implements Serializable {
 
 		String title;
 
+		Icon icon;
+
 		Component component;
 
 		JLabel closeLabel;
 
 		JLabel titleLabel;
 
-		public CloseTab(String title, Component component) {
+		public CloseTab(String title, Icon icon, Component component) {
 			this.title = title;
+			this.icon = icon;
 			this.component = component;
 			initUI();
 			initEvents();
@@ -142,6 +146,12 @@ public class ClosableTabbedPanel extends JTabbedPane implements Serializable {
 		private void initUI() {
 			this.setLayout(new BorderLayout());
 			titleLabel = new JLabel(title);
+			if (this.icon != null) {
+				JLabel iconLabel = new JLabel(icon);
+				iconLabel.setHorizontalAlignment(JLabel.LEFT);
+				iconLabel.setBorder(new EmptyBorder(2, 0, 0, 5));
+				this.add(iconLabel, BorderLayout.WEST);
+			}
 			this.add(titleLabel, BorderLayout.CENTER);
 			closeLabel = new JLabel(new CloseIcon());
 			this.add(closeLabel, BorderLayout.EAST);
