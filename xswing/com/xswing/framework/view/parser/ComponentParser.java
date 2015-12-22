@@ -60,9 +60,9 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			if (foreground != null) {
 				component.setForeground(foreground);
 			}
-			String toolTip = getString(source, Const.TOOLTIP);
-			if (StringUtils.isNotEmpty(toolTip)) {
-				component.setToolTipText(toolTip);
+			String tooltip = getString(source, Const.TOOLTIP);
+			if (StringUtils.isNotEmpty(tooltip)) {
+				component.setToolTipText(tooltip);
 			}
 			String widthText = getString(source, Const.WIDTH);
 			String heightText = getString(source, Const.HEIGHT);

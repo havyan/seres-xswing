@@ -313,7 +313,10 @@
     <xsd:complexContent>
       <xsd:extension base="wrapper">
         <xsd:attribute name="title" type="xsd:string"></xsd:attribute>
-        <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>      </xsd:extension>
+        <xsd:attribute name="closable" type="xsd:boolean"></xsd:attribute>
+        <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="tooltip" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 
@@ -401,7 +404,7 @@
     <xsd:attribute name="border" type="border"></xsd:attribute>
     <xsd:attribute name="width" type="xsd:double"></xsd:attribute>
     <xsd:attribute name="height" type="xsd:double"></xsd:attribute>
-    <xsd:attribute name="toolTip" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="tooltip" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="padding" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
