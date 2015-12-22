@@ -21,6 +21,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  * 
  */
@@ -85,6 +87,38 @@ public class ClosableTabbedPanel extends JTabbedPane implements Serializable {
 		Component tab = this.getTabComponentAt(index);
 		if (tab instanceof CloseTab) {
 			((CloseTab) tab).component = component;
+		}
+	}
+
+	public void addTabCloseListener(TabCloseListener l) {
+		listenerList.add(TabCloseListener.class, l);
+	}
+
+	public void removeTabCloseListener(TabCloseListener l) {
+		listenerList.remove(TabCloseListener.class, l);
+	}
+
+	public TabCloseListener[] getTabCloseListeners() {
+		return listenerList.getListeners(TabCloseListener.class);
+	}
+
+	public void removeTabAt(int index) {
+		Component tab = this.getComponentAt(index);
+		TabCloseListener[] listeners = getTabCloseListeners();
+		if (ArrayUtils.isNotEmpty(listeners)) {
+			boolean closable = true;
+			for (TabCloseListener listener : listeners) {
+				closable = closable && listener.tabClosing(this, tab);
+			}
+			if (!closable) {
+				return;
+			}
+		}
+		super.removeTabAt(index);
+		if (ArrayUtils.isNotEmpty(listeners)) {
+			for (TabCloseListener listener : listeners) {
+				listener.tabClosed(this, tab);
+			}
 		}
 	}
 
