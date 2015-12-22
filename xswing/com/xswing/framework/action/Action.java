@@ -6,7 +6,6 @@ package com.xswing.framework.action;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 
-import com.xswing.framework.editor.Editor;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.event.AppListener;
 import com.xswing.framework.model.AppModel;
@@ -22,7 +21,7 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 
 	protected V view;
 
-	protected Editor<? extends JComponent, ?> editor;
+	protected C component;
 
 	@Override
 	public void handleEvent(AppEvent event) {
@@ -46,12 +45,13 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 		this.view = (V) view;
 	}
 
-	@SuppressWarnings("unchecked")
 	public C getComponent() {
-		if (editor != null) {
-			return (C) editor.getComponent();
-		}
-		return null;
+		return component;
+	}
+
+	@SuppressWarnings("unchecked")
+	public void setComponent(JComponent component) {
+		this.component = (C) component;
 	}
 
 	public Object $(String id) {
@@ -62,17 +62,9 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 		return view.getBean(id, cls);
 	}
 
-	public Editor<? extends JComponent, ?> getEditor() {
-		return editor;
-	}
-
-	public void setEditor(Editor<? extends JComponent, ?> editor) {
-		this.editor = editor;
-	}
-
 	public void setEnabled(boolean enabled) {
-		if (editor != null) {
-			editor.setEnabled(enabled);
+		if (component != null) {
+			component.setEnabled(enabled);
 		}
 	}
 

@@ -174,7 +174,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			Action<?, ?, ?> action = (Action<?, ?, ?>) BaseUtils.newInstance(actionClass);
 			action.setModel(context.getModel());
 			action.setView(context.getView());
-			action.setEditor(editor);
+			action.setComponent(editor.getComponent());
 			if (context.getModel() != null) {
 				context.getModel().addAppListener(action);
 			}
