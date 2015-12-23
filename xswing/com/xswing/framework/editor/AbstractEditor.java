@@ -55,7 +55,6 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	@SuppressWarnings("unchecked")
 	public void setComponent(JComponent component) {
 		this.component = (T) component;
-		border = component.getBorder();
 		component.addMouseListener(new MouseAdapter() {
 			public void mouseEntered(MouseEvent e) {
 				showErrors();
@@ -80,6 +79,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 				} else {
 					if (border != null) {
 						component.setBorder(border);
+						border = null;
 					}
 				}
 			}
@@ -174,6 +174,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	public void highlight() {
 		if (component != null) {
+			border = component.getBorder();
 			component.setBorder(BorderFactory.createLineBorder(Color.RED));
 		}
 	}
