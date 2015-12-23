@@ -96,7 +96,8 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		return data;
 	}
 
-	public T setData(T data) {
+	@SuppressWarnings("unchecked")
+	public T setData(Object data) {
 		if (data != this.data) {
 			T oldData = this.data;
 			if (data != null) {
@@ -112,13 +113,13 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 				bindsTo = tempData;
 			}
 			BaseUtils.takeBinds(bindsFrom, bindsTo, this);
-			this.data = data;
+			this.data = (T) data;
 			AppEvent event = new AppEvent(DATA_CHANGED);
 			event.setParam(OLD_DATA, oldData);
 			event.setParam(NEW_DATA, data);
 			fireAppEvent(event);
 		}
-		return data;
+		return (T) data;
 	}
 
 	public void setDataProperty(String property, Object value) {

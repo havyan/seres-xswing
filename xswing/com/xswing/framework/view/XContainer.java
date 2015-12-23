@@ -50,7 +50,8 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	}
 
 	private void initXPanel(URL url, Map<String, Object> prdefinedBeans) {
-		add(XPanelBuilder.build(url, model, this, prdefinedBeans), BorderLayout.CENTER);
+		xpanel = XPanelBuilder.build(url, model, this, prdefinedBeans);
+		add(xpanel, BorderLayout.CENTER);
 	}
 
 	private void initXPanel(String path, Map<String, Object> prdefinedBeans) {
@@ -162,10 +163,11 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	}
 
 	public void setValue(Object value) {
+		this.model.setData(value);
 	}
 
 	public Object getValue() {
-		return null;
+		return this.model.getData();
 	}
 
 	@Override

@@ -74,7 +74,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 			@Override
 			public void focusLost(FocusEvent e) {
-				String[] errors = check();
+				String[] errors = validate();
 				if (errors != null && errors.length > 0) {
 					highlight();
 				} else {
@@ -128,12 +128,12 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	}
 
-	public void registerAction(Action<?, ?, ?> action) {
+	public void setAction(Action<?, ?, ?> action) {
 
 	}
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public String[] check() {
+	public String[] validate() {
 		List<String> errors = new ArrayList<String>();
 		List<Validator<?>> validators = this.getValidators();
 		if (validators != null && validators.size() > 0) {
@@ -150,7 +150,7 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	public void showErrors() {
 		hideErrors();
-		String[] errors = this.check();
+		String[] errors = this.validate();
 		if (ArrayUtils.isNotEmpty(errors)) {
 			StringBuilder sb = new StringBuilder();
 			if (errors.length == 1) {

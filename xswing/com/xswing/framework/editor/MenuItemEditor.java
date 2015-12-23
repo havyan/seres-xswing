@@ -27,7 +27,7 @@ public class MenuItemEditor extends AbstractEditor<JMenuItem, String> {
 		component.setText("");
 	}
 
-	public void registerAction(Action<?, ?, ?> action) {
+	public void setAction(Action<?, ?, ?> action) {
 		component.addActionListener(action);
 	}
 

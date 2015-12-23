@@ -54,6 +54,7 @@ public class XPanelParser extends BorderPanelParser {
 
 	public JPanel createPanel(Context context, Element source) {
 		XPanel xpanel = new XPanel();
+		xpanel.setModel(context.getModel());
 		if (context.getView() == null) {
 			context.setView(xpanel);
 		}

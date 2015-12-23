@@ -32,7 +32,7 @@ public interface AppModel<T> {
 
 	public T getData();
 
-	public T setData(T data);
+	public T setData(Object data);
 	
 	public final String DATA_CHANGED = "DATA_CHANGED";
 	

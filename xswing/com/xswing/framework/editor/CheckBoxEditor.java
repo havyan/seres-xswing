@@ -35,7 +35,7 @@ public class CheckBoxEditor extends AbstractEditor<JCheckBox, Boolean> {
 		component.setEnabled(enabled);
 	}
 
-	public void registerAction(Action<?, ?, ?> action) {
+	public void setAction(Action<?, ?, ?> action) {
 		component.addActionListener(action);
 	}
 

@@ -1,5 +1,9 @@
 package com.xswing.framework.editor;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.swing.JComponent;
 
 public interface EditorPeer {
@@ -7,8 +11,10 @@ public interface EditorPeer {
 	public void setValue(Object value);
 
 	public Object getValue();
-	
+
 	public JComponent getComponent();
+
+	public String[] check();
 
 	default Editor<?, ?> getEditor() {
 		return new DefaultEditor() {
@@ -20,6 +26,14 @@ public interface EditorPeer {
 			@Override
 			public Object getValue() {
 				return EditorPeer.this.getValue();
+			}
+
+			@Override
+			public String[] validate() {
+				List<String> errors = new ArrayList<String>();
+				errors.addAll(Arrays.asList(super.validate()));
+				errors.addAll(Arrays.asList(super.validate()));
+				return errors.toArray(new String[0]);
 			}
 		};
 	}

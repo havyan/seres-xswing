@@ -145,7 +145,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		editor.setValidators(parseValidators(context, source, editor));
 		Action<?, ?, ?> action = createAction(context, editor, source);
 		if (action != null) {
-			editor.registerAction(action);
+			editor.setAction(action);
 		}
 		context.setEditor(id, editor);
 	}

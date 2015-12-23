@@ -94,7 +94,7 @@ public class XPanel extends JPanel implements View {
 	public String[] check() {
 		List<String> errors = new ArrayList<String>();
 		for (Editor<? extends JComponent, ?> editor : this.context.getEditors().values()) {
-			String[] editorErrors = editor.check();
+			String[] editorErrors = editor.validate();
 			if (ArrayUtils.isNotEmpty(editorErrors)) {
 				errors.addAll(Arrays.asList(editorErrors));
 				editor.highlight();
