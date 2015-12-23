@@ -1,4 +1,4 @@
-package com.xswing.framework.view.component;
+package com.xswing.framework.view.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

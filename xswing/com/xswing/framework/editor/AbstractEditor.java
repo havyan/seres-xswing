@@ -24,7 +24,7 @@ import com.xswing.framework.action.Action;
 import com.xswing.framework.event.AppEvent;
 import com.xswing.framework.validator.Validator;
 import com.xswing.framework.view.Context;
-import com.xswing.framework.view.component.PopupMessage;
+import com.xswing.framework.view.components.PopupMessage;
 
 /**
  * @author think

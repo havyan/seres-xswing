@@ -1,4 +1,4 @@
-package com.xswing.framework.view.component;
+package com.xswing.framework.view.components;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -75,7 +75,7 @@ public class PopupMessage {
 			x = location.x + x;
 			y = location.y + y - contents.getPreferredSize().height / 2;
 		}
-		Popup popup = popupFactory.getPopup(from, contents, x, y);
+		Popup popup = popupFactory.getPopup(null, contents, x, y);
 		popup.show();
 		JWindow window = (JWindow) SwingUtilities.getAncestorOfClass(JWindow.class, contents);
 		if (window != null && window.getClass().getSimpleName().equals("HeavyWeightWindow")) {
