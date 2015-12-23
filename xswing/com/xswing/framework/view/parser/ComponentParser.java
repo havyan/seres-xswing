@@ -32,7 +32,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 	static {
 	}
 
-	public Class<?> findClass(Element source) {
+	protected Class<?> findClass(Element source) {
 		Class<?> cls = CLASS_MAP.get(source.getName());
 		if (cls != null) {
 			return cls;

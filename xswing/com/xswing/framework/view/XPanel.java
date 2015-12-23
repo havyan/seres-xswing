@@ -26,8 +26,6 @@ public class XPanel extends JPanel implements View {
 
 	private static final long serialVersionUID = 1L;
 
-	protected AppModel<?> model;
-
 	private Context context;
 
 	public XPanel() {
@@ -78,12 +76,12 @@ public class XPanel extends JPanel implements View {
 
 	@Override
 	public AppModel<?> getModel() {
-		return model;
+		return context.getModel();
 	}
 
 	@Override
 	public void setModel(AppModel<?> model) {
-		this.model = model;
+		throw new IllegalArgumentException("setModel is not supported for XPanel");
 	}
 
 	@Override

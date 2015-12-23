@@ -24,7 +24,6 @@ public class XPanelParser extends BorderPanelParser {
 	@Override
 	public JPanel parseElement(Context context, Element source) {
 		XPanel xPanel = (XPanel) super.parseElement(context, source);
-		xPanel.setContext(context);
 		Class<?> processorClass = getClass(source, Const.PROCESSOR);
 		if (processorClass != null) {
 			XProcessor processor = (XProcessor) BaseUtils.newInstance(processorClass);
@@ -52,9 +51,13 @@ public class XPanelParser extends BorderPanelParser {
 		return xPanel;
 	}
 
+	protected Class<?> findClass(Element source) {
+		return XPanel.class;
+	}
+
 	public JPanel createPanel(Context context, Element source) {
-		XPanel xpanel = new XPanel();
-		xpanel.setModel(context.getModel());
+		XPanel xpanel = (XPanel) createBean(context, source);
+		xpanel.setContext(context);
 		if (context.getView() == null) {
 			context.setView(xpanel);
 		}

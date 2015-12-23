@@ -20,7 +20,7 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR })
 public class BeanParser<T> extends ElementParser<T> {
 
-	public Class<?> findClass(Element source) {
+	protected Class<?> findClass(Element source) {
 		Class<?> genericType = BaseUtils.getClassGenricType(this.getClass());
 		Class<?> cls = getClass(source, Const.CLASS);
 		if (cls != null) {
