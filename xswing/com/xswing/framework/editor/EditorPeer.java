@@ -32,7 +32,7 @@ public interface EditorPeer {
 			public String[] validate() {
 				List<String> errors = new ArrayList<String>();
 				errors.addAll(Arrays.asList(super.validate()));
-				errors.addAll(Arrays.asList(super.validate()));
+				errors.addAll(Arrays.asList(EditorPeer.this.check()));
 				return errors.toArray(new String[0]);
 			}
 		};
