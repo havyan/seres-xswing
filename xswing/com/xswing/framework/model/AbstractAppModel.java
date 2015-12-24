@@ -63,6 +63,13 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		}
 	}
 
+	public void bind(PropertyChangeListener l) {
+		Object bean = this.data != null ? this.data : this.tempData;
+		if (bean != null && bean instanceof Bean) {
+			((Bean) bean).addPropertyChangeListener(new PropertyChangeListenerProxy(this, l));
+		}
+	}
+
 	public void bind(String dataPath, PropertyChangeListener l) {
 		Object bean = this.data != null ? this.data : this.tempData;
 		if (bean != null && bean instanceof Bean) {

@@ -25,6 +25,8 @@ public interface AppModel<T> {
 	public void fireAppEvent(AppEvent e);
 
 	public void bind(String dataPath, PropertyChangeListener l);
+	
+	public void bind(PropertyChangeListener l);
 
 	public void setDataProperty(String property, Object value);
 

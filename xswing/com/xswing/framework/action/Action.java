@@ -3,6 +3,9 @@
  */
 package com.xswing.framework.action;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 
@@ -15,7 +18,7 @@ import com.xswing.framework.view.View;
  * @author yhw
  *
  */
-public abstract class Action<M extends AppModel<?>, V extends View, C extends JComponent> extends AbstractAction implements AppListener {
+public abstract class Action<M extends AppModel<?>, V extends View, C extends JComponent> extends AbstractAction implements AppListener, PropertyChangeListener {
 
 	protected M model;
 
@@ -25,6 +28,11 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 
 	@Override
 	public void handleEvent(AppEvent event) {
+		setEnabled(isEnabled());
+	}
+
+	public void propertyChange(PropertyChangeEvent e) {
+		setEnabled(isEnabled());
 	}
 
 	public M getModel() {
@@ -34,6 +42,10 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 	@SuppressWarnings("unchecked")
 	public void setModel(AppModel<?> model) {
 		this.model = (M) model;
+		if (model != null) {
+			model.addAppListener(this);
+			model.bind(this);
+		}
 	}
 
 	public V getView() {
@@ -66,6 +78,10 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 		if (component != null) {
 			component.setEnabled(enabled);
 		}
+	}
+
+	public boolean isEnabled() {
+		return true;
 	}
 
 }
