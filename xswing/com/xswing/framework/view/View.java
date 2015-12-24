@@ -19,6 +19,8 @@ public interface View extends AppListener {
 
 	public Object getBean(String id);
 
+	public JComponent getComponent();
+
 	public JComponent getComponent(String id);
 
 	public <T> T getBean(String id, Class<T> cls);
@@ -44,7 +46,7 @@ public interface View extends AppListener {
 	public void setWritebackable(boolean writebackable);
 
 	public boolean isWritebackable();
-	
+
 	public void flush();
 
 }

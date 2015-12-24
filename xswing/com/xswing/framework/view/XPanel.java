@@ -130,4 +130,9 @@ public class XPanel extends JPanel implements View {
 		this.setWritebackable(writebackable);
 	}
 
+	@Override
+	public JComponent getComponent() {
+		return this;
+	}
+
 }
