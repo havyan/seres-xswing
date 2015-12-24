@@ -17,7 +17,7 @@ public class CheckBoxEditor extends AbstractEditor<JCheckBox, Boolean> {
 
 	public void setComponent(JComponent component) {
 		super.setComponent(component);
-		this.component.addActionListener((e) -> writeBack());
+		this.component.addActionListener((e) -> writeback());
 	}
 
 	@Override

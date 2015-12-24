@@ -32,7 +32,7 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 
 	public void setComponent(JComponent component) {
 		super.setComponent(component);
-		this.component.addActionListener((e) -> writeBack());
+		this.component.addActionListener((e) -> writeback());
 	}
 
 }

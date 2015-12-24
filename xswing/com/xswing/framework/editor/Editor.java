@@ -41,11 +41,11 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	public List<Validator<?>> getValidators();
 
 	public void setAction(Action<?, ?, ?> action);
-	
+
 	public void showErrors();
-	
+
 	public void hideErrors();
-	
+
 	public void highlight();
 
 	default void setEnabled(boolean enabled) {
@@ -57,14 +57,16 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 
 	public String[] validate();
 
-	default void writeBack() {
-		Context context = this.getContext();
-		String[] errors = this.validate();
-		if (ArrayUtils.isEmpty(errors)) {
-			String property = this.getValueProperty();
-			if (context != null && context.getData() != null && StringUtils.isNoneEmpty(property)) {
-				Logger.debug("Write back value to: " + property);
-				BaseUtils.setProperty(context.getData(), property, this.getValue());
+	default void writeback() {
+		if (this.getContext().isWritebackable()) {
+			Context context = this.getContext();
+			String[] errors = this.validate();
+			if (ArrayUtils.isEmpty(errors)) {
+				String property = this.getValueProperty();
+				if (context != null && context.getData() != null && StringUtils.isNoneEmpty(property)) {
+					Logger.debug("Write back value to: " + property);
+					BaseUtils.setProperty(context.getData(), property, this.getValue());
+				}
 			}
 		}
 	}

@@ -180,4 +180,17 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 		return this.xpanel.check();
 	}
 
+	public void setWritebackable(boolean writebackable) {
+		xpanel.setWritebackable(writebackable);
+	}
+
+	public boolean isWritebackable() {
+		return xpanel.isWritebackable();
+	}
+
+	@Override
+	public void flush() {
+		xpanel.flush();
+	}
+
 }

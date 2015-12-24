@@ -112,4 +112,22 @@ public class XPanel extends JPanel implements View {
 		this.destroy();
 	}
 
+	public void setWritebackable(boolean writebackable) {
+		context.setWritebackable(writebackable);
+	}
+
+	public boolean isWritebackable() {
+		return context.isWritebackable();
+	}
+
+	@Override
+	public void flush() {
+		boolean writebackable = this.isWritebackable();
+		this.setWritebackable(true);
+		for (Editor<? extends JComponent, ?> editor : this.context.getEditors().values()) {
+			editor.writeback();
+		}
+		this.setWritebackable(writebackable);
+	}
+
 }

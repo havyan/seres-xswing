@@ -178,4 +178,5 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 			component.setBorder(BorderFactory.createLineBorder(Color.RED));
 		}
 	}
+
 }

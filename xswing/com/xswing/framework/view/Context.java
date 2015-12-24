@@ -40,6 +40,8 @@ public class Context implements AppListener {
 
 	private View view;
 
+	private boolean writebackable = true;
+
 	public Document getDoc() {
 		return doc;
 	}
@@ -200,6 +202,14 @@ public class Context implements AppListener {
 				BaseUtils.takeBinds(oldData, newData, bean);
 			}
 		}
+	}
+
+	public void setWritebackable(boolean writebackable) {
+		this.writebackable = writebackable;
+	}
+
+	public boolean isWritebackable() {
+		return this.writebackable;
 	}
 
 }

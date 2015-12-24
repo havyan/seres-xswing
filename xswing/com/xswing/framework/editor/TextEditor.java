@@ -34,7 +34,7 @@ public class TextEditor extends AbstractEditor<JTextComponent, String> {
 		super.setComponent(component);
 		this.component.addFocusListener(new FocusAdapter() {
 			public void focusLost(FocusEvent e) {
-				writeBack();
+				writeback();
 			}
 		});
 	}
