@@ -96,7 +96,6 @@ public class XPanel extends JPanel implements View {
 			if (ArrayUtils.isNotEmpty(editorErrors)) {
 				errors.addAll(Arrays.asList(editorErrors));
 				editor.highlight();
-				editor.showErrors();
 			}
 		}
 		return errors.toArray(new String[0]);
