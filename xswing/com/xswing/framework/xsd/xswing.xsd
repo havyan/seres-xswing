@@ -29,6 +29,7 @@
       <xsd:element name="tree" type="tree"></xsd:element>
       <xsd:element name="separator" type="separator"></xsd:element>
       <xsd:element name="popupMenu" type="menu"></xsd:element>
+      <xsd:element name="table" type="table"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 
@@ -437,5 +438,25 @@
         <xsd:attribute name="rowHeight" type="xsd:int"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="table">
+    <xsd:sequence>
+      <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="column" type="tableColumn" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:group ref="baseGroups"></xsd:group>
+    </xsd:sequence>
+    <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
+    <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+    <xsd:attribute name="model" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="tableColumn">
+    <xsd:sequence>
+      <xsd:element name="header" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="eidtor" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="renderer" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+    </xsd:sequence>
+    <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 </xsd:schema>

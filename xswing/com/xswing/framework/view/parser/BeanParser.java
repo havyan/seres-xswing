@@ -17,7 +17,7 @@ import com.xswing.framework.view.Context;
  * @author HWYan
  * 
  */
-@XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR })
+@XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR, Const.RENDERER, Const.EDITOR })
 public class BeanParser<T> extends ElementParser<T> {
 
 	protected Class<?> findClass(Element source) {

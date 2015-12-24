@@ -45,9 +45,9 @@ public class Const {
 	public static final String HEIGHT = "height";
 
 	public static final String TOOLTIP = "tooltip";
-	
+
 	public static final String BACKGROUND = "background";
-	
+
 	public static final String FOREGROUND = "foreground";
 
 	public static final String BORDERPANEL = "borderPanel";
@@ -162,6 +162,8 @@ public class Const {
 
 	public static final String COLUMNS = "columns";
 
+	public static final String COLUMN = "column";
+
 	public static final String ROWS = "rows";
 
 	public static final String VALIDATOR = "validator";
@@ -173,5 +175,11 @@ public class Const {
 	public static final String ROOTVISIBLE = "rootVisible";
 
 	public static final String ROWHEIGHT = "rowHeight";
+
+	public static final String TABLE = "table";
+
+	public static final String HEADER = "header";
+
+	public static final String RENDERER = "renderer";
 
 }

@@ -25,7 +25,8 @@ public class GridBagPanelParser extends ComponentParser<JPanel> {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {
-		JPanel panel = createPanel(context, source);
+		JPanel panel = super.parseElement(context, source);
+		panel.setLayout(new GridBagLayout());
 		List<Element> rows = source.getChildren();
 		for (int i = 0; i < rows.size(); i++) {
 			Element row = (Element) rows.get(i);
@@ -84,12 +85,6 @@ public class GridBagPanelParser extends ComponentParser<JPanel> {
 
 		Component comp = (Component) ParserEngine.parse(context, e);
 		panel.add(comp, constraints);
-	}
-
-	protected JPanel createPanel(Context context, Element source) {
-		JPanel panel = createBean(context, source);
-		panel.setLayout(new GridBagLayout());
-		return panel;
 	}
 
 }
