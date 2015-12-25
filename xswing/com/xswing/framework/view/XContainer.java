@@ -66,7 +66,8 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 			}
 			String contextPath = null;
 			try {
-				contextPath = Class.forName(caller).getResource("").toString();
+				String classFilePath = Thread.currentThread().getContextClassLoader().getResource(caller.replace('.', '/') + ".class").toString();
+				contextPath = classFilePath.replace("/" + Class.forName(caller).getSimpleName() + ".class", "");
 			} catch (ClassNotFoundException e) {
 				Logger.error(e);
 			}
