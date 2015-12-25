@@ -31,7 +31,7 @@ public class XPanelBuilder {
 			if (data instanceof AppModel) {
 				return build(path, (AppModel<?>) data, (View) null);
 			} else {
-				return build(path, new DefaultAppModel(data), (View) null);
+				return build(path, new DefaultAppModel<Object>(data), (View) null);
 			}
 		}
 		return build(path, (AppModel<?>) null, (View) null);

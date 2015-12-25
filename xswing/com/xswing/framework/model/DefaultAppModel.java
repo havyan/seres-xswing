@@ -7,9 +7,9 @@ package com.xswing.framework.model;
  * @author HWYan
  *
  */
-public class DefaultAppModel extends AbstractAppModel<Object> {
+public class DefaultAppModel<T> extends AbstractAppModel<T> {
 
-	public DefaultAppModel(Object data) {
+	public DefaultAppModel(T data) {
 		super(data);
 	}
 

@@ -122,8 +122,18 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		}
 		String paddingText = source.getAttributeValue(Const.PADDING);
 		if (StringUtils.isNotEmpty(paddingText)) {
-			int padding = Integer.valueOf(paddingText);
-			Border paddingBorder = new EmptyBorder(padding, padding, padding, padding);
+			int top = 0, right = 0, bottom = 0, left = 0;
+			String[] splits = paddingText.split("\\s+");
+			if (splits.length == 1) {
+				int padding = Integer.valueOf(splits[0]);
+				top = right = bottom = left = padding;
+			} else if (splits.length == 4) {
+				top = Integer.valueOf(splits[0]);
+				right = Integer.valueOf(splits[1]);
+				bottom = Integer.valueOf(splits[2]);
+				left = Integer.valueOf(splits[3]);
+			}
+			Border paddingBorder = new EmptyBorder(top, left, bottom, right);
 			border = new CompoundBorder(border, paddingBorder);
 		}
 		return border;

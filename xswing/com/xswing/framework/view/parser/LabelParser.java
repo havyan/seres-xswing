@@ -27,7 +27,7 @@ public class LabelParser extends ComponentParser<JLabel> {
 		String text = getString(source, Const.TEXT);
 		if (StringUtils.isNotEmpty(text)) {
 			bindSet(context, bean, text, value -> {
-				bean.setText(value.toString());
+				bean.setText(value == null ? "" : value.toString());
 			});
 		}
 	}
