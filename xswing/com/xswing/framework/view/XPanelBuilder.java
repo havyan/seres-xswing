@@ -54,8 +54,7 @@ public class XPanelBuilder {
 			}
 		}
 		try {
-			String classFilePath = Thread.currentThread().getContextClassLoader().getResource(caller.replace('.', '/') + ".class").toString();
-			String contextPath = classFilePath.replace("/" + Class.forName(caller).getSimpleName() + ".class", "");
+			String contextPath = Class.forName(caller).getResource("").toString();
 			return build(contextPath, path, model, view, prdefinedBeans);
 		} catch (ClassNotFoundException e) {
 			Logger.error(e);
