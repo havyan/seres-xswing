@@ -132,6 +132,13 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	}
 
+	public void addValidator(Validator<?> validator) {
+		if (this.validators == null) {
+			this.validators = new ArrayList<Validator<?>>();
+		}
+		this.validators.add(validator);
+	}
+
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public String[] validate() {
 		List<String> errors = new ArrayList<String>();

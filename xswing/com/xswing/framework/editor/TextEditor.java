@@ -16,7 +16,7 @@ public class TextEditor extends AbstractEditor<JTextComponent, String> {
 
 	@Override
 	public String getValue() {
-		return component.getText();
+		return component.getText().trim();
 	}
 
 	@Override
