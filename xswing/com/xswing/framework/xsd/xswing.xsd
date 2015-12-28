@@ -460,5 +460,6 @@
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="width" type="xsd:int"></xsd:attribute>
+    <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
   </xsd:complexType>
 </xsd:schema>

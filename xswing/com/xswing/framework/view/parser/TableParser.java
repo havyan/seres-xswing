@@ -1,5 +1,6 @@
 package com.xswing.framework.view.parser;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
@@ -28,12 +29,24 @@ public class TableParser extends ComponentParser<JTable> {
 	public JTable parseElement(Context context, Element source) {
 		JTable table = super.parseElement(context, source);
 		Vector<String> columnNames = new Vector<String>();
+		List<Class<?>> columnClasses = new ArrayList<Class<?>>();
 		List<Element> children = source.getChildren(Const.COLUMN);
 		if (children != null && children.size() > 0) {
 			for (Element child : children) {
 				columnNames.add(getString(child, Const.NAME));
+				String classText = getString(child, Const.CLASS);
+				if (StringUtils.isNotEmpty(classText)) {
+					Class<?> cls = BaseUtils.getClass(classText);
+					if (cls != null) {
+						columnClasses.add(cls);
+					} else {
+						columnClasses.add(Object.class);
+					}
+				} else {
+					columnClasses.add(Object.class);
+				}
 			}
-			table.setModel(createModel(context, source, columnNames));
+			table.setModel(createModel(context, source, columnNames, columnClasses));
 			TableColumnModel columnModel = table.getColumnModel();
 			for (int i = 0; i < children.size(); i++) {
 				Element child = children.get(i);
@@ -65,7 +78,7 @@ public class TableParser extends ComponentParser<JTable> {
 		return column;
 	}
 
-	private TableModel createModel(Context context, Element source, Vector<String> columnNames) {
+	private TableModel createModel(Context context, Element source, Vector<String> columnNames, List<Class<?>> columnClasses) {
 		String modelText = getString(source, Const.MODEL);
 		TableModel model = null;
 		if (StringUtils.isNotEmpty(modelText)) {
@@ -89,6 +102,8 @@ public class TableParser extends ComponentParser<JTable> {
 				return columnNames.get((int) args[0]);
 			} else if (method.getName().equals("getColumnCount") && args.length == 0) {
 				return columnNames.size();
+			} else if (method.getName().equals("getColumnClass") && args[0] instanceof Integer) {
+				return columnClasses.get((int) args[0]);
 			} else {
 				return proxy.invoke(tempModel, args);
 			}
