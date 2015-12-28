@@ -459,5 +459,6 @@
       <xsd:element name="renderer" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="width" type="xsd:int"></xsd:attribute>
   </xsd:complexType>
 </xsd:schema>

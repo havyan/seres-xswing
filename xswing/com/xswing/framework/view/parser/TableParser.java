@@ -57,6 +57,11 @@ public class TableParser extends ComponentParser<JTable> {
 		if (e != null) {
 			column.setCellRenderer((TableCellRenderer) ParserEngine.parse(context, e));
 		}
+		String widthText = getString(source, Const.WIDTH);
+		if (StringUtils.isNotEmpty(widthText)) {
+			int width = Integer.valueOf(widthText);
+			column.setPreferredWidth(width);
+		}
 		return column;
 	}
 
