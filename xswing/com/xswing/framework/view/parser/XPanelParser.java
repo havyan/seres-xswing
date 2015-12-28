@@ -23,6 +23,14 @@ public class XPanelParser extends BorderPanelParser {
 
 	@Override
 	public JPanel parseElement(Context context, Element source) {
+		List<Element> components = source.getChildren(Const.COMPONENT);
+		if (components != null) {
+			components.stream().forEach(e -> ParserEngine.parse(context, e));
+		}
+		List<Element> beans = source.getChildren(Const.BEAN);
+		if (beans != null) {
+			beans.stream().forEach(e -> ParserEngine.parse(context, e));
+		}
 		XPanel xPanel = (XPanel) super.parseElement(context, source);
 		Class<?> processorClass = getClass(source, Const.PROCESSOR);
 		if (processorClass != null) {
@@ -39,14 +47,6 @@ public class XPanelParser extends BorderPanelParser {
 				XProcessor processor = (XProcessor) BaseUtils.newInstance(className);
 				processor.process(xPanel);
 			}
-		}
-		List<Element> components = source.getChildren(Const.COMPONENT);
-		if (components != null) {
-			components.stream().forEach(e -> ParserEngine.parse(context, e));
-		}
-		List<Element> beans = source.getChildren(Const.BEAN);
-		if (beans != null) {
-			beans.stream().forEach(e -> ParserEngine.parse(context, e));
 		}
 		return xPanel;
 	}

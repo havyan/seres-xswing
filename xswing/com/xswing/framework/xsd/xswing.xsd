@@ -455,7 +455,7 @@
   <xsd:complexType name="tableColumn">
     <xsd:sequence>
       <xsd:element name="header" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="eidtor" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="editor" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="renderer" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
     </xsd:sequence>
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
