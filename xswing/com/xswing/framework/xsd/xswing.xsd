@@ -443,6 +443,7 @@
   <xsd:complexType name="table">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="model" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="column" type="tableColumn" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>

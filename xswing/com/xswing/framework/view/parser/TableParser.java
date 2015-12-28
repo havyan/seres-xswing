@@ -71,7 +71,12 @@ public class TableParser extends ComponentParser<JTable> {
 				model = (TableModel) context.getBean(modelText);
 			}
 		} else {
-			model = new DefaultTableModel(columnNames, 0);
+			Element modelElement = source.getChild(Const.MODEL);
+			if (modelElement != null) {
+				model = (TableModel) ParserEngine.parse(context, modelElement);
+			} else {
+				model = new DefaultTableModel(columnNames, 0);
+			}
 		}
 		final TableModel tempModel = model;
 		MethodInterceptor interceptor = (obj, method, args, proxy) -> {
