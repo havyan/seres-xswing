@@ -133,7 +133,7 @@
               <property name="text" value="复制"></property>
             </button>
           </component>
-          
+
           <component>
             <label text="This is a test from {{name}}"></label>
           </component>
@@ -380,14 +380,6 @@
                           </view>
                         </scrollPanel>
                       </center>
-                      <east>
-                        <scrollPanel title="两棵树">
-                          <view>
-                            <cbean class="javax.swing.JTree">
-                            </cbean>
-                          </view>
-                        </scrollPanel>
-                      </east>
                       <west>
                         <scrollPanel title="三棵树">
                           <view>
@@ -396,6 +388,14 @@
                           </view>
                         </scrollPanel>
                       </west>
+                      <east>
+                        <scrollPanel title="两棵树">
+                          <view>
+                            <cbean class="javax.swing.JTree">
+                            </cbean>
+                          </view>
+                        </scrollPanel>
+                      </east>
                     </borderPanel>
                   </east>
 

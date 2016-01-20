@@ -50,8 +50,8 @@
       <xsd:element name="north" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="center" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="south" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
-      <xsd:element name="east" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:element name="west" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
+      <xsd:element name="east" type="wrapper" maxOccurs="1" minOccurs="0"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>

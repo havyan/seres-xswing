@@ -29,18 +29,16 @@
           <property name="text" value="south"></property>
         </label>
       </south>
-
-      <east>
-        <label>
-          <property name="text" value="east"></property>
-        </label>
-      </east>
-
       <west>
         <label>
           <property name="text" value="west"></property>
         </label>
       </west>
+      <east>
+        <label>
+          <property name="text" value="east"></property>
+        </label>
+      </east>
     </borderPanel>
   </center>
 

@@ -35,6 +35,12 @@
         </label>
       </south>
 
+      <west>
+        <label>
+          <property name="text" value="west"></property>
+        </label>
+      </west>
+
       <east>
         <gridBagPanel>
           <row>
@@ -46,12 +52,6 @@
           </row>
         </gridBagPanel>
       </east>
-
-      <west>
-        <label>
-          <property name="text" value="west"></property>
-        </label>
-      </west>
     </borderPanel>
   </center>
 
