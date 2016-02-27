@@ -46,7 +46,7 @@ public class TableParser extends ComponentParser<JTable> {
 					columnClasses.add(Object.class);
 				}
 			}
-			table.setModel(createModel(context, source, columnNames, columnClasses));
+			setModel(table, context, source, columnNames, columnClasses);
 			TableColumnModel columnModel = table.getColumnModel();
 			for (int i = 0; i < children.size(); i++) {
 				Element child = children.get(i);
@@ -54,6 +54,10 @@ public class TableParser extends ComponentParser<JTable> {
 				parseColumn(column, context, child);
 			}
 		}
+		boolean horizontalLines = getBoolean(source, Const.HORIZONTALLINES, true);
+		table.setShowHorizontalLines(horizontalLines);
+		boolean verticalLines = getBoolean(source, Const.VERTICALLINES, true);
+		table.setShowVerticalLines(verticalLines);
 		return table;
 	}
 
@@ -78,7 +82,7 @@ public class TableParser extends ComponentParser<JTable> {
 		return column;
 	}
 
-	private TableModel createModel(Context context, Element source, Vector<String> columnNames, List<Class<?>> columnClasses) {
+	protected void setModel(JTable table, Context context, Element source, Vector<String> columnNames, List<Class<?>> columnClasses) {
 		String modelText = getString(source, Const.MODEL);
 		TableModel model = null;
 		if (StringUtils.isNotEmpty(modelText)) {
@@ -108,7 +112,8 @@ public class TableParser extends ComponentParser<JTable> {
 				return proxy.invoke(tempModel, args);
 			}
 		};
-		return DynamicObjectFactory2.createDynamicObject(model, interceptor, (Class<? extends DynamicObject>[]) null, (DynamicObject[]) null);
+		model = DynamicObjectFactory2.createDynamicObject(model, interceptor, (Class<? extends DynamicObject>[]) null, (DynamicObject[]) null);
+		table.setModel(model);
 	}
 
 }

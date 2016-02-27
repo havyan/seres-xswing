@@ -30,6 +30,7 @@
       <xsd:element name="separator" type="separator"></xsd:element>
       <xsd:element name="popupMenu" type="menu"></xsd:element>
       <xsd:element name="table" type="table"></xsd:element>
+      <xsd:element name="treeTable" type="treeTable"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 
@@ -450,6 +451,8 @@
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="model" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="horizontalLines" type="xsd:boolean"></xsd:attribute>
+    <xsd:attribute name="verticalLines" type="xsd:boolean"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="tableColumn">
@@ -461,5 +464,11 @@
     <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="width" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="class" type="xsd:string"></xsd:attribute>
+  </xsd:complexType>
+
+  <xsd:complexType name="treeTable">
+    <xsd:complexContent>
+      <xsd:extension base="table"></xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
 </xsd:schema>

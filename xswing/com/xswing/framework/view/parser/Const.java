@@ -158,6 +158,8 @@ public class Const {
 
 	public static final String TOOLBAR = "toolBar";
 
+	public static final String TREETABLE = "treeTable";
+
 	public static final String TOOLBAR_UP = "TOOLBAR";
 
 	public static final String COLUMNS = "columns";
@@ -181,5 +183,9 @@ public class Const {
 	public static final String HEADER = "header";
 
 	public static final String RENDERER = "renderer";
+
+	public static final String HORIZONTALLINES = "horizontalLines";
+
+	public static final String VERTICALLINES = "verticalLines";
 
 }
