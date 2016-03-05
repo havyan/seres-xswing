@@ -1,5 +1,8 @@
 package com.xswing.framework.editor;
 
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+
 import javax.swing.JComponent;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.JTextComponent;
@@ -22,6 +25,11 @@ public class IntegerTextEditor extends AbstractEditor<JTextComponent, Long> {
 		super.setComponent(component);
 		JTextComponent textComponent = (JTextComponent) component;
 		textComponent.setDocument(new IntegerDocument());
+		this.component.addFocusListener(new FocusAdapter() {
+			public void focusLost(FocusEvent e) {
+				writeback();
+			}
+		});
 	}
 
 	@Override
