@@ -7,8 +7,12 @@ import javax.swing.JComponent;
 @Component(name = "comboBox", types = { JComboBox.class })
 public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void setValue(Object value) {
+		if(component.getItemCount() == 0) {
+			component.addItem(value);
+		}
 		component.setSelectedItem(value);
 	}
 
