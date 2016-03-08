@@ -38,13 +38,13 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	}
 
 	public XContainer(String path, M model, Map<String, Object> prdefinedBeans) {
-		this.model = model;
+		this.setModel(model);
 		initXPanel(path, prdefinedBeans);
 		initReferences();
 	}
 
 	public XContainer(URL url, M model, Map<String, Object> prdefinedBeans) {
-		this.model = model;
+		this.setModel(model);
 		initXPanel(url, prdefinedBeans);
 		initReferences();
 	}
@@ -144,7 +144,13 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	@SuppressWarnings("unchecked")
 	@Override
 	public void setModel(AppModel<?> model) {
+		if(this.model != null) {
+			this.model.removeAppListener(this);
+		}
 		this.model = (M) model;
+		if(this.model != null) {
+			this.model.addAppListener(this);
+		}
 	}
 
 	@Override
