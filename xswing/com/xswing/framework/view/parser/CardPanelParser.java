@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.JPanel;
 
+import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
 import com.xswing.framework.view.Context;
@@ -22,7 +23,12 @@ public class CardPanelParser extends ComponentParser<JPanel> {
 		panel.setLayout(layout);
 		List<Element> cards = source.getChildren(Const.CARD);
 		for (Element card : cards) {
-			panel.add((Component) ParserEngine.parse(context, card));
+			String name = card.getAttributeValue(Const.NAME);
+			if (StringUtils.isNotEmpty(name)) {
+				panel.add((Component) ParserEngine.parse(context, card), name);
+			} else {
+				panel.add((Component) ParserEngine.parse(context, card));
+			}
 		}
 		return panel;
 	}

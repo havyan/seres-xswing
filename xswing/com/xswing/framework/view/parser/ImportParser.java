@@ -31,6 +31,10 @@ public class ImportParser extends ComponentParser<XPanel> {
 				model = (AppModel<?>) bean;
 			}
 		}
+		Element modelElement = source.getChild(Const.MODEL);
+		if (modelElement != null) {
+			model = (AppModel<?>) ParserEngine.parse(context, modelElement);
+		}
 		String path = getString(source, Const.PATH);
 		if (path != null) {
 			Map<String, Object> beans = new HashMap<String, Object>();

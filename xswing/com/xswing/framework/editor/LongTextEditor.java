@@ -8,8 +8,8 @@ import javax.swing.text.JTextComponent;
 
 import org.apache.commons.lang3.StringUtils;
 
-@Component(name = "integerText")
-public class IntegerTextEditor extends AbstractEditor<JTextComponent, Integer> {
+@Component(name = "longText")
+public class LongTextEditor extends AbstractEditor<JTextComponent, Long> {
 
 	@Override
 	public void setValue(Object value) {
@@ -31,12 +31,12 @@ public class IntegerTextEditor extends AbstractEditor<JTextComponent, Integer> {
 	}
 
 	@Override
-	public Integer getValue() {
+	public Long getValue() {
 		String text = component.getText();
 		if (StringUtils.isNoneEmpty(text)) {
-			return Integer.valueOf(text);
+			return Long.valueOf(text);
 		} else {
-			return 0;
+			return 0L;
 		}
 	}
 

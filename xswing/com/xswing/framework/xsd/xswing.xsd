@@ -144,6 +144,7 @@
     <xsd:complexContent>
       <xsd:extension base="path">
         <xsd:sequence>
+          <xsd:element name="model" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
           <xsd:element name="property" type="property" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="id" type="xsd:ID"></xsd:attribute>
@@ -302,7 +303,7 @@
   <xsd:complexType name="cardPanel">
     <xsd:sequence>
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
-      <xsd:element name="card" type="wrapper" maxOccurs="unbounded" minOccurs="1"></xsd:element>
+      <xsd:element name="card" type="card" maxOccurs="unbounded" minOccurs="1"></xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
@@ -469,6 +470,14 @@
   <xsd:complexType name="treeTable">
     <xsd:complexContent>
       <xsd:extension base="table"></xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="card">
+    <xsd:complexContent>
+      <xsd:extension base="wrapper">
+        <xsd:attribute name="name" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
 </xsd:schema>
