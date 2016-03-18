@@ -51,7 +51,7 @@ public class XPanelParser extends BorderPanelParser {
 		return xPanel;
 	}
 
-	protected Class<?> findClass(Element source) {
+	protected Class<?> getBaseClass(Element source) {
 		return XPanel.class;
 	}
 

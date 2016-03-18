@@ -3,9 +3,7 @@ package com.xswing.framework.view.parser;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.BorderFactory;
 import javax.swing.JComponent;
@@ -26,20 +24,6 @@ import com.xswing.framework.view.Context;
 
 @XElement(names = { Const.CBEAN })
 public class ComponentParser<T extends JComponent> extends BeanParser<T> {
-
-	public static final Map<String, Class<?>> CLASS_MAP = new HashMap<String, Class<?>>();
-
-	static {
-	}
-
-	protected Class<?> findClass(Element source) {
-		Class<?> cls = CLASS_MAP.get(source.getName());
-		if (cls != null) {
-			return cls;
-		} else {
-			return super.findClass(source);
-		}
-	}
 
 	protected void handle(Context context, T component, Element source) {
 		super.handle(context, component, source);

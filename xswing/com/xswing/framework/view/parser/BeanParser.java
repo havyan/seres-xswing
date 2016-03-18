@@ -20,8 +20,8 @@ import com.xswing.framework.view.Context;
 @XElement(names = { Const.BEAN, Const.VALUE, Const.VALIDATOR, Const.RENDERER, Const.EDITOR, Const.MODEL })
 public class BeanParser<T> extends ElementParser<T> {
 
-	protected Class<?> findClass(Element source) {
-		Class<?> genericType = BaseUtils.getClassGenricType(this.getClass());
+	private Class<?> findClass(Element source) {
+		Class<?> genericType = getBaseClass(source);
 		Class<?> cls = getClass(source, Const.CLASS);
 		if (cls != null) {
 			if (genericType.isAssignableFrom(cls)) {
@@ -32,6 +32,10 @@ public class BeanParser<T> extends ElementParser<T> {
 		} else {
 			return genericType;
 		}
+	}
+
+	protected Class<?> getBaseClass(Element source) {
+		return BaseUtils.getClassGenricType(this.getClass());
 	}
 
 	@Override

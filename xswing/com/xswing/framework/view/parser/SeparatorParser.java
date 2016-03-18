@@ -28,7 +28,7 @@ public class SeparatorParser extends ComponentParser<JSeparator> {
 		return separator;
 	}
 
-	public Class<?> findClass(Element source) {
+	public Class<?> getBaseClass(Element source) {
 		String type = source.getAttributeValue(Const.TYPE);
 		if (type != null) {
 			if (type.equals(Const.MENU_UP)) {

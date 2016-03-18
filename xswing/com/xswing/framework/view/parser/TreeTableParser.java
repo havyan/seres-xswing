@@ -22,7 +22,7 @@ import net.sf.cglib.proxy.MethodInterceptor;
 @XElement(names = { Const.TREETABLE })
 public class TreeTableParser extends TableParser {
 
-	protected Class<?> findClass(Element source) {
+	protected Class<?> getBaseClass(Element source) {
 		return JXTreeTable.class;
 	}
 
