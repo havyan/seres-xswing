@@ -58,6 +58,10 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				size.setSize(width, height);
 				component.setPreferredSize(size);
 			}
+			String opaque = getString(source, "opaque");
+			if (StringUtils.isNoneEmpty(opaque)) {
+				component.setOpaque(Boolean.valueOf(opaque));
+			}
 		}
 	}
 
@@ -84,7 +88,9 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 		String borderText = source.getAttributeValue(Const.BORDER);
 		Border border = null;
 		if (borderText != null && borderText.length() > 0) {
-			if (borderText.equals(Const.LINE)) {
+			if (borderText.equals(Const.NONE)) {
+				border = BorderFactory.createEmptyBorder();
+			} else if (borderText.equals(Const.LINE)) {
 				border = BorderFactory.createLineBorder(Color.BLACK);
 			} else if (borderText.equals(Const.ETCHED)) {
 				border = BorderFactory.createEtchedBorder();

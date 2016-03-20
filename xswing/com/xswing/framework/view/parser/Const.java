@@ -145,6 +145,8 @@ public class Const {
 	public static final String BIND = "bind";
 
 	public static final String ACTION = "action";
+	
+	public static final String NONE = "NONE";
 
 	public static final String LINE = "LINE";
 

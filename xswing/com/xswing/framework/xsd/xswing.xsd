@@ -273,6 +273,7 @@
 
   <xsd:simpleType name="border">
     <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="NONE"></xsd:enumeration>
       <xsd:enumeration value="LINE"></xsd:enumeration>
       <xsd:enumeration value="RAISEDBEVEL"></xsd:enumeration>
       <xsd:enumeration value="LOWEREDBEVEL"></xsd:enumeration>
@@ -414,6 +415,7 @@
     <xsd:attribute name="action" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="background" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="foreground" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="opaque" type="xsd:boolean"></xsd:attribute>
   </xsd:attributeGroup>
 
   <xsd:complexType name="cbean">
