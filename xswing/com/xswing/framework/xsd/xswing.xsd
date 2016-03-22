@@ -186,6 +186,8 @@
         </xsd:complexType>
       </xsd:element>
       <xsd:element name="glue" maxOccurs="unbounded" minOccurs="0">
+        <xsd:complexType>
+        </xsd:complexType>
       </xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:choice>
