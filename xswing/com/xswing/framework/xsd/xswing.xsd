@@ -177,11 +177,18 @@
   </xsd:simpleType>
 
   <xsd:complexType name="boxPanel">
-    <xsd:sequence>
+    <xsd:choice maxOccurs="unbounded">
       <xsd:element name="argument" type="argument" maxOccurs="unbounded" minOccurs="0"></xsd:element>
       <xsd:element name="component" type="wrapper" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+      <xsd:element name="strut" maxOccurs="unbounded" minOccurs="0">
+        <xsd:complexType>
+          <xsd:attribute name="size" type="xsd:int"></xsd:attribute>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="glue" maxOccurs="unbounded" minOccurs="0">
+      </xsd:element>
       <xsd:group ref="baseGroups"></xsd:group>
-    </xsd:sequence>
+    </xsd:choice>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>

@@ -61,6 +61,10 @@ public class Const {
 	public static final String CELL = "cell";
 
 	public static final String COMPONENT = "component";
+	
+	public static final String STRUT = "strut";
+	
+	public static final String GLUE = "glue";
 
 	public static final String WRAPPER = "wrapper";
 

@@ -7,6 +7,7 @@ import java.awt.Component;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
@@ -40,9 +41,24 @@ public class BoxPanelParser extends ComponentParser<JPanel> {
 		}
 		panel.setLayout(new BoxLayout(panel, axis));
 
-		List<Element> components = source.getChildren(Const.COMPONENT);
-		for (Element component : components) {
-			panel.add((Component) ParserEngine.parse(context, component));
+		List<Element> children = source.getChildren();
+		for (Element child : children) {
+			if (child.getName().equals(Const.COMPONENT)) {
+				panel.add((Component) ParserEngine.parse(context, child));
+			} else if (child.getName().equals(Const.STRUT)) {
+				int size = getInt(child, "size", 0);
+				if (axis == BoxLayout.X_AXIS) {
+					panel.add(Box.createHorizontalStrut(size));
+				} else if (axis == BoxLayout.Y_AXIS) {
+					panel.add(Box.createVerticalStrut(size));
+				}
+			} else if (child.getName().equals(Const.GLUE)) {
+				if (axis == BoxLayout.X_AXIS) {
+					panel.add(Box.createHorizontalGlue());
+				} else if (axis == BoxLayout.Y_AXIS) {
+					panel.add(Box.createVerticalGlue());
+				}
+			}
 		}
 
 		return panel;
