@@ -3,6 +3,7 @@
  */
 package com.xswing.framework.model;
 
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,6 +75,20 @@ public abstract class AbstractAppModel<T> implements AppModel<T> {
 		Object bean = this.data != null ? this.data : this.tempData;
 		if (bean != null && bean instanceof Bean) {
 			((Bean) bean).addPropertyChangeListener(dataPath, new PropertyChangeListenerProxy(this, l));
+		}
+	}
+
+	public void bindTo(String dataPath, PropertyChangeListener l) {
+		Object bean = this.data != null ? this.data : this.tempData;
+		if (bean != null && bean instanceof Bean) {
+			((Bean) bean).addPropertyChangeListener(new PropertyChangeListenerProxy(this, e -> {
+				String prefix = dataPath + ".";
+				if (e.getPropertyName().startsWith(prefix)) {
+					String propertyName = e.getPropertyName().substring(prefix.length());
+					PropertyChangeEvent newEvent = new PropertyChangeEvent(e.getSource(), propertyName, e.getOldValue(), e.getNewValue());
+					l.propertyChange(newEvent);
+				}
+			}));
 		}
 	}
 

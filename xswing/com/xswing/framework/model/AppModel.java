@@ -28,6 +28,8 @@ public interface AppModel<T> {
 	
 	public void bind(PropertyChangeListener l);
 
+	public void bindTo(String dataPath, PropertyChangeListener l);
+
 	public void setDataProperty(String property, Object value);
 
 	public Object getDataProperty(String property);
