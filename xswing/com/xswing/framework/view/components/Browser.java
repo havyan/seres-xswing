@@ -32,7 +32,7 @@ public class Browser extends JFXPanel {
 	}
 
 	private void initWebView() {
-		
+
 		Platform.setImplicitExit(false);
 
 		Platform.runLater(() -> {
@@ -101,11 +101,33 @@ public class Browser extends JFXPanel {
 	}
 
 	public void addTitleChangeListener(ChangeListener<String> l) {
-		engine.titleProperty().addListener(l);
+		Platform.runLater(() -> {
+			engine.titleProperty().addListener(l);
+		});
 	}
 
 	public void setStatusHandler(EventHandler<WebEvent<String>> handler) {
-		engine.setOnStatusChanged(handler);
+		Platform.runLater(() -> {
+			engine.setOnStatusChanged(handler);
+		});
+	}
+
+	public void addLocationChangeListener(ChangeListener<String> l) {
+		Platform.runLater(() -> {
+			engine.locationProperty().addListener(l);
+		});
+	}
+
+	public void addLoadChangeListener(ChangeListener<Number> l) {
+		Platform.runLater(() -> {
+			engine.getLoadWorker().workDoneProperty().addListener(l);
+		});
+	}
+
+	public void addErrorHandler(ChangeListener<Throwable> handler) {
+		Platform.runLater(() -> {
+			engine.getLoadWorker().exceptionProperty().addListener(handler);
+		});
 	}
 
 	protected void titleChanged(ObservableValue<? extends String> observable, String oldValue, final String newValue) {
