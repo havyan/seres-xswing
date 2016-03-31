@@ -193,5 +193,9 @@ public class Const {
 	public static final String HORIZONTALLINES = "horizontalLines";
 
 	public static final String VERTICALLINES = "verticalLines";
+	
+	public static final String BROWSER = "browser";
+	
+	public static final String URL = "url";
 
 }
