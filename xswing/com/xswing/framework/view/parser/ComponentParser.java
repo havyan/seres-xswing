@@ -2,6 +2,7 @@ package com.xswing.framework.view.parser;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			if (foreground != null) {
 				component.setForeground(foreground);
 			}
+			setFont(component, source);
 			String tooltip = getString(source, Const.TOOLTIP);
 			if (StringUtils.isNotEmpty(tooltip)) {
 				component.setToolTipText(tooltip);
@@ -63,7 +65,7 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
 				component.setMinimumSize(createSize(widthText, heightText, component.getMinimumSize()));
 			}
-			String opaque = getString(source, "opaque");
+			String opaque = getString(source, Const.OPAQUE);
 			if (StringUtils.isNoneEmpty(opaque)) {
 				component.setOpaque(Boolean.valueOf(opaque));
 			}
@@ -140,6 +142,29 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			border = new CompoundBorder(border, paddingBorder);
 		}
 		return border;
+	}
+
+	protected void setFont(T component, Element source) {
+		String fontName = getString(source, Const.FONTNAME);
+		String fontStyle = getString(source, Const.FONTSTYLE);
+		String fontSize = getString(source, Const.FONTSIZE);
+		if (StringUtils.isNotEmpty(fontName) || StringUtils.isNotEmpty(fontStyle) || StringUtils.isNotEmpty(fontSize)) {
+			Font old = component.getFont();
+			String name = old.getName();
+			if (StringUtils.isNotEmpty(fontName)) {
+				name = fontName;
+			}
+			int style = old.getStyle();
+			if (StringUtils.isNotEmpty(fontStyle)) {
+				style = (int) BaseUtils.getStaticValue(Font.class, fontStyle);
+			}
+			int size = old.getSize();
+			if (StringUtils.isNotEmpty(fontSize)) {
+				size = Integer.valueOf(fontSize);
+			}
+			component.setFont(new Font(name, style, size));
+		}
+
 	}
 
 	@Override

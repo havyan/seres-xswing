@@ -212,4 +212,12 @@ public class Const {
 
 	public static final String MINHEIGHT = "minHeight";
 
+	public static final String OPAQUE = "opaque";
+
+	public static final String FONTNAME = "fontName";
+
+	public static final String FONTSTYLE = "fontStyle";
+
+	public static final String FONTSIZE = "fontSize";
+
 }

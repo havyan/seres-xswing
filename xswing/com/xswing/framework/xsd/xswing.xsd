@@ -444,7 +444,18 @@
     <xsd:attribute name="maxHeight" type="xsd:double"></xsd:attribute>
     <xsd:attribute name="minWidth" type="xsd:double"></xsd:attribute>
     <xsd:attribute name="minHeight" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="fontName" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="fontStyle" type="fontStyle"></xsd:attribute>
+    <xsd:attribute name="fontSize" type="xsd:int"></xsd:attribute>
   </xsd:attributeGroup>
+
+  <xsd:simpleType name="fontStyle">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="PLAIN"></xsd:enumeration>
+      <xsd:enumeration value="BOLD"></xsd:enumeration>
+      <xsd:enumeration value="ITALIC"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 
   <xsd:complexType name="cbean">
     <xsd:complexContent>
