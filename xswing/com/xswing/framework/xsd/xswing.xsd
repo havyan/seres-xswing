@@ -85,7 +85,7 @@
     </xsd:sequence>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
-    <xsd:attribute name="align" type="align" default="CENTER"></xsd:attribute>
+    <xsd:attribute name="align" type="halign" default="CENTER"></xsd:attribute>
     <xsd:attribute name="hgap" type="xsd:int"></xsd:attribute>
     <xsd:attribute name="vgap" type="xsd:int"></xsd:attribute>
   </xsd:complexType>
@@ -195,8 +195,8 @@
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>
-    <xsd:attribute name="alignx" type="alignx"></xsd:attribute>
-    <xsd:attribute name="aligny" type="aligny"></xsd:attribute>
+    <xsd:attribute name="halign" type="halign"></xsd:attribute>
+    <xsd:attribute name="valign" type="valign"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:simpleType name="axis">
@@ -208,13 +208,21 @@
     </xsd:restriction>
   </xsd:simpleType>
 
-  <xsd:simpleType name="align">
+  <xsd:simpleType name="halign">
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="LEFT"></xsd:enumeration>
       <xsd:enumeration value="RIGHT"></xsd:enumeration>
       <xsd:enumeration value="CENTER"></xsd:enumeration>
       <xsd:enumeration value="LEADING"></xsd:enumeration>
       <xsd:enumeration value="TRAILING"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="valign">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="TOP"></xsd:enumeration>
+      <xsd:enumeration value="BOTTOM"></xsd:enumeration>
+      <xsd:enumeration value="CENTER"></xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
 
@@ -356,6 +364,8 @@
       <xsd:extension base="cbean">
         <xsd:attribute name="text" type="xsd:string"></xsd:attribute>
         <xsd:attribute name="icon" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="halign" type="halign"></xsd:attribute>
+        <xsd:attribute name="valign" type="valign"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -511,20 +521,4 @@
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
-
-  <xsd:simpleType name="alignx">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="LEFT"></xsd:enumeration>
-      <xsd:enumeration value="RIGHT"></xsd:enumeration>
-      <xsd:enumeration value="CENTER"></xsd:enumeration>
-    </xsd:restriction>
-  </xsd:simpleType>
-
-  <xsd:simpleType name="aligny">
-    <xsd:restriction base="xsd:string">
-      <xsd:enumeration value="TOP"></xsd:enumeration>
-      <xsd:enumeration value="BOTTOM"></xsd:enumeration>
-      <xsd:enumeration value="CENTER"></xsd:enumeration>
-    </xsd:restriction>
-  </xsd:simpleType>
 </xsd:schema>

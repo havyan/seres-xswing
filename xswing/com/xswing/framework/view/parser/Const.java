@@ -198,9 +198,9 @@ public class Const {
 
 	public static final String URL = "url";
 
-	public static final String ALIGNX = "alignx";
+	public static final String HALIGN = "halign";
 
-	public static final String ALIGNY = "aligny";
+	public static final String VALIGN = "valign";
 
 	public static final String ALIGN_POSTFIX = "_ALIGNMENT";
 

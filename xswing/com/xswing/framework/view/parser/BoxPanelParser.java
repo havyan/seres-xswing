@@ -55,14 +55,14 @@ public class BoxPanelParser extends ComponentParser<JPanel> {
 		}
 
 		Component[] components = panel.getComponents();
-		String alignx = getString(source, Const.ALIGNX);
+		String alignx = getString(source, Const.HALIGN);
 		if (StringUtils.isNotEmpty(alignx)) {
 			float alignxValue = (float) BaseUtils.getStaticValue(Component.class, alignx + Const.ALIGN_POSTFIX);
 			for (Component component : components) {
 				((JComponent) component).setAlignmentX(alignxValue);
 			}
 		}
-		String aligny = getString(source, Const.ALIGNY);
+		String aligny = getString(source, Const.VALIGN);
 		if (StringUtils.isNotEmpty(aligny)) {
 			float alignyValue = (float) BaseUtils.getStaticValue(Component.class, aligny + Const.ALIGN_POSTFIX);
 			for (Component component : components) {
