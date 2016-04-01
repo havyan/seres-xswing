@@ -195,6 +195,8 @@
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
     <xsd:attribute name="axis" type="axis" default="X_AXIS"></xsd:attribute>
+    <xsd:attribute name="alignx" type="alignx"></xsd:attribute>
+    <xsd:attribute name="aligny" type="aligny"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:simpleType name="axis">
@@ -428,6 +430,10 @@
     <xsd:attribute name="background" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="foreground" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="opaque" type="xsd:boolean"></xsd:attribute>
+    <xsd:attribute name="maxWidth" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="maxHeight" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="minWidth" type="xsd:double"></xsd:attribute>
+    <xsd:attribute name="minHeight" type="xsd:double"></xsd:attribute>
   </xsd:attributeGroup>
 
   <xsd:complexType name="cbean">
@@ -505,4 +511,20 @@
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
+
+  <xsd:simpleType name="alignx">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="LEFT"></xsd:enumeration>
+      <xsd:enumeration value="RIGHT"></xsd:enumeration>
+      <xsd:enumeration value="CENTER"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="aligny">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="TOP"></xsd:enumeration>
+      <xsd:enumeration value="BOTTOM"></xsd:enumeration>
+      <xsd:enumeration value="CENTER"></xsd:enumeration>
+    </xsd:restriction>
+  </xsd:simpleType>
 </xsd:schema>

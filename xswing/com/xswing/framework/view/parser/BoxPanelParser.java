@@ -4,17 +4,17 @@
 package com.xswing.framework.view.parser;
 
 import java.awt.Component;
-import java.lang.reflect.Field;
 import java.util.List;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JComponent;
 import javax.swing.JPanel;
 
 import org.apache.commons.lang3.StringUtils;
 import org.jdom2.Element;
 
-import com.framework.exception.ExceptionUtils;
+import com.framework.common.BaseUtils;
 import com.xswing.framework.view.Context;
 
 /**
@@ -30,14 +30,7 @@ public class BoxPanelParser extends ComponentParser<JPanel> {
 		int axis = BoxLayout.X_AXIS;
 		String axisString = source.getAttributeValue("axis");
 		if (StringUtils.isNotEmpty(axisString)) {
-			Class<BoxLayout> cl = BoxLayout.class;
-			try {
-				Field f = cl.getField(axisString);
-				axis = f.getInt(cl);
-			} catch (Exception e1) {
-				ExceptionUtils.logAndShowException(e1);
-				return null;
-			}
+			axis = (int) BaseUtils.getStaticValue(BoxLayout.class, axisString);
 		}
 		panel.setLayout(new BoxLayout(panel, axis));
 
@@ -58,6 +51,22 @@ public class BoxPanelParser extends ComponentParser<JPanel> {
 				} else if (axis == BoxLayout.Y_AXIS) {
 					panel.add(Box.createVerticalGlue());
 				}
+			}
+		}
+
+		Component[] components = panel.getComponents();
+		String alignx = getString(source, Const.ALIGNX);
+		if (StringUtils.isNotEmpty(alignx)) {
+			float alignxValue = (float) BaseUtils.getStaticValue(Component.class, alignx + Const.ALIGN_POSTFIX);
+			for (Component component : components) {
+				((JComponent) component).setAlignmentX(alignxValue);
+			}
+		}
+		String aligny = getString(source, Const.ALIGNY);
+		if (StringUtils.isNotEmpty(aligny)) {
+			float alignyValue = (float) BaseUtils.getStaticValue(Component.class, aligny + Const.ALIGN_POSTFIX);
+			for (Component component : components) {
+				((JComponent) component).setAlignmentY(alignyValue);
 			}
 		}
 

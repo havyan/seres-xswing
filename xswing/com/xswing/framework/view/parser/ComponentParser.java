@@ -51,18 +51,31 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			String widthText = getString(source, Const.WIDTH);
 			String heightText = getString(source, Const.HEIGHT);
 			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
-				Dimension size = component.getPreferredSize();
-				double width = StringUtils.isNotEmpty(widthText) ? Double.valueOf(widthText) : size.width;
-				double height = StringUtils.isNotEmpty(heightText) ? Double.valueOf(heightText) : size.height;
-				size = new Dimension();
-				size.setSize(width, height);
-				component.setPreferredSize(size);
+				component.setPreferredSize(createSize(widthText, heightText, component.getPreferredSize()));
+			}
+			widthText = getString(source, Const.MAXWIDTH);
+			heightText = getString(source, Const.MAXHEIGHT);
+			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
+				component.setMaximumSize(createSize(widthText, heightText, component.getMaximumSize()));
+			}
+			widthText = getString(source, Const.MINWIDTH);
+			heightText = getString(source, Const.MINHEIGHT);
+			if (StringUtils.isNotEmpty(widthText) || StringUtils.isNotEmpty(heightText)) {
+				component.setMinimumSize(createSize(widthText, heightText, component.getMinimumSize()));
 			}
 			String opaque = getString(source, "opaque");
 			if (StringUtils.isNoneEmpty(opaque)) {
 				component.setOpaque(Boolean.valueOf(opaque));
 			}
 		}
+	}
+
+	private Dimension createSize(String widthText, String heightText, Dimension size) {
+		double width = StringUtils.isNotEmpty(widthText) ? Double.valueOf(widthText) : size.width;
+		double height = StringUtils.isNotEmpty(heightText) ? Double.valueOf(heightText) : size.height;
+		size = new Dimension();
+		size.setSize(width, height);
+		return size;
 	}
 
 	protected Color createColor(String colorText) {

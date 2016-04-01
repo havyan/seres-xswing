@@ -61,9 +61,9 @@ public class Const {
 	public static final String CELL = "cell";
 
 	public static final String COMPONENT = "component";
-	
+
 	public static final String STRUT = "strut";
-	
+
 	public static final String GLUE = "glue";
 
 	public static final String WRAPPER = "wrapper";
@@ -149,7 +149,7 @@ public class Const {
 	public static final String BIND = "bind";
 
 	public static final String ACTION = "action";
-	
+
 	public static final String NONE = "NONE";
 
 	public static final String LINE = "LINE";
@@ -193,9 +193,23 @@ public class Const {
 	public static final String HORIZONTALLINES = "horizontalLines";
 
 	public static final String VERTICALLINES = "verticalLines";
-	
+
 	public static final String BROWSER = "browser";
-	
+
 	public static final String URL = "url";
+
+	public static final String ALIGNX = "alignx";
+
+	public static final String ALIGNY = "aligny";
+
+	public static final String ALIGN_POSTFIX = "_ALIGNMENT";
+
+	public static final String MAXWIDTH = "maxWidth";
+
+	public static final String MAXHEIGHT = "maxHeight";
+
+	public static final String MINWIDTH = "minWidth";
+
+	public static final String MINHEIGHT = "minHeight";
 
 }
