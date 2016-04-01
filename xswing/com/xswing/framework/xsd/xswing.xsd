@@ -201,6 +201,8 @@
     <xsd:restriction base="xsd:string">
       <xsd:enumeration value="X_AXIS"></xsd:enumeration>
       <xsd:enumeration value="Y_AXIS"></xsd:enumeration>
+      <xsd:enumeration value="PAGE_AXIS"></xsd:enumeration>
+      <xsd:enumeration value="LINE_AXIS"></xsd:enumeration>
     </xsd:restriction>
   </xsd:simpleType>
 
