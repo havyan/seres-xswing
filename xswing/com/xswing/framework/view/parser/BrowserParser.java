@@ -17,33 +17,36 @@ import com.xswing.framework.view.components.Browser;
 public class BrowserParser extends ComponentParser<Browser> {
 
 	@Override
-	public Browser parseElement(Context context, Element source) {
-		Browser panel = createBean(context, source);
+	protected void bind(Context context, String id, Browser browser, Element source) {
+		super.bind(context, id, browser, source);
 		String url = getString(source, Const.URL);
 		if (StringUtils.isNotEmpty(url)) {
-			String protocol = "http://";
-			if (!url.trim().substring(0, protocol.length()).equalsIgnoreCase(protocol)) {
-				url = protocol + url;
-			}
-			try {
-				panel.setUrl(new URL(url));
-			} catch (MalformedURLException e) {
-				Logger.error(e);
-				JOptionPane.showMessageDialog(panel, e.getMessage());
-			}
-		} else {
-			String path = getString(source, Const.PATH);
-			if (StringUtils.isNotEmpty(path)) {
+			bindSet(context, browser, url, value -> {
+				String protocol = "http://";
+				String urlValue = value.toString();
+				if (!urlValue.trim().substring(0, protocol.length()).equalsIgnoreCase(protocol)) {
+					urlValue = protocol + urlValue;
+				}
 				try {
-					panel.setFile(new File(path));
+					browser.setUrl(new URL(urlValue));
 				} catch (MalformedURLException e) {
 					Logger.error(e);
-					JOptionPane.showMessageDialog(panel, e.getMessage());
+					JOptionPane.showMessageDialog(browser, e.getMessage());
 				}
+			});
+		} else {
+			String file = getString(source, Const.FILE);
+			if (StringUtils.isNotEmpty(file)) {
+				bindSet(context, browser, file, value -> {
+					try {
+						browser.setFile(new File(value.toString()));
+					} catch (MalformedURLException e) {
+						Logger.error(e);
+						JOptionPane.showMessageDialog(browser, e.getMessage());
+					}
+				});
 			}
 		}
-
-		return panel;
 	}
 
 }

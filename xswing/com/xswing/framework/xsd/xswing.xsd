@@ -528,7 +528,7 @@
       <xsd:group ref="baseGroups"></xsd:group>
     </xsd:sequence>
     <xsd:attribute name="url" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="path" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="file" type="xsd:string"></xsd:attribute>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
   </xsd:complexType>
