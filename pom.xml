@@ -5,7 +5,6 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <build>
-    <directory>${project.basedir}/build</directory>
     <finalName>seres-xswing</finalName>
     <plugins>
       <!-- download source code in Eclipse, best practice -->
