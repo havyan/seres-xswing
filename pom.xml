@@ -9,7 +9,15 @@
     <relativePath>../seres-all</relativePath>
   </parent>
   <build>
-    <finalName>seres-xswing</finalName>
+    <resources>
+      <resource>
+        <directory>xswing</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+    </resources>
+    <sourceDirectory>xswing</sourceDirectory>
     <plugins>
       <!-- download source code in Eclipse, best practice -->
       <plugin>
