@@ -116,4 +116,21 @@ public class TableParser extends ComponentParser<JTable> {
 		table.setModel(model);
 	}
 
+	@Override
+	protected void bind(Context context, String id, JTable bean, Element source) {
+		super.bind(context, id, bean, source);
+		String text = getString(source, Const.ROWHEIGHT);
+		if (StringUtils.isNotEmpty(text)) {
+			bindSet(context, bean, text, value -> {
+				if (value != null) {
+					if (value instanceof Integer) {
+						bean.setRowHeight((int) value);
+					} else {
+						bean.setRowHeight(Integer.valueOf(value.toString()));
+					}
+				}
+			});
+		}
+	}
+
 }

@@ -495,6 +495,7 @@
     <xsd:attribute name="model" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="horizontalLines" type="xsd:boolean"></xsd:attribute>
     <xsd:attribute name="verticalLines" type="xsd:boolean"></xsd:attribute>
+    <xsd:attribute name="rowHeight" type="xsd:int"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="tableColumn">
