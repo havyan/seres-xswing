@@ -32,6 +32,7 @@
       <xsd:element name="table" type="table"></xsd:element>
       <xsd:element name="treeTable" type="treeTable"></xsd:element>
       <xsd:element name="browser" type="browser"></xsd:element>
+      <xsd:element name="list" type="list"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 
@@ -374,7 +375,7 @@
     <xsd:complexContent>
       <xsd:extension base="cbean">
         <xsd:sequence>
-          <xsd:element name="item" type="comboBoxItem" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+          <xsd:element name="item" type="element" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="items" type="xsd:string"></xsd:attribute>
       </xsd:extension>
@@ -398,7 +399,7 @@
     </xsd:complexContent>
   </xsd:complexType>
 
-  <xsd:complexType name="comboBoxItem" mixed="true">
+  <xsd:complexType name="element" mixed="true">
     <xsd:sequence>
       <xsd:element name="value" type="bean" maxOccurs="1" minOccurs="0"></xsd:element>
     </xsd:sequence>
@@ -532,5 +533,16 @@
     <xsd:attribute name="file" type="xsd:string"></xsd:attribute>
     <xsd:attributeGroup ref="baseAttributes"></xsd:attributeGroup>
     <xsd:attributeGroup ref="componentAttributes"></xsd:attributeGroup>
+  </xsd:complexType>
+
+  <xsd:complexType name="list">
+    <xsd:complexContent>
+      <xsd:extension base="cbean">
+        <xsd:sequence>
+          <xsd:element name="element" type="element" maxOccurs="unbounded" minOccurs="0"></xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="elements" type="xsd:string"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
   </xsd:complexType>
 </xsd:schema>

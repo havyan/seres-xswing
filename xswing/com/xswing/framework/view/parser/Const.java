@@ -31,7 +31,7 @@ public class Const {
 	public static final String PROPERTY = "property";
 
 	public static final String NAME = "name";
-	
+
 	public static final String FILE = "file";
 
 	public static final String VALUE = "value";
@@ -221,5 +221,11 @@ public class Const {
 	public static final String FONTSTYLE = "fontStyle";
 
 	public static final String FONTSIZE = "fontSize";
+
+	public static final String LIST = "list";
+
+	public static final String ELEMENTS = "elements";
+
+	public static final String ELEMENT = "element";
 
 }
