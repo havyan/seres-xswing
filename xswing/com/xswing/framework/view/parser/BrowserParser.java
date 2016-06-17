@@ -22,13 +22,8 @@ public class BrowserParser extends ComponentParser<Browser> {
 		String url = getString(source, Const.URL);
 		if (StringUtils.isNotEmpty(url)) {
 			bindSet(context, browser, url, value -> {
-				String protocol = "http://";
-				String urlValue = value.toString();
-				if (!urlValue.trim().substring(0, protocol.length()).equalsIgnoreCase(protocol)) {
-					urlValue = protocol + urlValue;
-				}
 				try {
-					browser.setUrl(new URL(urlValue));
+					browser.setUrl(new URL(value.toString()));
 				} catch (MalformedURLException e) {
 					Logger.error(e);
 					JOptionPane.showMessageDialog(browser, e.getMessage());
