@@ -18,7 +18,7 @@ public class IntegerDocument extends PlainDocument {
 		char[] upper = str.toCharArray();
 		int length = 0;
 		for (int i = 0; i < upper.length; i++) {
-			if (upper[i] >= '0' && upper[i] <= '9') {
+			if ((upper[i] >= '0' && upper[i] <= '9') || upper[i] == '-' || upper[i] == 'x') {
 				upper[length++] = upper[i];
 			}
 		}
