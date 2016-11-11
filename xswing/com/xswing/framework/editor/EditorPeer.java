@@ -16,7 +16,7 @@ public interface EditorPeer {
 
 	public String[] check();
 
-	default Editor<?, ?> getEditor() {
+	default Editor<?, ?> createEditor() {
 		return new DefaultEditor() {
 			@Override
 			public void setValue(Object value) {
@@ -26,6 +26,10 @@ public interface EditorPeer {
 			@Override
 			public Object getValue() {
 				return EditorPeer.this.getValue();
+			}
+			
+			public JComponent getComponent() {
+				return EditorPeer.this.getComponent();
 			}
 
 			@Override

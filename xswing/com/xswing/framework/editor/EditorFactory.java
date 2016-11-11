@@ -49,16 +49,18 @@ public class EditorFactory {
 			} else {
 				editor = (Editor<? extends JComponent, ?>) BaseUtils.newInstance(editorText);
 			}
-			if (editor != null) {
-				editor.setContext(context);
-				editor.setComponent(component);
-			}
 		} else if (component instanceof Editor) {
-			return (Editor<? extends JComponent, ?>) component;
+			editor =  (Editor<? extends JComponent, ?>) component;
 		} else if (component instanceof EditorPeer) {
-			return ((EditorPeer) component).getEditor();
+			editor = ((EditorPeer) component).createEditor();
+		}  else if (component instanceof EditorHolder) {
+			editor = ((EditorHolder) component).getEditor();
 		} else {
 			editor = createDefault(context, component);
+		}
+		if (editor != null) {
+			editor.setContext(context);
+			editor.setComponent(component);
 		}
 		return editor;
 	}
@@ -74,8 +76,6 @@ public class EditorFactory {
 		if (editor == null) {
 			editor = new DefaultEditor();
 		}
-		editor.setContext(context);
-		editor.setComponent(component);
 		return editor;
 	}
 
