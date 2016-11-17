@@ -33,6 +33,7 @@
       <xsd:element name="treeTable" type="treeTable"></xsd:element>
       <xsd:element name="browser" type="browser"></xsd:element>
       <xsd:element name="list" type="list"></xsd:element>
+      <xsd:element name="passwordField" type="passwordField"></xsd:element>
     </xsd:choice>
   </xsd:complexType>
 
@@ -392,6 +393,14 @@
   </xsd:complexType>
 
   <xsd:complexType name="textField">
+    <xsd:complexContent>
+      <xsd:extension base="cbean">
+        <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="passwordField">
     <xsd:complexContent>
       <xsd:extension base="cbean">
         <xsd:attribute name="columns" type="xsd:int"></xsd:attribute>

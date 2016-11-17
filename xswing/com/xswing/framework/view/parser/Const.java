@@ -108,6 +108,8 @@ public class Const {
 
 	public static final String TEXTFIELD = "textField";
 
+	public static final String PASSWORDFIELD = "passwordField";
+
 	public static final String TEXTAREA = "textArea";
 
 	public static final String TEXT = "text";
