@@ -110,8 +110,14 @@ public class BeanParser<T> extends ElementParser<T> {
 				String value = property.getAttributeValue(Const.VALUE);
 				String ref = property.getAttributeValue(Const.REF);
 				if (value != null) {
-					Class<?> cls = BaseUtils.getWriteMethod(bean.getClass(), propertyName).getParameterTypes()[0];
-					BaseUtils.setProperty(bean, propertyName, BaseUtils.createObject(cls, value));
+					if (StringUtils.isNotEmpty(value) && hasProperty(value)) {
+						bindSet(context, bean, value, realValue -> {
+							BaseUtils.setProperty(bean, propertyName, realValue);
+						});
+					} else {
+						Class<?> cls = BaseUtils.getWriteMethod(bean.getClass(), propertyName).getParameterTypes()[0];
+						BaseUtils.setProperty(bean, propertyName, BaseUtils.createObject(cls, value));
+					}
 				} else if (ref != null) {
 					Object refBean = context.getBean(ref);
 					if (refBean != null) {
