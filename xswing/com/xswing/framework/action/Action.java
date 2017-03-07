@@ -29,10 +29,12 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 	@Override
 	public void handleEvent(AppEvent event) {
 		setEnabled(isEnabled());
+		setVisible(isVisible());
 	}
 
 	public void propertyChange(PropertyChangeEvent e) {
 		setEnabled(isEnabled());
+		setVisible(isVisible());
 	}
 
 	public M getModel() {
@@ -80,7 +82,17 @@ public abstract class Action<M extends AppModel<?>, V extends View, C extends JC
 		}
 	}
 
+	public void setVisible(boolean visible) {
+		if (component != null) {
+			component.setVisible(visible);
+		}
+	}
+
 	public boolean isEnabled() {
+		return true;
+	}
+
+	public boolean isVisible() {
 		return true;
 	}
 

@@ -38,5 +38,9 @@ public class TextEditor extends AbstractEditor<JTextComponent, String> {
 			}
 		});
 	}
+	
+	public void setEditable(boolean editable) {
+		component.setEditable(editable);
+	}
 
 }

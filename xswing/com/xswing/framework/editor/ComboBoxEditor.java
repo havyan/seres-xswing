@@ -26,6 +26,10 @@ public class ComboBoxEditor extends AbstractEditor<JComboBox, Object> {
 		component.setEditable(enabled);
 		component.setEnabled(enabled);
 	}
+	
+	public void setEditable(boolean editable) {
+		component.setEditable(editable);
+	}
 
 	@Override
 	public void reset() {

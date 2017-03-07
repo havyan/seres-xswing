@@ -20,5 +20,21 @@ public class XPanelEditor extends AbstractEditor<XPanel, Object> {
 	public Object getValue() {
 		return component.getModel().getData();
 	}
+	
+	public void setEnabled(boolean enabled) {
+		for(Editor<?, ?> editor: component.getEditors().values()) {
+			if (component != editor.getComponent()) {
+				editor.setEnabled(enabled);
+			}
+		}
+	}
+	
+	public void setEditable(boolean editable) {
+		for(Editor<?, ?> editor: component.getEditors().values()) {
+			if (component != editor.getComponent()) {
+				editor.setEditable(editable);
+			}
+		}
+	}
 
 }

@@ -56,6 +56,8 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 			component.setEnabled(enabled);
 		}
 	}
+	
+	default void setEditable(boolean editable) {}
 
 	public String[] validate();
 

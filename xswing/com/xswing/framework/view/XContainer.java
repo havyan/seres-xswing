@@ -89,6 +89,10 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	public Editor<? extends JComponent, ?> getEditor(String id) {
 		return xpanel.getEditor(id);
 	}
+	
+	public Map<String, Editor<? extends JComponent, ?>> getEditors() {
+		return xpanel.getEditors();
+	}
 
 	public Object getValue(String id) {
 		return xpanel.getValue(id);
@@ -184,6 +188,22 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	@Override
 	public String[] check() {
 		return this.xpanel.check();
+	}
+	
+	public void setEnabled(boolean enabled) {
+		for(Editor<?, ?> editor: this.getEditors().values()) {
+			if (this.xpanel != editor.getComponent()) {
+				editor.setEnabled(enabled);
+			}
+		}
+	}
+	
+	public void setEditable(boolean editable) {
+		for(Editor<?, ?> editor: this.getEditors().values()) {
+			if (this.xpanel != editor.getComponent()) {
+				editor.setEditable(editable);
+			}
+		}
 	}
 
 	public void setWritebackable(boolean writebackable) {

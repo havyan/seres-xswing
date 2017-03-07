@@ -45,6 +45,10 @@ public class LongTextEditor extends AbstractEditor<JTextComponent, Long> {
 		component.setEditable(enabled);
 		component.setEnabled(enabled);
 	}
+	
+	public void setEditable(boolean editable) {
+		component.setEditable(editable);
+	}
 
 	@Override
 	public void reset() {

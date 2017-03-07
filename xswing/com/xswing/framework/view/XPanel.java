@@ -48,6 +48,10 @@ public class XPanel extends JPanel implements View {
 	public Editor<? extends JComponent, ?> getEditor(String id) {
 		return context.getEditor(id);
 	}
+	
+	public Map<String, Editor<? extends JComponent, ?>> getEditors() {
+		return context.getEditors();
+	}
 
 	public Object getValue(String id) {
 		return getEditor(id).getValue();

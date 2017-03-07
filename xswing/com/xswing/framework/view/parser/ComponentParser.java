@@ -186,6 +186,18 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 			editor.setAction(action);
 		}
 		context.setEditor(id, editor);
+		String enabledText = getString(source, Const.ENABLED);
+		if (StringUtils.isNotEmpty(enabledText)) {
+			bindSet(context, bean, enabledText, value -> {
+				editor.setEnabled(Boolean.valueOf(value.toString()));
+			});
+		}
+		String editableText = getString(source, Const.EDITABLE);
+		if (StringUtils.isNotEmpty(editableText)) {
+			bindSet(context, bean, editableText, value -> {
+				editor.setEditable(Boolean.valueOf(value.toString()));
+			});
+		}
 	}
 
 	protected List<Validator<?>> parseValidators(Context context, Element source, Editor<? extends JComponent, ?> editor) {

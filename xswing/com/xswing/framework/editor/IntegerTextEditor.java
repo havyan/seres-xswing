@@ -45,6 +45,10 @@ public class IntegerTextEditor extends AbstractEditor<JTextComponent, Integer> {
 		component.setEditable(enabled);
 		component.setEnabled(enabled);
 	}
+	
+	public void setEditable(boolean editable) {
+		component.setEditable(editable);
+	}
 
 	@Override
 	public void reset() {

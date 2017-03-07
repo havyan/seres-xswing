@@ -229,5 +229,9 @@ public class Const {
 	public static final String ELEMENTS = "elements";
 
 	public static final String ELEMENT = "element";
+	
+	public static final String ENABLED = "enabled";
+	
+	public static final String EDITABLE = "editable";
 
 }

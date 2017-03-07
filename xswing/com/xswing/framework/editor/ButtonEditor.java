@@ -21,6 +21,10 @@ public class ButtonEditor extends AbstractEditor<JButton, String> {
 	public void setEnabled(boolean enabled) {
 		component.setEnabled(enabled);
 	}
+	
+	public void setEditable(boolean editable) {
+		component.setEnabled(editable);
+	}
 
 	@Override
 	public void reset() {

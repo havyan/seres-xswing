@@ -15,6 +15,15 @@ public interface EditorPeer {
 	public JComponent getComponent();
 
 	public String[] check();
+	
+	default void setEnabled(boolean enabled) {
+		JComponent component = this.getComponent();
+		if (component != null) {
+			component.setEnabled(enabled);
+		}
+	}
+	
+	default void setEditable(boolean editable) {}
 
 	default Editor<?, ?> createEditor() {
 		return new DefaultEditor() {
@@ -38,6 +47,14 @@ public interface EditorPeer {
 				errors.addAll(Arrays.asList(super.validate()));
 				errors.addAll(Arrays.asList(EditorPeer.this.check()));
 				return errors.toArray(new String[0]);
+			}
+			
+			public void setEnabled(boolean enabled) {
+				EditorPeer.this.setEnabled(enabled);
+			}
+			
+			public void setEditable(boolean editable) {
+				EditorPeer.this.setEditable(editable);
 			}
 		};
 	}
