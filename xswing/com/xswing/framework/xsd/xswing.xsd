@@ -445,8 +445,8 @@
     <xsd:attribute name="tooltip" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="padding" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="editor" type="xsd:string"></xsd:attribute>
-    <xsd:attribute name="enabled" type="xsd:boolean"></xsd:attribute>
-    <xsd:attribute name="editable" type="xsd:boolean"></xsd:attribute>
+    <xsd:attribute name="enabled" type="xsd:string"></xsd:attribute>
+    <xsd:attribute name="editable" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="value" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="action" type="xsd:string"></xsd:attribute>
     <xsd:attribute name="background" type="xsd:string"></xsd:attribute>
