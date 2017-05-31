@@ -198,6 +198,8 @@ public class ComponentParser<T extends JComponent> extends BeanParser<T> {
 				editor.setEditable(Boolean.valueOf(value.toString()));
 			});
 		}
+		boolean corresponding = getBoolean(source, Const.CORRESPONDING, true);
+		editor.setCorresponding(corresponding);
 	}
 
 	protected List<Validator<?>> parseValidators(Context context, Element source, Editor<? extends JComponent, ?> editor) {

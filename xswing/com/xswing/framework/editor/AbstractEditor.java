@@ -43,6 +43,8 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 	private Border border;
 
 	protected Popup popup;
+	
+	protected boolean corresponding;
 
 	public void init() {
 
@@ -118,6 +120,14 @@ public abstract class AbstractEditor<T extends JComponent, V> implements Editor<
 
 	public String getValueProperty() {
 		return valueProperty;
+	}
+
+	public boolean isCorresponding() {
+		return corresponding;
+	}
+
+	public void setCorresponding(boolean corresponding) {
+		this.corresponding = corresponding;
 	}
 
 	protected Object getDataProperty(String property) {

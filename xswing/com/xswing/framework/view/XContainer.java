@@ -201,7 +201,9 @@ public class XContainer<M extends AppModel<?>> extends JPanel implements View, E
 	public void setEditable(boolean editable) {
 		for(Editor<?, ?> editor: this.getEditors().values()) {
 			if (this.xpanel != editor.getComponent()) {
-				editor.setEditable(editable);
+				if (editor.isCorresponding()) {
+					editor.setEditable(editable);
+				}
 			}
 		}
 	}

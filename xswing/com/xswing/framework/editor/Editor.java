@@ -58,6 +58,12 @@ public interface Editor<T extends JComponent, V> extends AppListener {
 	}
 	
 	default void setEditable(boolean editable) {}
+	
+	default boolean isCorresponding() {
+		return true;
+	}
+
+	public void setCorresponding(boolean corresponding);
 
 	public String[] validate();
 
