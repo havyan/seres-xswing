@@ -43,6 +43,8 @@ public class ComboBoxParser extends ComponentParser<JComboBox> {
 	@Override
 	protected void bind(Context context, String id, JComboBox bean, Element source) {
 		bindSet(context, bean, getString(source, Const.ITEMS), value -> {
+			boolean writebackable = context.isWritebackable();
+			context.setWritebackable(false);
 			bean.removeAllItems();
 			if (value != null) {
 				if (value instanceof Collection) {
@@ -63,6 +65,7 @@ public class ComboBoxParser extends ComponentParser<JComboBox> {
 					}
 				}
 			}
+			context.setWritebackable(writebackable);
 		});
 		super.bind(context, id, bean, source);
 	}
