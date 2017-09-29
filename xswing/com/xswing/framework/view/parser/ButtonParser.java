@@ -20,7 +20,9 @@ public class ButtonParser extends ComponentParser<JButton> {
 		}
 		String text = getString(source, Const.TEXT);
 		if (StringUtils.isNotEmpty(text)) {
-			button.setText(text);
+			bindSet(context, button, text, value -> {
+				button.setText(value == null ? "" : value.toString());
+			});
 		}
 		return button;
 	}
