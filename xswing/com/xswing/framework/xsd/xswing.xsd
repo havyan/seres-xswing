@@ -509,6 +509,7 @@
     <xsd:attribute name="horizontalLines" type="xsd:boolean"></xsd:attribute>
     <xsd:attribute name="verticalLines" type="xsd:boolean"></xsd:attribute>
     <xsd:attribute name="rowHeight" type="xsd:int"></xsd:attribute>
+    <xsd:attribute name="sortable" type="xsd:boolean"></xsd:attribute>
   </xsd:complexType>
 
   <xsd:complexType name="tableColumn">

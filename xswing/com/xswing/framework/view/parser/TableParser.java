@@ -58,6 +58,8 @@ public class TableParser extends ComponentParser<JTable> {
 		table.setShowHorizontalLines(horizontalLines);
 		boolean verticalLines = getBoolean(source, Const.VERTICALLINES, true);
 		table.setShowVerticalLines(verticalLines);
+		boolean sortable = getBoolean(source, Const.SORTABLE, true);
+		table.setAutoCreateRowSorter(sortable);
 		return table;
 	}
 

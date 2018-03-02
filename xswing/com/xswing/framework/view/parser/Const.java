@@ -234,6 +234,8 @@ public class Const {
 	
 	public static final String EDITABLE = "editable";
 	
+	public static final String SORTABLE = "sortable";
+	
 	public static final String CORRESPONDING = "corresponding";
 
 }
