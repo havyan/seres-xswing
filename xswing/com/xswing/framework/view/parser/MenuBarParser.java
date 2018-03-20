@@ -15,7 +15,7 @@ public class MenuBarParser extends ComponentParser<JMenuBar> {
 	@Override
 	public JMenuBar parseElement(Context context, Element source) {
 		JMenuBar menuBar = createBean(context, source);
-		List<Element> menus = source.getChildren();
+		List<Element> menus = source.getChildren(Const.ITEM);
 		for (Element e : menus) {
 			menuBar.add((JComponent) ParserEngine.parse(context, e));
 		}
