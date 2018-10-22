@@ -123,6 +123,8 @@ public class Const {
 	public static final String MENU_UP = "MENU";
 
 	public static final String ITEMS = "items";
+	
+	public static final String ITEMSREF = "itemsRef";
 
 	public static final String ITEM = "item";
 

@@ -25,13 +25,17 @@ public class XPanelBuilder {
 	public static XPanel build(String path) {
 		return build(path, (AppModel<?>) null, (View) null);
 	}
-
+	
 	public static XPanel build(String path, Object data) {
+		return build(path, data, (Map<String, Object>)null);
+	}
+
+	public static XPanel build(String path, Object data, Map<String, Object> prdefinedBeans) {
 		if (data != null) {
 			if (data instanceof AppModel) {
-				return build(path, (AppModel<?>) data, (View) null);
+				return build(path, (AppModel<?>) data, (View) null, prdefinedBeans);
 			} else {
-				return build(path, new DefaultAppModel<Object>(data), (View) null);
+				return build(path, new DefaultAppModel<Object>(data), (View) null, prdefinedBeans);
 			}
 		}
 		return build(path, (AppModel<?>) null, (View) null);

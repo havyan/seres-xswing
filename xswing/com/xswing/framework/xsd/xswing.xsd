@@ -379,6 +379,7 @@
           <xsd:element name="item" type="element" maxOccurs="unbounded" minOccurs="0"></xsd:element>
         </xsd:sequence>
         <xsd:attribute name="items" type="xsd:string"></xsd:attribute>
+        <xsd:attribute name="itemsRef" type="xsd:string"></xsd:attribute>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
