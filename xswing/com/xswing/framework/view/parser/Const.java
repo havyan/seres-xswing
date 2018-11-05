@@ -31,6 +31,8 @@ public class Const {
 	public static final String PROPERTY = "property";
 
 	public static final String NAME = "name";
+	
+	public static final String ATTR = "attr";
 
 	public static final String FILE = "file";
 

@@ -26,7 +26,8 @@ public class TreeTableParser extends TableParser {
 		return JXTreeTable.class;
 	}
 
-	protected void setModel(JTable table, Context context, Element source, Vector<String> columnNames, List<Class<?>> columnClasses) {
+	@Override
+	protected void setModel(JTable table, Context context, Element source, Vector<String> columnNames, List<String> columnAttrs, List<Class<?>> columnClasses) {
 		String modelText = getString(source, Const.MODEL);
 		TreeTableModel model = null;
 		if (StringUtils.isNotEmpty(modelText)) {
